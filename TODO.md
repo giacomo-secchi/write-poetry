@@ -1,0 +1,1 @@
+Follow some best practices here https://css-tricks.com/wordpress-functionality-plugins/
