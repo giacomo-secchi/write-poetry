@@ -26,6 +26,11 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 		 */
 		private static $instance;
 
+		public $plugin_slug;
+		public $version;
+		public $cache_key;
+		public $cache_allowed;
+
 		/**
 		 * This is our constructor
 		 *
@@ -36,7 +41,8 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			// add_action		( 'plugins_loaded', 					array( $this, 'textdomain'				) 			);
 			// add_action		( 'admin_enqueue_scripts',				array( $this, 'admin_scripts'			)			);
 			// add_action		( 'do_meta_boxes',						array( $this, 'create_metaboxes'		),	10,	2	);
-			// add_action		( 'save_post',							array( $this, 'save_custom_meta'		),	1		);
+			add_filter		( 'plugins_api',						array( $this, 'info' 					),	20, 3 	);
+			add_action		( 'init',								array( $this, 'register_post_types'		),			);
 
 			// front end
 			// add_action		( 'wp_enqueue_scripts',					array( $this, 'front_scripts'			),	10		);
@@ -76,6 +82,19 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			return in_array( wp_get_environment_type(), array( 'development', 'local' ), true );
 		}
 
+		public static function register_post_types( )
+		{
+			$args = array();
+
+			foreach ( apply_filters( 'mcf_add_custom_post_types',  $args ) as $post_type_slug => $post_type_config ) {
+				if ( post_type_exists( $post_type_slug ) ) {
+					return;
+				}
+
+				register_post_type( $post_type_slug, $post_type_config ); // Register Custom Post Type
+			}
+		}
+
 		// // Remove query string from static CSS files
 		public static function remove_query_string_from_static_files( $src ) {
 
@@ -105,7 +124,7 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			}
 		}
 
-				/**
+		/**
 		 * Load the required files
 		 *
 		 * @since  1.0.0
@@ -141,6 +160,93 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			foreach ( glob($includes_path . "custom/*.php") as $file ) {
 				require_once $file;
 			}
+
+		}
+
+		public function request(){
+
+			$remote = get_transient( $this->cache_key );
+
+			if( false === $remote || ! $this->cache_allowed ) {
+
+				$remote = wp_remote_get(
+					'https://raw.githubusercontent.com/giacomo-secchi/functionality-plugin/master/info.php',
+					array(
+						'timeout' => 10,
+						'headers' => array(
+							'Accept' => 'application/json'
+						)
+					)
+				);
+
+				if(
+					is_wp_error( $remote )
+					|| 200 !== wp_remote_retrieve_response_code( $remote )
+					|| empty( wp_remote_retrieve_body( $remote ) )
+				) {
+					return false;
+				}
+
+				set_transient( $this->cache_key, $remote, DAY_IN_SECONDS );
+
+			}
+
+			$remote = json_decode( wp_remote_retrieve_body( $remote ) );
+
+			return $remote;
+
+		}
+
+		function info( $res, $action, $args ) {
+
+			// print_r( $action );
+			// print_r( $args );
+
+			// do nothing if you're not getting plugin information right now
+			if( 'plugin_information' !== $action ) {
+				return $res;
+			}
+
+			// do nothing if it is not our plugin
+			if( $this->plugin_slug !== $args->slug ) {
+				return $res;
+			}
+
+			// get updates
+			$remote = $this->request();
+
+			if( ! $remote ) {
+				return $res;
+			}
+
+			$res = new stdClass();
+
+			$res->name = $remote->name;
+			$res->slug = $remote->slug;
+			$res->version = $remote->version;
+			$res->tested = $remote->tested;
+			$res->requires = $remote->requires;
+			$res->author = $remote->author;
+			$res->author_profile = $remote->author_profile;
+			$res->download_link = $remote->download_url;
+			$res->trunk = $remote->download_url;
+			$res->requires_php = $remote->requires_php;
+			$res->last_updated = $remote->last_updated;
+
+			$res->sections = array(
+				'description' => $remote->sections->description,
+				'installation' => $remote->sections->installation,
+				'changelog' => $remote->sections->changelog
+			);
+
+			if( ! empty( $remote->banners ) ) {
+				$res->banners = array(
+					'low' => $remote->banners->low,
+					'high' => $remote->banners->high
+				);
+			}
+
+			return $res;
 
 		}
 
