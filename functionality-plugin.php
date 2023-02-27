@@ -37,18 +37,23 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 		 * @return void
 		 */
 		private function __construct() {
+
+			$this->plugin_slug = plugin_basename( __DIR__ );
+			$this->version = '1.0';
+			$this->cache_key = 'misha_custom_upd';
+			$this->cache_allowed = false;
+
 			// back end
 			// add_action		( 'plugins_loaded', 					array( $this, 'textdomain'				) 			);
 			// add_action		( 'admin_enqueue_scripts',				array( $this, 'admin_scripts'			)			);
 			// add_action		( 'do_meta_boxes',						array( $this, 'create_metaboxes'		),	10,	2	);
 			add_filter		( 'plugins_api',						array( $this, 'info' 					),	20, 3 	);
-			add_action		( 'init',								array( $this, 'register_post_types'		),			);
+			add_filter		( 'site_transient_update_plugins',		array( $this, 'update'					)			);
+
 
 			// front end
 			// add_action		( 'wp_enqueue_scripts',					array( $this, 'front_scripts'			),	10		);
 			// add_filter		( 'comment_form_defaults',				array( $this, 'custom_notes_filter'		) 			);
-			add_filter		( 'style_loader_src',					array( $this, 'remove_query_string_from_static_files'	), 10, 2 );
-			add_filter		( 'script_loader_src',					array( $this, 'remove_query_string_from_static_files'	), 10, 2 );
 
 		}
 
@@ -64,65 +69,17 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 				self::$instance = new MCF_Plugin;
 			}
  			self::$instance->includes();
+			self::$instance->init = new MCF_Init();
 
 
 			return self::$instance;
 		}
 
 
-        // public static function init() {
-        //     register_setting( 'wporg_settings', 'wporg_option_foo' );
-        // }
-
-        // public static function get_foo() {
-        //     return get_option( 'wporg_option_foo' );
-        // }
-
 		public static function is_development_environment() {
 			return in_array( wp_get_environment_type(), array( 'development', 'local' ), true );
 		}
 
-		public static function register_post_types( )
-		{
-			$args = array();
-
-			foreach ( apply_filters( 'mcf_add_custom_post_types',  $args ) as $post_type_slug => $post_type_config ) {
-				if ( post_type_exists( $post_type_slug ) ) {
-					return;
-				}
-
-				register_post_type( $post_type_slug, $post_type_config ); // Register Custom Post Type
-			}
-		}
-
-		// // Remove query string from static CSS files
-		public static function remove_query_string_from_static_files( $src ) {
-
-			if ( ! self::is_development_environment() ) {
-				return;
-			}
-
-			if( strpos( $src, '?ver=' ) ) {
-				$src = remove_query_arg( 'ver', $src );
-			}
-
-			return $src;
-		}
-
-		public static function disable_stuff() {
-
-			$hook_names = array(
-				'big_image_size_threshold'	// https://make.wordpress.org/core/2019/10/09/introducing-handling-of-big-images-in-wordpress-5-3/
-			);
-
-			foreach ( $hook_names as $hook_name ) {
-				if ( empty( $hook_name ) ) {
-					return;
-				}
-
-				add_filter( $hook_name, '__return_false' );
-			}
-		}
 
 		/**
 		 * Load the required files
@@ -133,29 +90,30 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 		 */
 		private function includes() {
 			$includes_path = plugin_dir_path( __FILE__ ) . 'includes/';
-			// require_once $includes_path . 'includes/class-mcf-register-post-types.php';
-			// require_once $includes_path . 'includes/class-mcf-register-taxonomies.php';
-			// require_once $includes_path . 'includes/class-mcf-remove-admin-bar.php';
-			// require_once $includes_path . 'includes/class-mcf-clean-up-head.php';
-			// require_once $includes_path . 'includes/class-mcf-close-comments.php';
-			// require_once $includes_path . 'includes/class-mcf-custom-feed-link.php';
-			// require_once $includes_path . 'includes/class-mcf-insert-figure.php';
-			// require_once $includes_path . 'includes/class-mcf-rcp-auto-renew.php';
-			// require_once $includes_path . 'includes/class-mcf-long-url-spam.php';
-			// require_once $includes_path . 'includes/class-mcf-remove-jetpack-bar.php';
-			// require_once $includes_path . 'includes/class-mcf-add-mime-types.php';
-			// require_once $includes_path . 'includes/class-mcf-remove-markdown-support.php';
-			// require_once $includes_path . 'includes/class-mcf-add-email-feed.php';
-			// require_once $includes_path . 'includes/class-mcf-increase-postmeta-form-limit.php';
-			// require_once $includes_path . 'includes/class-mcf-limit-users-delete.php';
-			// require_once $includes_path . 'includes/class-mcf-remove-unwanted-assets.php';
-			// require_once $includes_path . 'includes/class-mcf-remove-post-author-url.php';
-			// require_once $includes_path . 'includes/class-mcf-custom-pagi.php';
-			// require_once $includes_path . 'includes/class-mcf-allowed-tags.php';
+			require_once $includes_path . 'class-mcf-register-post-types.php';
+			// require_once $includes_path . 'class-mcf-register-taxonomies.php';
+			// require_once $includes_path . 'class-mcf-remove-admin-bar.php';
+			// require_once $includes_path . 'class-mcf-clean-up-head.php';
+			// require_once $includes_path . 'class-mcf-close-comments.php';
+			// require_once $includes_path . 'class-mcf-custom-feed-link.php';
+			// require_once $includes_path . 'class-mcf-insert-figure.php';
+			// require_once $includes_path . 'class-mcf-rcp-auto-renew.php';
+			// require_once $includes_path . 'class-mcf-long-url-spam.php';
+			// require_once $includes_path . 'class-mcf-remove-jetpack-bar.php';
+			// require_once $includes_path . 'class-mcf-add-mime-types.php';
+			// require_once $includes_path . 'class-mcf-remove-markdown-support.php';
+			// require_once $includes_path . 'class-mcf-add-email-feed.php';
+			// require_once $includes_path . 'class-mcf-increase-postmeta-form-limit.php';
+			// require_once $includes_path . 'class-mcf-limit-users-delete.php';
+			require_once $includes_path . 'class-mcf-remove-unwanted-features.php';
+			require_once $includes_path . 'class-mcf-dev-tools.php';
+			// require_once $includes_path . 'class-mcf-remove-post-author-url.php';
+			// require_once $includes_path . 'class-mcf-custom-pagi.php';
+			// require_once $includes_path . 'class-mcf-allowed-tags.php';
 
 
-			// require_once $includes_path . 'includes/template-functions.php';
-			// require_once $includes_path . 'includes/class-mcf-init.php';
+			// require_once $includes_path . 'template-functions.php';
+			require_once $includes_path . 'class-mcf-init.php';
 
 			foreach ( glob($includes_path . "custom/*.php") as $file ) {
 				require_once $file;
@@ -247,6 +205,35 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			}
 
 			return $res;
+
+		}
+
+		public function update( $transient ) {
+
+			if ( empty($transient->checked ) ) {
+				return $transient;
+			}
+
+			$remote = $this->request();
+
+			if(
+				$remote
+				&& version_compare( $this->version, $remote->version, '<' )
+				&& version_compare( $remote->requires, get_bloginfo( 'version' ), '<=' )
+				&& version_compare( $remote->requires_php, PHP_VERSION, '<' )
+			) {
+				$res = new stdClass();
+				$res->slug = $this->plugin_slug;
+				$res->plugin = plugin_basename( __FILE__ ); // misha-update-plugin/misha-update-plugin.php
+				$res->new_version = $remote->version;
+				$res->tested = $remote->tested;
+				$res->package = $remote->download_url;
+
+				$transient->response[ $res->plugin ] = $res;
+
+	    }
+
+			return $transient;
 
 		}
 
