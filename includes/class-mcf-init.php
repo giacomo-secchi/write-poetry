@@ -33,7 +33,9 @@ class MCF_Init {
 		// $increase_form_limit	 = new MCF_Increase_Postmeta_Form_Limit();
 		// $limit_users_delete		 = new MCF_Limit_Users_Delete();
 		$remove_features			= new MCF_Remove_Unwated_Features();
+		$custom_login				= new MCF_Customize_Login_Page();
 		$tools						= new MCF_Dev_Tools();
+		// $update_checher				= new mishaUpdateChecker();
 		// $remove_post_author_url  = new MCF_Remove_Post_Author_Url();
 		// $allowed_tags			 = new MCF_Allowed_Tags();
 
