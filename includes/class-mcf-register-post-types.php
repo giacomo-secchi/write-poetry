@@ -27,14 +27,31 @@ class MCF_Register_Post_Types {
      * @return void
      */
     public function register_post_types() {
-		$args = array();
 
-		foreach ( apply_filters( 'mcf_add_custom_post_types',  $args ) as $post_type_slug => $post_type_config ) {
-			if ( post_type_exists( $post_type_slug ) ) {
+
+		$default_args = array(
+			'show_in_rest' => true,
+			'can_export' => true, // Allows export in Tools > Export
+			'hierarchical' => false, // Allows your posts to behave like Hierarchy Pages
+			'public' => true,
+			'publicly_queryable'  => false,
+			'supports' => array(
+				'title',
+				'editor',
+				'excerpt',
+				'thumbnail'
+			),
+		);
+
+
+		foreach ( apply_filters( 'mcf_add_custom_post_types', array() ) as $post_type => $args ) {
+			if ( post_type_exists( $post_type ) ) {
 				return;
 			}
 
-			register_post_type( $post_type_slug, $post_type_config ); // Register Custom Post Type
+			$args = array_merge( $default_args , $args );
+
+			register_post_type( $post_type, $args ); // Register Custom Post Type
 		}
     }
 }
