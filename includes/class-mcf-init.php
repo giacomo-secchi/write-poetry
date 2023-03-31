@@ -35,6 +35,8 @@ class MCF_Init {
 		$remove_features			= new MCF_Remove_Unwated_Features();
 		$custom_login				= new MCF_Customize_Login_Page();
 		$tools						= new MCF_Dev_Tools();
+		$metadata					= new MCF_Metadata();
+
 		// $update_checher				= new mishaUpdateChecker();
 		// $remove_post_author_url  = new MCF_Remove_Post_Author_Url();
 		// $allowed_tags			 = new MCF_Allowed_Tags();

@@ -85,6 +85,7 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			// require_once $includes_path . 'class-mcf-limit-users-delete.php';
 			require_once $includes_path . 'class-mcf-remove-unwanted-features.php';
 			require_once $includes_path . 'class-mcf-dev-tools.php';
+			require_once $includes_path . 'class-mcf-metafield.php';
 			require_once $includes_path . 'class-mcf-customize-login-page.php';
 			// require_once $includes_path . 'class-mcf-remove-post-author-url.php';
 			// require_once $includes_path . 'class-mcf-custom-pagi.php';
