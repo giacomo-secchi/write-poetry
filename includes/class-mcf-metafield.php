@@ -18,7 +18,7 @@ class MCF_Metadata {
 	public function __construct() {
 
 		add_action		( 'enqueue_block_editor_assets', 		array( $this, 'enqueue_block_assets' ) );
-		add_action		( 'add_meta_boxes',						array( $this, 'add_portfolio_meta_box' ) );
+		// add_action		( 'add_meta_boxes',						array( $this, 'add_portfolio_meta_box' ) );
 		add_action		( 'init', 								array( $this, 'register_portfolio_meta' ) );
 
 	}
@@ -38,15 +38,58 @@ class MCF_Metadata {
 
 
 	public function register_portfolio_meta() {
-		register_post_meta( 'jetpack-portfolio', '_mcf_text_metafield', array(
-			'show_in_rest' => true,
-			'type' => 'string',
-			'single' => true,
-			'sanitize_callback' => 'sanitize_text_field',
-			'auth_callback' => function () {
-				return current_user_can( 'edit_posts' );
-			}
-		) );
+
+		register_post_meta(
+			'jetpack-portfolio',
+			'_mcf_project_year',
+			 array(
+				'show_in_rest' => true,
+				'type' => 'number',
+				'single' => true,
+				'auth_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				}
+			)
+		);
+
+		register_post_meta(
+			'jetpack-portfolio',
+			'_mcf_project_client',
+				array(
+					'show_in_rest' => true,
+					'type' => 'string',
+					'single' => true,
+					'auth_callback' => function () {
+						return current_user_can( 'edit_posts' );
+					}
+			)
+		);
+
+		register_post_meta(
+			'jetpack-portfolio',
+			'_mcf_project_expertise',
+				array(
+					'show_in_rest' => true,
+					'type' => 'string',
+					'single' => true,
+					'auth_callback' => function () {
+						return current_user_can( 'edit_posts' );
+					}
+			)
+		);
+
+		register_post_meta(
+			'jetpack-portfolio',
+			'_mcf_project_industry',
+				array(
+					'show_in_rest' => true,
+					'type' => 'string',
+					'single' => true,
+					'auth_callback' => function () {
+						return current_user_can( 'edit_posts' );
+					}
+			)
+		);
 	}
 
 	public function add_portfolio_meta_box() {
