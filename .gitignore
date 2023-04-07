@@ -9,3 +9,4 @@ includes/custom/*
 *.sql
 *.tar.gz
 *.zip
+.vscode/

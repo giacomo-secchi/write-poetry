@@ -47,10 +47,8 @@ class Smashing_Updater {
 
 	private function get_repository_info() {
 	    if ( is_null( $this->github_response ) ) { // Do we have a response?
-		$args = array();
+			$args = array();
 	        $request_uri = sprintf( 'https://api.github.com/repos/%s/%s/releases', $this->username, $this->repository ); // Build URI
-
-		$args = array();
 
 	        if( $this->authorize_token ) { // Is there an access token?
 		          $args['headers']['Authorization'] = "bearer {$this->authorize_token}"; // Set the headers
