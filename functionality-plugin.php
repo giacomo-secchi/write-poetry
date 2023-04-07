@@ -16,12 +16,17 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-// Include our updater file
-include_once( plugin_dir_path( __FILE__ ) . 'update.php');
+if ( ! class_exists( 'Smashing_Updater' ) ){
+	include_once( plugin_dir_path( __FILE__ ) . 'updater.php' );
+}
 
-$updater = new Smashing_Updater( __FILE__ ); // instantiate our class
-$updater->set_username( 'giacomo-secchi' ); // set username
-$updater->set_repository( 'functionality-plugin' ); // set repo
+$updater = new Smashing_Updater( __FILE__ );
+$updater->set_username( 'giacomo-secchi' );
+$updater->set_repository( 'functionality-plugin' );
+/*
+	$updater->authorize( 'abcdefghijk1234567890' ); // Your auth code goes here for private repos
+*/
+$updater->initialize();
 
 
 // if ( ! class_exists( 'MCF_Plugin' ) ) {
