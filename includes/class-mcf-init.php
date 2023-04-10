@@ -36,6 +36,7 @@ class MCF_Init {
 		$custom_login				= new MCF_Customize_Login_Page();
 		$tools						= new MCF_Dev_Tools();
 		$metadata					= new MCF_Metadata();
+		$gtm						= new MCF_GTM();
 
 		// $update_checher				= new mishaUpdateChecker();
 		// $remove_post_author_url  = new MCF_Remove_Post_Author_Url();
