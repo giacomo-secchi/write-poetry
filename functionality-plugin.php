@@ -5,7 +5,7 @@
  * Description: This is an awesome custom plugin with functionality that I'd like to keep when switching things.
  * Author: Giacomo Secchi
  * Author URI: https://giacomosecchi.com
- * Version: 0.0.6
+ * Version: 0.0.7
  */
 
 /* Place custom code below this line. */
@@ -128,7 +128,7 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			// require_once $includes_path . 'template-functions.php';
 			require_once $includes_path . 'class-mcf-init.php';
 
-			foreach ( glob( $includes_path . "custom/!*_example.php" ) as $file ) {
+			foreach ( glob( $includes_path . "custom/*[!{*_example}].php" ) as $file ) {
 				require_once $file;
 			}
 
