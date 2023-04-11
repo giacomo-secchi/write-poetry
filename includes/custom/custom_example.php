@@ -5,3 +5,4 @@
 define( 'GTM4WP_HARDCODED_GTM_ID', '1' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_AUTH', '' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_PREVIEW', '' );
+

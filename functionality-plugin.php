@@ -109,13 +109,13 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			// require_once $includes_path . 'class-mcf-rcp-auto-renew.php';
 			// require_once $includes_path . 'class-mcf-long-url-spam.php';
 			// require_once $includes_path . 'class-mcf-remove-jetpack-bar.php';
-			// require_once $includes_path . 'class-mcf-add-mime-types.php';
+			require_once $includes_path . 'class-mcf-add-mime-types.php';
 			// require_once $includes_path . 'class-mcf-remove-markdown-support.php';
 			// require_once $includes_path . 'class-mcf-add-email-feed.php';
 			// require_once $includes_path . 'class-mcf-increase-postmeta-form-limit.php';
 			// require_once $includes_path . 'class-mcf-limit-users-delete.php';
 			require_once $includes_path . 'class-mcf-remove-unwanted-features.php';
-			require_once $includes_path . 'class-mcf-dev-tools.php';
+			// require_once $includes_path . 'class-mcf-dev-tools.php';
 			require_once $includes_path . 'class-mcf-metafield.php';
 			require_once $includes_path . 'class-mcf-customize-login-page.php';
 			require_once $includes_path . 'class-mcf-gtm.php';
