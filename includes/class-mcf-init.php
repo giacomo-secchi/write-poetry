@@ -37,6 +37,8 @@ class MCF_Init {
 		// $tools						= new MCF_Dev_Tools();
 		$metadata					= new MCF_Metadata();
 		$gtm						= new MCF_GTM();
+		$qv						= new MCF_Add_Query_Variables();
+
 		// $remove_post_author_url  = new MCF_Remove_Post_Author_Url();
 		// $allowed_tags			 = new MCF_Allowed_Tags();
 
