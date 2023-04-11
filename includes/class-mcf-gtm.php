@@ -10,6 +10,8 @@
  * @author      Jason Witt <contact@jawittdesigns.com>
  */
 
+
+
 class MCF_GTM {
 
 	/**
@@ -23,13 +25,14 @@ class MCF_GTM {
 
 
 	/**
-	 * Undocumented function
+	 * Manually coded Container code compatibility mode
 	 *
 	 * @return void
 	 */
 	public static function GTM_noscript_container_code() {
 		if ( function_exists( 'gtm4wp_the_gtm_tag' ) ) { gtm4wp_the_gtm_tag(); }
 	}
+
 
 }
 

@@ -16,18 +16,29 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+
+
 /**
- * Check and update pluging
+ * Check plugin version and update it
  *
  * @link https://www.smashingmagazine.com/2015/08/deploy-wordpress-plugins-with-github-using-transients/
  */
+
+if ( ! defined( 'MCF__GITHUB_USERNAME' ) ) {
+	define( 'MCF__GITHUB_USERNAME', 'giacomo-secchi'  );
+}
+
+if ( ! defined( 'MCF__GITHUB_REPO' ) ) {
+	define( 'MCF__GITHUB_REPO', 'functionality-plugin' );
+}
+
 if ( ! class_exists( 'Smashing_Updater' ) ){
 	include_once( plugin_dir_path( __FILE__ ) . 'updater.php' );
 }
 
 $updater = new Smashing_Updater( __FILE__ );
-$updater->set_username( 'giacomo-secchi' );
-$updater->set_repository( 'functionality-plugin' );
+$updater->set_username( MCF__GITHUB_USERNAME );
+$updater->set_repository( MCF__GITHUB_REPO );
 /*
 	$updater->authorize( 'abcdefghijk1234567890' ); // Your auth code goes here for private repos
 */
