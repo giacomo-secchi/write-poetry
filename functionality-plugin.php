@@ -128,7 +128,11 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			// require_once $includes_path . 'template-functions.php';
 			require_once $includes_path . 'class-mcf-init.php';
 
-			foreach ( glob( $includes_path . "custom/*[!{*_example}].php" ) as $file ) {
+			foreach ( glob( $includes_path . 'custom\/*.php' ) as $file ) {
+				if ( strpos( $file, '_example.php') ) {
+					return;
+				}
+
 				require_once $file;
 			}
 
