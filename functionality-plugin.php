@@ -5,7 +5,7 @@
  * Description: This is an awesome custom plugin with functionality that I'd like to keep when switching things.
  * Author: Giacomo Secchi
  * Author URI: https://giacomosecchi.com
- * Version: 0.0.8
+ * Version: 0.0.9
  */
 
 /* Place custom code below this line. */
