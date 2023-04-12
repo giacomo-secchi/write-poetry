@@ -5,8 +5,6 @@ Thumbs.db
 wp-cli.local.yml
 build/
 node_modules/
-includes/custom/*
-!includes/custom/*_example.php
 *.sql
 *.tar.gz
 *.zip
