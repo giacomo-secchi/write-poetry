@@ -38,6 +38,7 @@ class MCF_Init {
 		$metadata					= new MCF_Metadata();
 		$gtm						= new MCF_GTM();
 		$qv						= new MCF_Add_Query_Variables();
+		$direct_chcekout 			= new MCF_WooCommerce_Direct_Checkout();
 
 		// $remove_post_author_url  = new MCF_Remove_Post_Author_Url();
 		// $allowed_tags			 = new MCF_Allowed_Tags();

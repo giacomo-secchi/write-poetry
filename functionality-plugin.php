@@ -120,6 +120,7 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			require_once $includes_path . 'class-mcf-customize-login-page.php';
 			require_once $includes_path . 'class-mcf-gtm.php';
 			require_once $includes_path . 'class-mcf-set-query-vars.php';
+			require_once $includes_path . 'class-mcf-woocommerce-direct-checkout.php';
 			// require_once $includes_path . 'class-mcf-remove-post-author-url.php';
 			// require_once $includes_path . 'class-mcf-custom-pagi.php';
 			// require_once $includes_path . 'class-mcf-allowed-tags.php';
