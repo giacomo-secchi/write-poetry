@@ -16,7 +16,6 @@ class MCF_WooCommerce_Direct_Checkout {
 	 * Initialize the class
 	 */
 	public function __construct() {
-		define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', true );
 
 		// Add Authorization Token to download_package
 		add_filter( 'plugins_loaded', function() {
