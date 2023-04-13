@@ -5,5 +5,8 @@
         "https://downloads.wordpress.org/plugin/jetpack.12.0.zip",
         "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.16.2.zip",
         "https://downloads.wordpress.org/plugin/woocommerce.7.5.1.zip"
-    ]
+    ],
+    "mappings": {
+      "wp-content/mu-plugins": "./mu-plugins"
+    }
 }

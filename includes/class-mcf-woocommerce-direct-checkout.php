@@ -10,6 +10,11 @@
  * @author      Jason Witt <contact@jawittdesigns.com>
  */
 
+if ( ! defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) ) {
+	define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', false );
+}
+
+
 class MCF_WooCommerce_Direct_Checkout {
 
 	/**
@@ -61,7 +66,7 @@ class MCF_WooCommerce_Direct_Checkout {
 		return wc_get_checkout_url();
 	}
 
-	public function woocommerce_loop_add_to_cart_link( $url ) {
+	public function woocommerce_loop_add_to_cart_link( $add_to_cart_html ) {
 		return str_replace( 'Add to cart', 'Buy now', $add_to_cart_html );
 	}
 
