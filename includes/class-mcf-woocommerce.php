@@ -18,6 +18,13 @@ if ( ! defined( 'MCF_WOOCOMMERCE_QUANTITY_AS_SELECT' ) ) {
 	define( 'MCF_WOOCOMMERCE_QUANTITY_AS_SELECT', false );
 }
 
+if ( ! defined( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY' ) ) {
+	define( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', false );
+}
+
+if ( ! defined( 'MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM' ) ) {
+	define( 'MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM', false );
+}
 class MCF_WooCommerce {
 
 	/**
@@ -36,6 +43,14 @@ class MCF_WooCommerce {
 				add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_addon_plugin_template' ), 1, 3 );
 			}
 
+
+			if ( MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY ) {
+				$this->disable_quantity_input();
+			}
+
+			if ( MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM ) {
+				$this->disable_product_zoom();
+			}
 
 			if ( ! MCF_WOOCOMMERCE_REDIRECT_CHECKOUT ) {
 				return false;
@@ -118,5 +133,56 @@ class MCF_WooCommerce {
 
 	public function remove_add_to_cart_message( $message ){
 		return '';
+	}
+
+
+	// Disable quantity selector for product and product variation
+	public function disable_quantity_input() {
+		add_filter( 'woocommerce_quantity_input_args', function ( $args, $product ) {
+			$args['max_value'] = 1;
+
+			return $args;
+		}, 10, 2 );
+
+		add_filter( 'woocommerce_available_variation', function  ( $data, $product, $variation ) {
+			$data['max_qty'] = 1;
+
+			return $data;
+		}, 10, 3);
+	}
+
+	// Disable zoom
+	public function disable_product_zoom() {
+		add_action( 'wp', function () {
+			remove_theme_support( 'wc-product-gallery-zoom' );
+			// remove_theme_support( 'wc-product-gallery-lightbox' );
+			// remove_theme_support( 'wc-product-gallery-slider' );
+		} , 100 );
+
+		add_filter( 'woocommerce_single_product_image_thumbnail_html', function ( $html ) {
+			return strip_tags( $html, '<div><img>' );
+		} );
+	}
+
+	public function woocommerce_custom_tabs () {
+		add_filter( 'woocommerce_product_tabs', function( $tabs ) {
+
+			// Remove additional information tab on Product Page
+			unset( $tabs['reviews'] );
+			unset( $tabs['additional_information'] );
+
+
+			// Insert additional information into description tab on Product Page
+			$tabs['description']['callback'] = function() {
+				global $product;
+				wc_get_template( 'single-product/tabs/description.php' );
+
+				if ( $product && ( $product->has_attributes() || apply_filters( 'wc_product_enable_dimensions_display', $product->has_weight() || $product->has_dimensions() ) ) ) {
+					wc_get_template( 'single-product/tabs/additional-information.php' );
+				}
+			};
+
+			return $tabs;
+		}, 20 );
 	}
 }
