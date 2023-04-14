@@ -20,8 +20,6 @@
 
 defined( 'ABSPATH' ) || exit;
 
-var_dump(1);die;
-
 /* translators: %s: Quantity. */
 $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 'woocommerce' ), wp_strip_all_tags( $args['product_name'] ) ) : esc_html__( 'Quantity', 'woocommerce' );
 

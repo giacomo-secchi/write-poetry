@@ -24,6 +24,9 @@ if ( ! defined( 'WPINC' ) ) {
  * @link https://www.smashingmagazine.com/2015/08/deploy-wordpress-plugins-with-github-using-transients/
  */
 
+
+define( 'MCF__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+
 if ( ! defined( 'MCF__GITHUB_USERNAME' ) ) {
 	define( 'MCF__GITHUB_USERNAME', 'giacomo-secchi'  );
 }
@@ -98,7 +101,7 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 		 */
 		private function includes() {
 
-			$includes_path = plugin_dir_path( __FILE__ ) . 'includes/';
+			$includes_path = MCF__PLUGIN_DIR . 'includes/';
 			require_once $includes_path . 'class-mcf-register-post-types.php';
 			// require_once $includes_path . 'class-mcf-register-taxonomies.php';
 			// require_once $includes_path . 'class-mcf-remove-admin-bar.php';
@@ -120,7 +123,7 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			require_once $includes_path . 'class-mcf-customize-login-page.php';
 			require_once $includes_path . 'class-mcf-gtm.php';
 			require_once $includes_path . 'class-mcf-set-query-vars.php';
-			require_once $includes_path . 'class-mcf-woocommerce-direct-checkout.php';
+			require_once $includes_path . 'class-mcf-woocommerce.php';
 			// require_once $includes_path . 'class-mcf-remove-post-author-url.php';
 			// require_once $includes_path . 'class-mcf-custom-pagi.php';
 			// require_once $includes_path . 'class-mcf-allowed-tags.php';

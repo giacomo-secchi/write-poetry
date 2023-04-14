@@ -23,7 +23,7 @@ define( 'GTM4WP_HARDCODED_GTM_ID', 'GTM-W9CRL5D' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_AUTH', 'Dhr_-0vJuMvL70-rUd1YPA' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_PREVIEW', 'env-1' );
 
-define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', false );
+define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', true );
 
 
 
@@ -87,6 +87,18 @@ add_filter( 'woocommerce_product_tabs', function( $tabs ) {
 
 
 
+// Disable quantity selector for product and product variation
+add_filter( 'woocommerce_quantity_input_args', function ( $args, $product ) {
+    $args['max_value'] = 1;
+
+    return $args;
+}, 10, 2 );
+
+add_filter( 'woocommerce_available_variation', function  ( $data, $product, $variation ) {
+    $data['max_qty'] = 1;
+
+    return $data;
+}, 10, 3);
 
 
 
