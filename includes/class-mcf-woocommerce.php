@@ -60,6 +60,10 @@ class MCF_WooCommerce {
 				return false;
 			}
 
+			if ( 'list' == MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT  ) {
+				add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_addon_plugin_template' ), 1, 3 );
+			}
+
 			$this->disable_ajax_cart();
 
 			add_filter( 'woocommerce_add_to_cart_redirect', array( $this, 'skip_cart_redirect_checkout' ) );
