@@ -85,6 +85,12 @@ class MCF_WooCommerce {
 
 
 
+
+
+
+
+
+
 			$this->disable_ajax_cart();
 
 			add_filter( 'woocommerce_add_to_cart_redirect', array( $this, 'skip_cart_redirect_checkout' ) );
