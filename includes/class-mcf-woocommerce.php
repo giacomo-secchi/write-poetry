@@ -73,7 +73,14 @@ class MCF_WooCommerce {
 				'accordion' == MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT
 			) {
 				//
-				wp_enqueue_script( 'jquery-ui-accordion' );
+				add_filter( 'wp_enqueue_scripts', function() {
+					wp_enqueue_script( 'jquery-ui-accordion' );
+					wp_add_inline_script( 'jquery-ui-accordion', '
+						jQuery( function( $ ) {
+							$( "#accordion" ).accordion();
+						});'
+					);
+				} );
 			}
 
 
