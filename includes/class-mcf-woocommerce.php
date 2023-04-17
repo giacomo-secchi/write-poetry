@@ -27,7 +27,6 @@ if ( ! defined( 'MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM' ) ) {
 }
 
 
-define( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT', 'list' );
 
 class MCF_WooCommerce {
 
@@ -43,10 +42,9 @@ class MCF_WooCommerce {
 				return false;
 			}
 
-			if ( MCF_WOOCOMMERCE_QUANTITY_AS_SELECT ) {
+			if ( MCF_WOOCOMMERCE_QUANTITY_AS_SELECT || defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) ) {
 				add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_addon_plugin_template' ), 1, 3 );
 			}
-
 
 			if ( MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY ) {
 				$this->disable_quantity_input();
@@ -60,9 +58,17 @@ class MCF_WooCommerce {
 				return false;
 			}
 
-			if ( 'list' == MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT  ) {
-				add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_addon_plugin_template' ), 1, 3 );
+			if (
+				defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) &&
+				'tabs' == MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT
+			) {
+				//
+				add_filter( 'mcf_exclude_woocommerce_template', function() {
+					return 'single-product/tabs/tabs.php';
+				} );
 			}
+
+
 
 			$this->disable_ajax_cart();
 
@@ -88,6 +94,11 @@ class MCF_WooCommerce {
 
 		$plugin_path  = untrailingslashit( MCF__PLUGIN_DIR )  . '/woocommerce/';
 
+		// Apply filter to exclude specific template
+		$excluded_template = apply_filters( 'mcf_exclude_woocommerce_template', 'excluded-template.php' );
+		if ( $template_name === $excluded_template ) {
+			return $template;
+		}
 
 		// Look within passed path within the theme - this is priority
 		$template = locate_template(
@@ -96,6 +107,7 @@ class MCF_WooCommerce {
 				$template_name
 			)
 		);
+
 
 		if( ! $template && file_exists( $plugin_path . $template_name ) ) {
 			$template = $plugin_path . $template_name;

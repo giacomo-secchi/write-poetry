@@ -26,7 +26,9 @@ define( 'GTM4WP_HARDCODED_GTM_ENV_PREVIEW', '' );
 define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', true );
 define( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', true );
 define( 'MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM', true );
+// define( 'MCF_WOOCOMMERCE_QUANTITY_AS_SELECT', true );
 
+define( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT', 'list' );
 
 // add elements to disable
 add_filter( 'mcf_disable_features', function () {
