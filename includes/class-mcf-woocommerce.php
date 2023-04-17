@@ -68,6 +68,14 @@ class MCF_WooCommerce {
 				} );
 			}
 
+			if (
+				defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) &&
+				'accordion' == MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT
+			) {
+				//
+				wp_enqueue_script( 'jquery-ui-accordion' );
+			}
+
 
 
 			$this->disable_ajax_cart();

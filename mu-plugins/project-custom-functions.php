@@ -28,7 +28,8 @@ define( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', true );
 define( 'MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM', true );
 // define( 'MCF_WOOCOMMERCE_QUANTITY_AS_SELECT', true );
 
-define( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT', 'list' );
+// Possible vaules are accordion or list
+define( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT', 'accordion' );
 
 // add elements to disable
 add_filter( 'mcf_disable_features', function () {
