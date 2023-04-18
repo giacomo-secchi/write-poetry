@@ -24,9 +24,12 @@ define( 'GTM4WP_HARDCODED_GTM_ENV_AUTH', '' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_PREVIEW', '' );
 
 define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', true );
-define( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', true );
+define( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', false );
 define( 'MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM', true );
-// define( 'MCF_WOOCOMMERCE_QUANTITY_AS_SELECT', true );
+
+define( 'MCF_WOOCOMMERCE_QUANTITY_AS_SELECT', true );
+define( 'MCF_WOOCOMMERCE_QUANTITY_AS_SELECT_MAX_QTY', true );
+
 
 // Possible vaules are accordion or list
 define( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT', 'list' );
@@ -45,6 +48,8 @@ add_filter( 'mcf_query_vars', function ( $qv ) {
 
     return array ( 'show-wheel', 'test-1');
 } );
+
+
 
 
 

@@ -34,24 +34,21 @@ $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 
 	do_action( 'woocommerce_before_quantity_input_field' );
 	?>
 	<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_attr( $label ); ?></label>
-	<input
-		type="<?php echo esc_attr( $type ); ?>"
-		<?php echo $readonly ? 'readonly="readonly"' : ''; ?>
-		id="<?php echo esc_attr( $input_id ); ?>"
-		class="<?php echo esc_attr( join( ' ', (array) $classes ) ); ?>"
-		name="<?php echo esc_attr( $input_name ); ?>"
-		value="<?php echo esc_attr( $input_value ); ?>"
-		title="<?php echo esc_attr_x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ); ?>"
-		size="4"
-		min="<?php echo esc_attr( $min_value ); ?>"
-		max="<?php echo esc_attr( 0 < $max_value ? $max_value : '' ); ?>"
-		<?php if ( ! $readonly ) : ?>
-			step="<?php echo esc_attr( $step ); ?>"
-			placeholder="<?php echo esc_attr( $placeholder ); ?>"
-			inputmode="<?php echo esc_attr( $inputmode ); ?>"
-			autocomplete="<?php echo esc_attr( isset( $autocomplete ) ? $autocomplete : 'on' ); ?>"
-		<?php endif; ?>
-	/>
+
+
+	<?php
+		$options = ''; // Initializing
+
+		for ( $i = $min_value; $i <= $max_value; $i += $step ) :
+			$selected = ( '' !== $input_value && $input_value >= 1 && $i == $input_value ) ? 'selected' : '';
+			$options .= '<option value="' . $i . '"' . $selected . '>' . $i . '</option>';
+		endfor;
+
+		// Change input name on select field
+		$attr_name = is_cart() ? 'data-name' : 'name';
+	?>
+	<select <?php echo $attr_name; ?>="<?php echo $input_name; ?>"><?php echo $options; ?></select>
+
 	<?php
 	/**
 	 * Hook to output something after quantity input field
