@@ -46,17 +46,27 @@ class MCF_WooCommerce {
 				add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_addon_plugin_template' ), 1, 3 );
 			}
 
-			if ( ! MCF_WOOCOMMERCE_QUANTITY_AS_SELECT ) {
+			if (  MCF_WOOCOMMERCE_QUANTITY_AS_SELECT ) {
+
+				if ( ! defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) ) {
+					$this->change_quantity_input( 99 );
+				}
+
+				add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_addon_plugin_template' ), 1, 3 );
+
+			} else {
+
 				add_filter( 'mcf_exclude_woocommerce_template', function() {
 					return 'global/quantity-input.php';
 				} );
-			} else {
-				$this->change_quantity_input( MCF_WOOCOMMERCE_QUANTITY_AS_SELECT_MAX_QTY );
-				add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_addon_plugin_template' ), 1, 3 );
 			}
 
 			if ( MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY ) {
 				$this->change_quantity_input( 1 );
+			}
+
+			if ( defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) ) {
+				$this->change_quantity_input( MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT );
 			}
 
 			if ( MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM ) {
