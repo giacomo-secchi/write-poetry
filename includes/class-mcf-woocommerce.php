@@ -168,8 +168,8 @@ class MCF_WooCommerce {
 	}
 
 	// define the woocommerce_product_add_to_cart_text callback
-	public function woocommerce_product_add_to_cart_text( $text, $product ){
-		return $product->is_purchasable() && $product->is_in_stock() ? __( 'Buy now', 'woocommerce' ) : __( 'Read more', 'woocommerce' );
+	public function woocommerce_product_add_to_cart_text( $text, $product ) {
+		return $product->is_purchasable() && $product->is_in_stock() || $product->is_type( 'grouped') ? __( 'Buy now', 'woocommerce' ) : __( 'Read more', 'woocommerce' );
 	}
 
 	public function skip_cart_redirect_checkout( $url ) {
