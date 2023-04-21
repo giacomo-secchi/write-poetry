@@ -14,9 +14,6 @@ if ( ! defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) ) {
 	define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', false );
 }
 
-if ( ! defined( 'MCF_WOOCOMMERCE_QUANTITY_AS_SELECT' ) ) {
-	define( 'MCF_WOOCOMMERCE_QUANTITY_AS_SELECT', false );
-}
 
 if ( ! defined( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY' ) ) {
 	define( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', false );
@@ -46,7 +43,7 @@ class MCF_WooCommerce {
 				add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_addon_plugin_template' ), 1, 3 );
 			}
 
-			if (  MCF_WOOCOMMERCE_QUANTITY_AS_SELECT ) {
+			if ( 'select' == MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ) {
 
 				if ( ! defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) ) {
 					$this->change_quantity_input( 99 );
@@ -101,14 +98,6 @@ class MCF_WooCommerce {
 					);
 				} );
 			}
-
-
-
-
-
-
-
-
 
 			$this->disable_ajax_cart();
 

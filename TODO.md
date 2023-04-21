@@ -6,3 +6,12 @@ report all functionalities here https://github.com/giacomo-secchi/easyenglishwit
 Input as select on checkout https://stackoverflow.com/questions/66215657/change-quantity-input-field-to-a-dropdown-in-woocommerce
 
 Check if wheel of fortune works https://developer.wordpress.org/reference/functions/get_query_var/
+
+
+Add tabs
+
+Dettagli
+Recensioni
+Pagamento
+Spedizioni
+https://woosuite.com/woocommerce/add-tabs/
