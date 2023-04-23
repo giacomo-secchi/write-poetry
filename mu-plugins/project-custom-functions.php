@@ -27,8 +27,8 @@ define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', true );
 define( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', false );
 define( 'MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM', true );
 
-define( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT', 'select' );
-// define( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT', 20 );
+define( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT', 'buttons' );
+define( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT', 20 );
 
 
 // Possible vaules are accordion or list
@@ -52,7 +52,9 @@ add_filter( 'mcf_query_vars', function ( $qv ) {
 
 
 
-
+add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {
+	return 5;
+}, 10, 2 );
 
 
 
