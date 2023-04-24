@@ -44,12 +44,9 @@ add_filter( 'mcf_disable_features', function () {
 
 
 // Add parameters to url
-add_filter( 'mcf_query_vars', function ( $qv ) {
-
-    return array ( 'show-wheel', 'test-1');
+add_filter( 'mcf_query_vars', function () {
+    return array( 'show-wheel', 'test-1' );
 } );
-
-
 
 
 add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {

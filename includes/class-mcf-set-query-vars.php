@@ -16,8 +16,7 @@ class MCF_Add_Query_Variables {
 	 * Initialize the class
 	 */
 	public function __construct() {
-		add_action( 'init', array( $this, 'add_get_val' ) );
-
+		add_action( 'query_vars', array( $this, 'add_val' ) );
 	}
 
 	/**
@@ -27,13 +26,13 @@ class MCF_Add_Query_Variables {
      * @access public
      * @return viod
      */
-	public function add_get_val() {
-		global $wp;
+	public function add_val( $qvars ) {
 
 		foreach( apply_filters( 'mcf_query_vars', array() ) as $qv ) {
-			$wp->add_query_var( $qv );
+			$qvars[] = $qv;
 		}
 
+		return $qvars;
 	}
 
 }
