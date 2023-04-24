@@ -61,7 +61,8 @@ class MCF_WooCommerce {
 			if ( 'buttons' == MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ) {
 				add_action( 'woocommerce_before_quantity_input_field', array( $this, 'display_quantity_minus' ) );
 				add_action( 'woocommerce_after_quantity_input_field', array( $this, 'display_quantity_plus' ) );
-				add_action( 'wp_footer',  array( $this, 'add_cart_quantity_plus_minus' ) );
+				add_action( 'wp_footer', array( $this, 'add_cart_quantity_plus_minus' ) );
+				add_action( 'wp_head', array( $this, 'custom_styles' ) );
 			}
 
 			if ( MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY ) {
@@ -155,13 +156,29 @@ class MCF_WooCommerce {
 		return $template;
 	}
 
+	public function custom_styles() {
+		echo '<style>
+
+			/* Chrome, Safari, Edge, Opera */
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+			}
+
+			/* Firefox */
+			input[type=number] {
+			-moz-appearance: textfield;
+			}
+			</style>';
+	}
 
 	public function display_quantity_minus() {
-		echo '<button type="button" class="quantity__minus ">-</button>';
+		echo '<button type="button" class="quantity__button quantity__minus wp-element-button">-</button>';
 	}
 
 	public function display_quantity_plus() {
-		echo '<button type="button" class="quantity__button quantity__plus">+</button>';
+		echo '<button type="button" class="quantity__button quantity__plus wp-element-button">+</button>';
 	}
 
 	function add_cart_quantity_plus_minus() {
