@@ -18,7 +18,7 @@ class MCF_Init {
 	public function __construct() {
 
 		$register_post_types		= new MCF_Register_Post_Types();
-		// $register_taxonomies     = new MCF_Register_Taxonomies();
+		$register_taxonomies     = new MCF_Register_Taxonomies();
 		// $remove_admin_bar 	     = new MCF_Remove_Admin_Bar();
 		// $clean_up_head		     = new MCF_Clean_Up_Head();
 		// $close_coments		     = new MCF_Close_Comments();

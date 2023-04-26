@@ -54,10 +54,57 @@ add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {
 }, 10, 2 );
 
 
+add_filter( 'mcf_add_custom_taxonomies', function () {
+ 	$string = array(
+		'brands' => array(
+			'post_type' => 'product',
+			'labels' => array(
+				'name' => esc_html( 'Course Type' )
+			),
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => true
+		),
+	);
+
+	return $string;
+}, 10, 3 );
 
 
 
 
+
+add_filter( 'mcf_add_custom_post_types', function () {
+	$string = array(
+		'come-raggiungerci' =>
+			array(
+				'labels' => array(
+					'name' => esc_html( 'Come Raggiungerci' ),
+					'singular_name' => esc_html( 'Come Raggiungerci' )
+				),
+				'publicly_queryable'  => true,
+			),
+		'punti_di_interesse' =>
+			array(
+				'labels' => array(
+					'name' => esc_html( 'Napoli e Dintorni' ),
+					'singular_name' => esc_html( 'Napoli e Dintorni' )
+				)
+			),
+
+		'escursioni' =>
+			array(
+				'labels' => array(
+					'name' => 'Transfer ed Escursioni',
+					'singular_name' => 'Escursione'
+				),
+				'publicly_queryable'  => true,
+			)
+	);
+
+	return $string;
+}, 10, 3 );
 
 
 

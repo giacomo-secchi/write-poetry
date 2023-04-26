@@ -5,7 +5,7 @@
  * Description: This is an awesome custom plugin with functionality that I'd like to keep when switching things.
  * Author: Giacomo Secchi
  * Author URI: https://giacomosecchi.com
- * Version: 0.2.0
+ * Version: 0.3.0
  */
 
 /* Place custom code below this line. */
@@ -103,7 +103,7 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 
 			$includes_path = MCF__PLUGIN_DIR . 'includes/';
 			require_once $includes_path . 'class-mcf-register-post-types.php';
-			// require_once $includes_path . 'class-mcf-register-taxonomies.php';
+			require_once $includes_path . 'class-mcf-register-taxonomies.php';
 			// require_once $includes_path . 'class-mcf-remove-admin-bar.php';
 			// require_once $includes_path . 'class-mcf-clean-up-head.php';
 			// require_once $includes_path . 'class-mcf-close-comments.php';
