@@ -31,6 +31,7 @@ class MCF_Register_Taxonomies {
 		$default_args = array(
 			'hierarchical'               => true,
 			'public'                     => true,
+			'show_in_nav_menus'          => true
         );
 
 

@@ -56,14 +56,22 @@ add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {
 
 add_filter( 'mcf_add_custom_taxonomies', function () {
  	$string = array(
-		'brands' => array(
+		'product-type' => array(
 			'post_type' => 'product',
 			'labels' => array(
-				'name' => esc_html( 'Course Type' )
+				'name' => esc_html( 'Product Type' )
 			),
 			'show_ui'                    => true,
-			'show_admin_column'          => true,
+			// 'show_admin_column'          => true,
 			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => true
+		),
+		'product-format' => array(
+			'post_type' => 'product',
+			'labels' => array(
+				'name' => esc_html( 'Product Format' )
+			),
+			'show_ui'                    => true,
 			'show_tagcloud'              => true
 		),
 	);
