@@ -15,17 +15,17 @@
 		"wp-env": "wp-env"
 	},
 	"devDependencies": {
-		"@wordpress/env": "^5.15.0",
-		"@wordpress/scripts": "^26.1.0"
+		"@wordpress/env": "^8.0.0",
+		"@wordpress/scripts": "^26.5.0"
 	},
 	"dependencies": {
-		"@wordpress/api-fetch": "^6.24.0",
-		"@wordpress/components": "^23.7.0",
-		"@wordpress/data": "^9.0.0",
+		"@wordpress/api-fetch": "^6.31.0",
+		"@wordpress/components": "^24.0.0",
+		"@wordpress/data": "^9.4.0",
 		"@wordpress/date": "^4.30.0",
 		"@wordpress/edit-post": "^7.7.0",
 		"@wordpress/i18n": "^4.30.0",
 		"@wordpress/icons": "^9.18.0",
-		"@wordpress/plugins": "^5.7.0"
+		"@wordpress/plugins": "^6.1.0"
 	}
 }
