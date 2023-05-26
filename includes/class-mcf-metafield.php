@@ -32,8 +32,7 @@ class MCF_Metadata {
 	 * @return void
 	 */
 	public static function enqueue_block_assets() {
-		wp_enqueue_script( 'mcf-gutenberg-sidebar', plugins_url( 'build/index.js', __DIR__ ), array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data' )
-	);
+		wp_enqueue_script( 'mcf-gutenberg-sidebar', plugins_url( 'build/index.js', __DIR__ ), array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data' ) );
 	}
 
 

@@ -1,7 +1,17 @@
-
 import { registerPlugin } from '@wordpress/plugins';
-import { PluginSidebar, PluginSidebarMoreMenuItem, PluginDocumentSettingPanel } from '@wordpress/edit-post';
-import { Button, DateTimePicker, Dropdown, PanelBody, TextControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import {
+	PluginSidebar,
+	PluginSidebarMoreMenuItem,
+	PluginDocumentSettingPanel,
+} from '@wordpress/edit-post';
+import {
+	Button,
+	DateTimePicker,
+	Dropdown,
+	PanelBody,
+	TextControl,
+	__experimentalNumberControl as NumberControl,
+} from '@wordpress/components';
 import { select, useSelect, withSelect, withDispatch } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import includes from 'lodash/includes';
@@ -10,9 +20,7 @@ import { useState } from '@wordpress/element';
 import { date } from '@wordpress/date';
 import { __ } from '@wordpress/i18n';
 
-
 let PluginMetaFields = ( props ) => {
-
 	const postType = useSelect(
 		( select ) => select( 'core/editor' ).getCurrentPostType(),
 		[]
@@ -20,35 +28,40 @@ let PluginMetaFields = ( props ) => {
 
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
-	const yearValue = meta['_mcf_project_year'];
-	const clientValue = meta['_mcf_project_client'];
+	const yearValue = meta[ '_mcf_project_year' ];
+	const clientValue = meta[ '_mcf_project_client' ];
 
 	const updateMetaValue = ( key, newValue ) => {
-		setMeta( { ...meta, [key]: newValue } );
+		setMeta( { ...meta, [ key ]: newValue } );
 	};
 
 	return (
-	  <>
+		<>
 			<NumberControl
 				label={ __( 'Year', 'textdomain' ) }
-				onChange={ (value) => updateMetaValue( '_mcf_project_year', value ) }
+				onChange={ ( value ) =>
+					updateMetaValue( '_mcf_project_year', value )
+				}
 				shiftStep={ 10 }
 				value={ yearValue }
-		  	/>
-			<TextControl
-				label={ __( 'Client', 'textdomain' ) }
-				value={ clientValue }
-				onChange={ (value) => updateMetaValue( '_mcf_project_client', value ) }
 			/>
 			<TextControl
 				label={ __( 'Client', 'textdomain' ) }
 				value={ clientValue }
-				onChange={ (value) => updateMetaValue( '_mcf_project_client', value ) }
+				onChange={ ( value ) =>
+					updateMetaValue( '_mcf_project_client', value )
+				}
 			/>
-	  </>
-	)
-}
-
+			<TextControl
+				label={ __( 'Client', 'textdomain' ) }
+				value={ clientValue }
+				onChange={ ( value ) =>
+					updateMetaValue( '_mcf_project_client', value )
+				}
+			/>
+		</>
+	);
+};
 
 // PluginMetaFields = withSelect(
 //     (select) => {
@@ -68,14 +81,12 @@ let PluginMetaFields = ( props ) => {
 //     }
 // )( PluginMetaFields );
 
-
-
-const MyDocumentSetting = (  { postType } ) => {
+const MyDocumentSetting = ( { postType } ) => {
 	if ( 'jetpack-portfolio' !== postType ) {
 		return null;
 	}
 
-	return(
+	return (
 		<PluginDocumentSettingPanel
 			name="project-custom-fields"
 			title="Project Informations"
@@ -83,16 +94,14 @@ const MyDocumentSetting = (  { postType } ) => {
 			<PluginMetaFields />
 		</PluginDocumentSettingPanel>
 	);
-}
+};
 
-
-const MyDocumentSettingwithSelect = withSelect( select => {
+const MyDocumentSettingwithSelect = withSelect( ( select ) => {
 	return {
 		postType: select( 'core/editor' ).getCurrentPostType(),
 	};
 } )( MyDocumentSetting );
 
-
-registerPlugin( 'document-setting-test', { render: MyDocumentSettingwithSelect } );
-
-
+registerPlugin( 'document-setting-test', {
+	render: MyDocumentSettingwithSelect,
+} );
