@@ -17,9 +17,9 @@ class MCF_Metadata {
 	 */
 	public function __construct() {
 
-		add_action		( 'enqueue_block_editor_assets', 		array( $this, 'enqueue_block_assets' ) );
+		add_action( 'enqueue_block_editor_assets', 		array( $this, 'enqueue_block_assets' ) );
 		// add_action		( 'add_meta_boxes',						array( $this, 'add_portfolio_meta_box' ) );
-		add_action		( 'init', 								array( $this, 'register_portfolio_meta' ) );
+		add_action( 'init', 								array( $this, 'register_portfolio_meta' ) );
 
 	}
 
@@ -32,7 +32,15 @@ class MCF_Metadata {
 	 * @return void
 	 */
 	public static function enqueue_block_assets() {
-		wp_enqueue_script( 'mcf-gutenberg-sidebar', plugins_url( 'build/index.js', __DIR__ ), array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data' ) );
+
+		$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
+
+		wp_enqueue_script( 
+			'mcf-gutenberg-sidebar', 
+			plugins_url( 'build/index.js', __DIR__ ),
+			$asset_file['dependencies'],
+    		$asset_file['version']
+		);
 	}
 
 
