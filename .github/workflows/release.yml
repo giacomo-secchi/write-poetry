@@ -4,49 +4,21 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
     tags:
-      - 'v*'
+      - v*
 
 jobs:
-  build:
-
-    name:
+  release:
+    name: Release
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-        node-version-file: '.nvmrc'
-        cache: 'npm'
-        # - run: npm ci
-        - run: npm install
-        - run: npm run build --if-present
-        # - run: npm test
-
-      - name: "Determine tag"
-        run: "echo \"RELEASE_TAG=${GITHUB_REF#refs/tags/}\" >> $GITHUB_ENV"
-
-      - name: "Create release"
-        uses: "actions/github-script@v6"
-        with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
-        script: |
-          try {
-            const response = await github.rest.repos.createRelease({
-              draft: false,
-              generate_release_notes: true,
-              name: process.env.RELEASE_TAG,
-              owner: context.repo.owner,
-              prerelease: false,
-              repo: context.repo.repo,
-              tag_name: process.env.RELEASE_TAG,
-            });
-
-            core.exportVariable('RELEASE_ID', response.data.id);
-            core.exportVariable('RELEASE_UPLOAD_URL', response.data.upload_url);
-          } catch (error) {
-            core.setFailed(error.message);
-          }
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: .nvmrc
+        cache: npm
+    - run: npm install
+    - run: npm run build --if-present
 
