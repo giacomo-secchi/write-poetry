@@ -35,5 +35,15 @@ jobs:
       - run: npm install
       - run: npm run build --if-present
 
+      
+      - name: Generate zip
+        id: plugin-zip
+        uses: 10up/action-wordpress-plugin-build-zip@stable
+        env:
+          SLUG: my-super-cool-plugin
+      
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: steps.plugin-zip.outputs.my-super-cool-plugin
+          bodyFile: "body.md"
