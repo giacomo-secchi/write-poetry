@@ -37,12 +37,10 @@ jobs:
           npm install
           npm run build --if-present
 
-
-      - name: Create deployment artifact
-        env:
-          GITHUB_SHA: ${{ github.sha }}
-        run: tar -czf "${GITHUB_SHA}".tar.gz --exclude=*.git --exclude=node_modules *
-
+      - uses: actions/cache@v3
+        with:
+          path: build
+          key: build
   release:
     name: Create Release
     runs-on: ubuntu-latest
@@ -53,7 +51,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
+      - uses: actions/cache@v3
+        with:
+          path: build
+          key: build
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
