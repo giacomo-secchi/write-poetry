@@ -71,7 +71,7 @@ jobs:
          
       - name: Zip Release Asset
         run: |
-          zip -r release.zip .
+          zip -r ${{ github.event.repository.name}}.zip .
         working-directory: ${{ github.workspace }}
 
       - name: Create Release
@@ -80,7 +80,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            release.zip
+            ${{ github.event.repository.name}}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
