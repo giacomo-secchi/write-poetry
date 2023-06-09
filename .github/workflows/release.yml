@@ -37,12 +37,15 @@ jobs:
           npm install
           npm run build --if-present
 
+      - name: Zip Build Artifact
+        run: zip -r build.zip build
+
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: build-output
-          path: build
-          
+          path: build.zip
+
   release:
     name: Create Release
     runs-on: ubuntu-latest
@@ -58,8 +61,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build-output
-          path: build
-      
+          path: build.zip
+
+      - name: Unzip Build Artifact
+        run: unzip build.zip -d build
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
