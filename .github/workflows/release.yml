@@ -71,7 +71,7 @@ jobs:
          
       - name: Zip Release Asset
         run: |
-          zip -r ${{ github.event.repository.name}}.zip . -x .git/* .github/*
+          zip -r ${{ github.event.repository.name}}.zip . -x '.git/*' '.github/*' @
         working-directory: ${{ github.workspace }}
 
       - name: Create Release
