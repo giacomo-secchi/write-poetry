@@ -1,6 +1,5 @@
 {
 	"name": "functionality-plugin",
-	"version": "0.1.0",
 	"description": "Example block scaffolded with Create Block tool.",
 	"author": "Giacomo Secchi",
 	"license": "GPL-2.0-or-later",
@@ -31,5 +30,15 @@
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --progress",
 		"wp-env": "wp-env"
+	},
+	"npmpackagejsonlint": {
+		"extends": "@wordpress/npm-package-json-lint-config",
+		"rules": {
+			"require-keywords": "off",
+			"require-bugs": "off",
+			"require-homepage": "off",
+			"require-repository": "off",
+			"require-version": "off"
+		}
 	}
 }

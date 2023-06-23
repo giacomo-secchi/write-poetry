@@ -17,16 +17,16 @@ class MCF_Metadata {
 	 */
 	public function __construct() {
 
-		add_action( 'enqueue_block_editor_assets', 		array( $this, 'enqueue_block_assets' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
 		// add_action		( 'add_meta_boxes',						array( $this, 'add_portfolio_meta_box' ) );
-		add_action( 'init', 								array( $this, 'register_portfolio_meta' ) );
+		add_action( 'init', array( $this, 'register_portfolio_meta' ) );
 
 	}
 
 
 
 	/**
-	 * Requre build file
+	 * Require build file
 	 *
 	 * @param [type] $src
 	 * @return void
