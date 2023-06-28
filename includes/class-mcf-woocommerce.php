@@ -1,14 +1,15 @@
 <?php
 /**
- * Add new mime types
- *
- * @package     MCF
- * @subpackage  MCF/includes
- * @copyright   Copyright (c) 2014, Jason Witt
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0.0
- * @author      Jason Witt <contact@jawittdesigns.com>
+ * WooCommerce new features
+ * 
+ * @package           MyCustomFunctions
+ * @subpackage        MyCustomFunctions/includes
+ * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
+ * @copyright         2023 Giacomo Secchi
+ * @license           GPL-2.0-or-later
+ * @since             1.0.0
  */
+
 
 if ( ! defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) ) {
 	define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', false );

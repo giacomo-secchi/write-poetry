@@ -1,13 +1,13 @@
 <?php
 /**
- * Remove unwanted assets
- *
- * @package     MCF
- * @subpackage  MCF/includes
- * @copyright   Copyright (c) 2014, Jason Witt
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0.0
- * @author      Jason Witt <contact@jawittdesigns.com>
+ * Add metafields to portfolio CPT
+ * 
+ * @package           MyCustomFunctions
+ * @subpackage        MyCustomFunctions/includes
+ * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
+ * @copyright         2023 Giacomo Secchi
+ * @license           GPL-2.0-or-later
+ * @since             1.0.0
  */
 
 class MCF_Metadata {
@@ -18,9 +18,8 @@ class MCF_Metadata {
 	public function __construct() {
 
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
-		// add_action		( 'add_meta_boxes',						array( $this, 'add_portfolio_meta_box' ) );
+		// add_action( 'add_meta_boxes', array( $this, 'add_portfolio_meta_box' ) );
 		add_action( 'init', array( $this, 'register_portfolio_meta' ) );
-
 	}
 
 

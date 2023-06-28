@@ -1,15 +1,26 @@
 <?php
 /**
- * Plugin Name: My Custom Functions
- * Plugin URI: https://github.com/giacomo-secchi/functionality-plugin
- * Description: This is an awesome custom plugin with functionality that I'd like to keep when switching things.
- * Author: Giacomo Secchi
- * Author URI: https://giacomosecchi.com
- * Version: 0.3.0
+ * My Custom Functions
+ *
+ * @package           MyCustomFunctions
+ * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
+ * @copyright         2023 Giacomo Secchi
+ * @license           GPL-2.0-or-later
+ *
+ * @wordpress-plugin
+ * Plugin Name:       My Custom Functions
+ * Plugin URI:        https://github.com/giacomo-secchi/functionality-plugin
+ * Description:       This is an awesome custom plugin with functionality that I'd like to keep when switching things.
+ * Version:           1.0.0
+ * Requires at least: 5.2
+ * Requires PHP:      7.2
+ * Author:            Giacomo Secchi
+ * Author URI:        https://resume.giacomosecchi.com
+ * Text Domain:       mcf
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Update URI:        https://github.com/giacomo-secchi/functionality-plugin/
  */
-
-/* Place custom code below this line. */
-
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
