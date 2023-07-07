@@ -16,7 +16,7 @@
  * Requires PHP:      7.2
  * Author:            Giacomo Secchi
  * Author URI:        https://resume.giacomosecchi.com
- * Text Domain:       mcf
+ * Text Domain:       my-custom-functions
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Update URI:        https://github.com/giacomo-secchi/functionality-plugin/
@@ -34,6 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @link https://www.smashingmagazine.com/2015/08/deploy-wordpress-plugins-with-github-using-transients/
  */
+
 
 
 define( 'MCF__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
@@ -115,33 +116,19 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			$includes_path = MCF__PLUGIN_DIR . 'includes/';
 			require_once $includes_path . 'class-mcf-register-post-types.php';
 			require_once $includes_path . 'class-mcf-register-taxonomies.php';
-			// require_once $includes_path . 'class-mcf-remove-admin-bar.php';
-			// require_once $includes_path . 'class-mcf-clean-up-head.php';
-			// require_once $includes_path . 'class-mcf-close-comments.php';
-			// require_once $includes_path . 'class-mcf-custom-feed-link.php';
-			// require_once $includes_path . 'class-mcf-insert-figure.php';
-			// require_once $includes_path . 'class-mcf-rcp-auto-renew.php';
-			// require_once $includes_path . 'class-mcf-long-url-spam.php';
-			// require_once $includes_path . 'class-mcf-remove-jetpack-bar.php';
 			require_once $includes_path . 'class-mcf-add-mime-types.php';
-			// require_once $includes_path . 'class-mcf-remove-markdown-support.php';
-			// require_once $includes_path . 'class-mcf-add-email-feed.php';
-			// require_once $includes_path . 'class-mcf-increase-postmeta-form-limit.php';
-			// require_once $includes_path . 'class-mcf-limit-users-delete.php';
 			require_once $includes_path . 'class-mcf-remove-unwanted-features.php';
-			// require_once $includes_path . 'class-mcf-dev-tools.php';
 			require_once $includes_path . 'class-mcf-metafield.php';
 			require_once $includes_path . 'class-mcf-customize-login-page.php';
 			require_once $includes_path . 'class-mcf-gtm.php';
 			require_once $includes_path . 'class-mcf-set-query-vars.php';
 			require_once $includes_path . 'class-mcf-woocommerce.php';
-			// require_once $includes_path . 'class-mcf-remove-post-author-url.php';
-			// require_once $includes_path . 'class-mcf-custom-pagi.php';
-			// require_once $includes_path . 'class-mcf-allowed-tags.php';
-
-
-			// require_once $includes_path . 'template-functions.php';
 			require_once $includes_path . 'class-mcf-init.php';
+
+			if ( is_admin() ) {
+				// we are in admin mode
+				require_once $includes_path . '/admin/functionality-plugin-admin.php';
+			}
 
 		}
     }

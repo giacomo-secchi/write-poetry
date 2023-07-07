@@ -1,7 +1,7 @@
 <?php
 /**
  * WooCommerce new features
- * 
+ *
  * @package           MyCustomFunctions
  * @subpackage        MyCustomFunctions/includes
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
@@ -77,6 +77,8 @@ class MCF_WooCommerce {
 			if ( MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM ) {
 				$this->disable_product_zoom();
 			}
+
+			var_dump(get_option( 'mcf_redirect_checkout' ));
 
 			if ( ! MCF_WOOCOMMERCE_REDIRECT_CHECKOUT ) {
 				return false;
