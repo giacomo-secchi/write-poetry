@@ -18,7 +18,6 @@ class MCF_Admin {
 	public function __construct() {
 		add_filter( 'woocommerce_get_sections_products', array( $this, 'add_section' ) );
 		add_filter( 'woocommerce_get_settings_products', array( $this, 'all_settings' ), 10, 2 );
-
 	}
 
 
@@ -43,20 +42,20 @@ class MCF_Admin {
 			$settings_appearance = array();
 
 			// Add Title to the Settings
-			$settings_appearance[] = array( 'name' => __( 'Appearence', 'text-domain' ), 'type' => 'title', 'desc' => __( 'The following options are used to configure single product page design', 'text-domain' ), 'id' => 'appeareance' );
+			$settings_appearance[] = array( 'name' => __( 'Appearence', 'my-custom-functions' ), 'type' => 'title', 'desc' => __( 'The following options are used to configure single product page design', 'my-custom-functions' ), 'id' => 'appeareance' );
 
 			// Add redirect checkout checkbox option
 			$settings_appearance[] = array(
-				'name'     => __( 'Redirect', 'text-domain' ),
-				'desc_tip' => __( 'This will automatically insert your slider into the single product page', 'text-domain' ),
-				'id'       => 'mcf2_redirect_checkout',
+				'name'     => __( 'Add to cart behaviour', 'my-custom-functions' ),
+				'desc_tip' => __( 'This will enable redirect to checkout page after adding product to cart', 'my-custom-functions' ),
+				'id'       => 'mcf_redirect_checkout',
 				'type'     => 'checkbox',
-				'default'  => false,
+				'default'  => defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) && MCF_WOOCOMMERCE_REDIRECT_CHECKOUT ? 'yes' : false,
 				'css'      => 'min-width:300px;',
-				'desc'     => __( 'Enable Auto-Insert', 'text-domain' ),
-				defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) && 'custom_attributes' => array('disabled' => 'disabled' )
+				'desc'     => __( 'Redirect to the checkout page after successful addition', 'my-custom-functions' ),
+				'custom_attributes' => defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) ? array( 'disabled' => 'disabled' ) : array()
 			);
-// var_dump(defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ));die;
+
 
 			// Add single product checkbox option
 			$settings_appearance[] = array(

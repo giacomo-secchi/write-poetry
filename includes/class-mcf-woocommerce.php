@@ -11,9 +11,7 @@
  */
 
 
-if ( ! defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) ) {
-	define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', false );
-}
+
 
 
 if ( ! defined( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY' ) ) {
@@ -78,11 +76,7 @@ class MCF_WooCommerce {
 				$this->disable_product_zoom();
 			}
 
-			var_dump(get_option( 'mcf_redirect_checkout' ));
 
-			if ( ! MCF_WOOCOMMERCE_REDIRECT_CHECKOUT ) {
-				return false;
-			}
 
 			if (
 				defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) &&
@@ -109,13 +103,16 @@ class MCF_WooCommerce {
 				} );
 			}
 
-			$this->disable_ajax_cart();
 
-			add_filter( 'woocommerce_add_to_cart_redirect', array( $this, 'skip_cart_redirect_checkout' ) );
-			add_filter( 'woocommerce_product_add_to_cart_text', array( $this, 'woocommerce_product_add_to_cart_text' ), 10, 2 );
-			add_filter( 'woocommerce_product_single_add_to_cart_text', array( $this, 'woocommerce_product_add_to_cart_text' ), 10, 2 );
-			add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'woocommerce_loop_add_to_cart_link' ) );
-			add_filter( 'wc_add_to_cart_message_html', array( $this, 'remove_add_to_cart_message' ) );
+			if ( MCF_WOOCOMMERCE_REDIRECT_CHECKOUT ||  ) {
+
+				add_filter( 'woocommerce_add_to_cart_redirect', array( $this, 'skip_cart_redirect_checkout' ) );
+				add_filter( 'woocommerce_product_add_to_cart_text', array( $this, 'product_add_to_cart_text' ), 10, 2 );
+				add_filter( 'woocommerce_product_single_add_to_cart_text', array( $this, 'woocommerce_product_add_to_cart_text' ), 10, 2 );
+				add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'woocommerce_loop_add_to_cart_link' ) );
+				add_filter( 'wc_add_to_cart_message_html', array( $this, 'remove_add_to_cart_message' ) );
+			}
+
 
 
 		} );
@@ -257,11 +254,12 @@ class MCF_WooCommerce {
 	}
 
 	// define the woocommerce_product_add_to_cart_text callback
-	public function woocommerce_product_add_to_cart_text( $text, $product ) {
+	public function product_add_to_cart_text( $text, $product ) {
 		return $product->is_purchasable() && $product->is_in_stock() || $product->is_type( 'grouped') ? __( 'Buy now', 'woocommerce' ) : __( 'Read more', 'woocommerce' );
 	}
 
 	public function skip_cart_redirect_checkout( $url ) {
+		$this->disable_ajax_cart();
 		return wc_get_checkout_url();
 	}
 
