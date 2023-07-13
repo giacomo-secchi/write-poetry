@@ -71,10 +71,10 @@ class MCF_Admin {
 
 			// Add single product checkbox option
 			$settings_appearance[] = array(
-				'name'     => __( 'Auto-insert into single product page', 'text-domain' ),
+				'name'     => __( 'Max quantity input', 'my-custom-functions' ),
 				'desc_tip' => __( 'This will automatically insert your slider into the single product page', 'text-domain' ),
-				'id'       => 'wcslider_auto_insert',
-				'type'     => 'checkbox',
+				'id'       => 'mcf_product_max_qty',
+				'type'     => 'text',
 				'css'      => 'min-width:300px;',
 				'desc'     => __( 'Enable Auto-Insert', 'text-domain' ),
 			);
@@ -108,7 +108,7 @@ class MCF_Admin {
 
 			// Add additional info layout field option
 			$settings_appearance[] = array(
-				'name'     => __( 'Additional Infos yalout', 'my-custom-functions' ),
+				'name'     => __( 'Additional Infos layout', 'my-custom-functions' ),
 				'id'       => 'mcf_infos_layout',
 				'type'     => 'select',
 				'desc'     => __( 'Choose the layout of additional informations box with this option!', 'my-custom-functions' ),
