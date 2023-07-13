@@ -50,12 +50,24 @@ class MCF_Admin {
 				'desc_tip' => __( 'This will enable redirect to checkout page after adding product to cart', 'my-custom-functions' ),
 				'id'       => 'mcf_redirect_checkout',
 				'type'     => 'checkbox',
-				'default'  => defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) && MCF_WOOCOMMERCE_REDIRECT_CHECKOUT ? 'yes' : false,
+				'default'  => false,
+				'value'	   => defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) && MCF_WOOCOMMERCE_REDIRECT_CHECKOUT ? 'yes' : get_option( 'mcf_redirect_checkout' ),
 				'css'      => 'min-width:300px;',
 				'desc'     => __( 'Redirect to the checkout page after successful addition', 'my-custom-functions' ),
 				'custom_attributes' => defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) ? array( 'disabled' => 'disabled' ) : array()
 			);
 
+			// Add redirect checkout checkbox option
+			$settings_appearance[] = array(
+				'name'     => __( 'Zoom behaviour', 'my-custom-functions' ),
+				'id'       => 'mcf_enable_product_zoom',
+				'type'     => 'checkbox',
+				'default'  => 'yes',
+				'value'	   => defined( 'MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM' ) && MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM ? 'yes' : get_option( 'mcf_enable_product_zoom' ),
+				'css'      => 'min-width:300px;',
+				'desc'     => __( 'This will enable or disable product image zoom on single product page', 'my-custom-functions' ),
+				'custom_attributes' => defined( 'MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM' ) ? array( 'disabled' => 'disabled' ) : array()
+			);
 
 			// Add single product checkbox option
 			$settings_appearance[] = array(
@@ -79,29 +91,33 @@ class MCF_Admin {
 
 			// Add quantity layout field option
 			$settings_appearance[] = array(
-				'name'     => __( 'Slider Title', 'text-domain' ),
-				'desc_tip' => __( 'This will add a title to your slider', 'text-domain' ),
-				'id'       => 'wcslider_title',
+				'name'     => __( 'Quantity input layout', 'my-custom-functions' ),
+				'id'       => 'mcf_qty_layout',
+				'default'  => 'input',
 				'type'     => 'select',
-				'desc'     => __( 'Any title you want can be added to your slider with this option!', 'text-domain' ),
+				'value'    => defined( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') ? MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT : get_option( 'mcf_qty_layout' ),
+				'desc'     => __( 'Choose the layout of quantity selector on the product page', 'my-custom-functions' ),
 				'options' => array(
-					'key' => 'select',
-					'key2' => 'button'
-			   	) // array of options for select/multiselects only
+					'input' => 'input',
+					'select' => 'select',
+					'buttons' => 'buttons'
+			   	), // array of options for select/multiselects only
+				'custom_attributes' => defined( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT' ) ? array( 'disabled' => 'disabled' ) : array()
+
 			);
 
 			// Add additional info layout field option
 			$settings_appearance[] = array(
-				'name'     => __( 'Slider Title', 'text-domain' ),
-				'desc_tip' => __( 'This will add a title to your slider', 'text-domain' ),
-				'id'       => 'wcslider_title',
+				'name'     => __( 'Additional Infos yalout', 'my-custom-functions' ),
+				'id'       => 'mcf_infos_layout',
 				'type'     => 'select',
-				'desc'     => __( 'Any title you want can be added to your slider with this option!', 'text-domain' ),
+				'desc'     => __( 'Choose the layout of additional informations box with this option!', 'my-custom-functions' ),
 				'options' => array(
 					'key' => 'tabs',
 					'key2' => 'list',
 					'key3' => 'accordion',
-					) // array of options for select/multiselects only
+				), // array of options for select/multiselects only
+				'custom_attributes' => defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) ? array( 'disabled' => 'disabled' ) : array()
 			);
 
 			$settings_appearance[] = array( 'type' => 'sectionend', 'id' => 'wcslider' );

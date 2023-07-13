@@ -14,15 +14,6 @@
 
 
 
-if ( ! defined( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY' ) ) {
-	define( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', false );
-}
-
-if ( ! defined( 'MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM' ) ) {
-	define( 'MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM', false );
-}
-
-
 
 class MCF_WooCommerce {
 
@@ -38,17 +29,19 @@ class MCF_WooCommerce {
 				return false;
 			}
 
-			if ( defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) ) {
-				add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_addon_plugin_template' ), 1, 3 );
-			}
 
-			if ( 'select' == MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ) {
+
+			// Quantity layout
+ 			if (
+				defined( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') && 'select' === MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ||
+				'select' === get_option('mcf_qty_layout')
+			) {
 
 				if ( ! defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) ) {
 					$this->change_quantity_input( 99 );
 				}
 
-				add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_addon_plugin_template' ), 1, 3 );
+				add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
 
 			} else {
 
@@ -57,12 +50,18 @@ class MCF_WooCommerce {
 				} );
 			}
 
-			if ( 'buttons' == MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ) {
-				add_action( 'woocommerce_before_quantity_input_field', array( $this, 'display_quantity_minus' ) );
+			if (
+				defined( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') && 'buttons' === MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ||
+				'buttons' === get_option('mcf_qty_layout')
+			) {
+ 				add_action( 'woocommerce_before_quantity_input_field', array( $this, 'display_quantity_minus' ) );
 				add_action( 'woocommerce_after_quantity_input_field', array( $this, 'display_quantity_plus' ) );
 				add_action( 'wp_footer', array( $this, 'add_cart_quantity_plus_minus' ) );
 				add_action( 'wp_head', array( $this, 'custom_styles' ) );
 			}
+
+
+
 
 			if ( MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY ) {
 				$this->change_quantity_input( 1 );
@@ -72,17 +71,29 @@ class MCF_WooCommerce {
 				$this->change_quantity_input( MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT );
 			}
 
-			if ( MCF_WOOCOMMERCE_DISABLE_PRODUCT_ZOOM ) {
+			// Product zoom
+			if ( defined( 'MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM' ) &&
+				false === MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM ||
+				'no' === get_option( 'mcf_enable_product_zoom' )
+			) {
 				$this->disable_product_zoom();
 			}
 
 
+			// Additional informations
+
+
+			if ( defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) || get_option( 'mcf_infos_layout' ) ) {
+ 				add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
+			}
 
 			if (
 				defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) &&
-				'tabs' == MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT
+				'tabs' === MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT ||
+				'tabs' === get_option( 'mcf_infos_layout' )
 			) {
-				//
+
+
 				add_filter( 'mcf_exclude_woocommerce_template', function() {
 					return 'single-product/tabs/tabs.php';
 				} );
@@ -90,9 +101,12 @@ class MCF_WooCommerce {
 
 			if (
 				defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) &&
-				'accordion' == MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT
+				'accordion' === MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT ||
+				'accordion' === get_option( 'mcf_infos_layout' )
 			) {
-				//
+
+				add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
+
 				add_filter( 'wp_enqueue_scripts', function() {
 					wp_enqueue_script( 'jquery-ui-accordion' );
 					wp_add_inline_script( 'jquery-ui-accordion', '
@@ -103,13 +117,17 @@ class MCF_WooCommerce {
 				} );
 			}
 
-
-			if ( MCF_WOOCOMMERCE_REDIRECT_CHECKOUT ||  ) {
+			// redirect checkout
+			if (
+				defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) &&
+				MCF_WOOCOMMERCE_REDIRECT_CHECKOUT ||
+				'yes' === get_option( 'mcf_redirect_checkout' )
+			) {
 
 				add_filter( 'woocommerce_add_to_cart_redirect', array( $this, 'skip_cart_redirect_checkout' ) );
 				add_filter( 'woocommerce_product_add_to_cart_text', array( $this, 'product_add_to_cart_text' ), 10, 2 );
-				add_filter( 'woocommerce_product_single_add_to_cart_text', array( $this, 'woocommerce_product_add_to_cart_text' ), 10, 2 );
-				add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'woocommerce_loop_add_to_cart_link' ) );
+				add_filter( 'woocommerce_product_single_add_to_cart_text', array( $this, 'product_add_to_cart_text' ), 10, 2 );
+				add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'loop_add_to_cart_link' ) );
 				add_filter( 'wc_add_to_cart_message_html', array( $this, 'remove_add_to_cart_message' ) );
 			}
 
@@ -120,7 +138,7 @@ class MCF_WooCommerce {
 
 
 	// https://wisdmlabs.com/blog/override-woocommerce-templates-plugin/
-	public function woocommerce_addon_plugin_template( $template, $template_name, $template_path ) {
+	public function addon_plugin_template( $template, $template_name, $template_path ) {
 		global $woocommerce;
 		$_template = $template;
 
@@ -253,7 +271,7 @@ class MCF_WooCommerce {
 		update_option( 'woocommerce_enable_ajax_add_to_cart', 'no' );
 	}
 
-	// define the woocommerce_product_add_to_cart_text callback
+	// define the product_add_to_cart_text callback
 	public function product_add_to_cart_text( $text, $product ) {
 		return $product->is_purchasable() && $product->is_in_stock() || $product->is_type( 'grouped') ? __( 'Buy now', 'woocommerce' ) : __( 'Read more', 'woocommerce' );
 	}
@@ -263,7 +281,7 @@ class MCF_WooCommerce {
 		return wc_get_checkout_url();
 	}
 
-	public function woocommerce_loop_add_to_cart_link( $add_to_cart_html ) {
+	public function loop_add_to_cart_link( $add_to_cart_html ) {
 		return str_replace( 'Add to cart', 'Buy now', $add_to_cart_html );
 	}
 
@@ -286,7 +304,7 @@ class MCF_WooCommerce {
 			$data['max_qty'] = $max_qty;
 
 			return $data;
-		}, 10, 3);
+		}, 10, 3 );
 	}
 
 	// Disable zoom
