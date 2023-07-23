@@ -33,25 +33,21 @@ class MCF_WooCommerce {
 
 			// Quantity layout
  			if (
-				defined( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') && 'select' === MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ||
+				defined( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') &&
+				'select' === MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ||
 				'select' === get_option('mcf_qty_layout')
 			) {
 
-				if ( ! defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) ) {
+				if ( ! defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) || get_option( 'mcf_product_max_qty' ) ) {
 					$this->change_quantity_input( 99 );
+
 				}
 
 				add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
 
-			} else {
-
-				add_filter( 'mcf_exclude_woocommerce_template', function() {
-					return 'global/quantity-input.php';
-				} );
-			}
-
-			if (
-				defined( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') && 'buttons' === MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ||
+			} else if (
+				defined( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') &&
+				'buttons' === MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ||
 				'buttons' === get_option('mcf_qty_layout')
 			) {
  				add_action( 'woocommerce_before_quantity_input_field', array( $this, 'display_quantity_minus' ) );
@@ -60,15 +56,25 @@ class MCF_WooCommerce {
 				add_action( 'wp_head', array( $this, 'custom_styles' ) );
 			}
 
+			else {
 
 
-
-			if ( MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY ) {
-				$this->change_quantity_input( 1 );
+				add_filter( 'mcf_exclude_woocommerce_template', function() {
+					return 'global/quantity-input.php';
+				} );
 			}
 
-			if ( defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) ) {
-				$this->change_quantity_input( MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT );
+
+
+			if (
+				defined( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY' ) &&
+				MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY ||
+				get_option( 'mcf_disable_qty' )
+			) {
+				$this->change_quantity_input( 1 );
+			} else if ( defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) || get_option( 'mcf_product_max_qty' ) ) {
+				$qty = defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) ? MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT : get_option( 'mcf_product_max_qty' );
+				$this->change_quantity_input( $qty );
 			}
 
 			// Product zoom
@@ -79,10 +85,7 @@ class MCF_WooCommerce {
 				$this->disable_product_zoom();
 			}
 
-
 			// Additional informations
-
-
 			if ( defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) || get_option( 'mcf_infos_layout' ) ) {
  				add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
 			}
@@ -92,7 +95,6 @@ class MCF_WooCommerce {
 				'tabs' === MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT ||
 				'tabs' === get_option( 'mcf_infos_layout' )
 			) {
-
 
 				add_filter( 'mcf_exclude_woocommerce_template', function() {
 					return 'single-product/tabs/tabs.php';

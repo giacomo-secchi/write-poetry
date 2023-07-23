@@ -57,37 +57,42 @@ class MCF_Admin {
 				'custom_attributes' => defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) ? array( 'disabled' => 'disabled' ) : array()
 			);
 
-			// Add redirect checkout checkbox option
+			// Add product zoom checkbox option
 			$settings_appearance[] = array(
 				'name'     => __( 'Zoom behaviour', 'my-custom-functions' ),
+				'desc_tip' => __( 'This will enable or disable product image zoom on single product page', 'my-custom-functions' ),
 				'id'       => 'mcf_enable_product_zoom',
 				'type'     => 'checkbox',
 				'default'  => 'yes',
 				'value'	   => defined( 'MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM' ) && MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM ? 'yes' : get_option( 'mcf_enable_product_zoom' ),
 				'css'      => 'min-width:300px;',
-				'desc'     => __( 'This will enable or disable product image zoom on single product page', 'my-custom-functions' ),
+				'desc'     => __( 'Enable Product Zoom', 'my-custom-functions' ),
 				'custom_attributes' => defined( 'MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM' ) ? array( 'disabled' => 'disabled' ) : array()
 			);
+
+						// Add disable single product quantity option
+						$settings_appearance[] = array(
+							'name'     => __( 'Single product quantity option', 'my-custom-functions' ),
+							'desc_tip' => __( 'This option will disable quantity option on single product page', 'my-custom-functions' ),
+							'id'       => 'mcf_disable_qty',
+							'type'     => 'checkbox',
+							'default'  => false,
+							'value'	   => defined( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY' ) && MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY ? 'yes' : get_option( 'mcf_disable_qty' ),
+							'css'      => 'min-width:300px;',
+							'desc'     => __( 'Disable quantity option', 'my-custom-functions' ),
+							'custom_attributes' => defined( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY' ) ? array( 'disabled' => 'disabled' ) : array()
+						);
 
 			// Add single product checkbox option
 			$settings_appearance[] = array(
 				'name'     => __( 'Max quantity input', 'my-custom-functions' ),
-				'desc_tip' => __( 'This will automatically insert your slider into the single product page', 'text-domain' ),
+				'desc_tip' => __( 'This will automatically insert your slider into the single product page', 'my-custom-functions' ),
 				'id'       => 'mcf_product_max_qty',
-				'type'     => 'text',
-				'css'      => 'min-width:300px;',
-				'desc'     => __( 'Enable Auto-Insert', 'text-domain' ),
+				'type'     => 'number',
+				'css'      => 'width:80px;',
+				'desc'     => __( 'Enable Auto-Insert', 'my-custom-functions' ),
 			);
 
-			// Add product zoom checkbox option
-			$settings_appearance[] = array(
-				'name'     => __( 'Auto-insert into single product page', 'text-domain' ),
-				'desc_tip' => __( 'This will automatically insert your slider into the single product page', 'text-domain' ),
-				'id'       => 'mcf_product_zoom',
-				'type'     => 'checkbox',
-				'css'      => 'min-width:300px;',
-				'desc'     => __( 'Enable Product Zoom', 'text-domain' ),
-			);
 
 			// Add quantity layout field option
 			$settings_appearance[] = array(
@@ -108,7 +113,7 @@ class MCF_Admin {
 
 			// Add additional info layout field option
 			$settings_appearance[] = array(
-				'name'     => __( 'Additional Infos layout', 'my-custom-functions' ),
+				'name'     => __( 'Additional infos layout', 'my-custom-functions' ),
 				'id'       => 'mcf_infos_layout',
 				'type'     => 'select',
 				'desc'     => __( 'Choose the layout of additional informations box with this option!', 'my-custom-functions' ),
