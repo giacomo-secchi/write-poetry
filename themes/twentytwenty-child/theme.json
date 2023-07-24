@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+
+	"settings": {
+    "custom": {
+			"scripts": [
+				{
+          "handle" : "test-script",
+          "src" : "/assets/js/test.js",
+          "deps" : ["hoverintent-js"],
+          "ver" : "2.0.1",
+          "media" : ""
+				},
+				{
+          "handle" : "test2-script",
+          "src" : "/assets/js/test2.js",
+          "deps" : null,
+          "ver" : null,
+          "media" : ""
+				}
+			],
+      "styles": [
+				{
+          "handle" : "twentytwenty-child-style",
+          "src" : "/style.css",
+          "deps" : [],
+          "ver" : "",
+          "media" : ""
+				},
+        {
+          "handle" : "twentytwenty-child-style-editor",
+          "src" : "/assets/css/style-editor.css",
+          "deps" : [],
+          "ver" : "",
+          "media" : ""
+				}
+			]
+		}
+  }
+}

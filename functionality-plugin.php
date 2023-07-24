@@ -123,6 +123,7 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 			require_once $includes_path . 'class-mcf-gtm.php';
 			require_once $includes_path . 'class-mcf-set-query-vars.php';
 			require_once $includes_path . 'class-mcf-woocommerce.php';
+			require_once $includes_path . 'class-mcf-theme.php';
 			require_once $includes_path . 'class-mcf-init.php';
 
 			if ( is_admin() ) {

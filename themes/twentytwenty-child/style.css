@@ -1,0 +1,20 @@
+/*
+Theme Name: Twenties Child
+Theme URI:
+Author: Giacomo Secchi
+Author URI: https://resume.giacomosecchi.com
+Description: A Child theme to rule them all that themes that starts with twentytwenty
+Requires at least: 5.8
+Tested up to: 5.9
+Requires PHP: 5.7
+Version: 0.0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Template: twentytwentythree
+Text Domain: twenties
+Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, rtl-language-support, theme-options, threaded-comments, translation-ready, wide-blocks
+*/
+
+body {
+	background-color: pink;
+}

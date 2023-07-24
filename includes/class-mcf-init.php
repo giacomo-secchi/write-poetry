@@ -27,10 +27,10 @@ class MCF_Init {
 		$gtm						= new MCF_GTM();
 		$qv							= new MCF_Add_Query_Variables();
 		$woocommerce				= new MCF_WooCommerce();
+		$theme						= new MCF_Theme();
 
 		if ( is_admin() ) {
-			$admin								= new MCF_Admin();
-
+			$admin					= new MCF_Admin();
 		}
 
 
