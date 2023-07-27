@@ -1,7 +1,7 @@
 <?php
 /**
  * Add metafields to portfolio CPT
- * 
+ *
  * @package           MyCustomFunctions
  * @subpackage        MyCustomFunctions/includes
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
@@ -31,11 +31,11 @@ class MCF_Metadata {
 	 * @return void
 	 */
 	public static function enqueue_block_assets() {
+		// Automatically load imported dependencies and assets version.
+		$asset_file = include( MCF__PLUGIN_DIR . 'build/index.asset.php' );
 
-		$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
-
-		wp_enqueue_script( 
-			'mcf-gutenberg-sidebar', 
+		wp_enqueue_script(
+			'mcf-gutenberg-sidebar',
 			plugins_url( 'build/index.js', __DIR__ ),
 			$asset_file['dependencies'],
     		$asset_file['version']
