@@ -1,7 +1,7 @@
 <?php
 /**
  * Remove unwanted assets
- * 
+ *
  * @package           MyCustomFunctions
  * @subpackage        MyCustomFunctions/includes
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
@@ -17,22 +17,8 @@ class MCF_Remove_Unwated_Features {
 	 */
 	public function __construct() {
 
-		add_action( 'init', array( $this, 'stop_heartbeat' ), 1 );
-
 		$this->turn_off_stuff();
 
-	}
-
-	/**
-     * Disable Heartbeat
-     *
-     * @since  1.0.0
-     * @access public
-	 * @link https://it.siteground.com/tutorial/wordpress/limitare-heartbeat/
-     * @return void
-     */
-	function stop_heartbeat() {
-		wp_deregister_script('heartbeat');
 	}
 
 
