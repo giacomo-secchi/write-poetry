@@ -2,9 +2,11 @@
 	"core": null,
 	"plugins": [
 		".",
-		"https://downloads.wordpress.org/plugin/jetpack.12.0.zip",
+		"https://downloads.wordpress.org/plugin/jetpack.12.3.zip",
 		"https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.16.2.zip",
-		"https://downloads.wordpress.org/plugin/woocommerce.7.5.1.zip"
+		"https://downloads.wordpress.org/plugin/woocommerce.7.9.0.zip",
+		"https://downloads.wordpress.org/plugin/query-monitor.3.13.1.zip",
+		"https://downloads.wordpress.org/plugin/sg-security.1.4.5.zip"
 	],
   "themes": [ "./themes/twentytwenty-child" ],
 	"mappings": {
