@@ -9,7 +9,7 @@ To get up and running within the WritePoetry Repo, you will need to make sure th
 ### Prerequisites
 
 -   [NVM](https://github.com/nvm-sh/nvm#installing-and-updating): While you can always install Node through other means, we recommend using NVM to ensure you're aligned with the version used by our development teams. The repository contains [an `.nvmrc` file](.nvmrc) which helps ensure you are using the correct version of Node.
--   [Docker](https://docs.docker.com/get-docker/): This repository has wp-env as dependecy, which in turn needs Docker Desktop app for local development so, if you don't have, you need to install it on your machine. Docker Desktop is a one-click-install application for your Mac, Linux, or Windows environment that enables you to build and share containerized applications and microservices.
+-   [Docker](https://docs.docker.com/get-docker/):     `wp-env` is powered by Docker. There are instructions available for installing Docker on [Windows](https://docs.docker.com/desktop/install/windows-install/) (we recommend the WSL2 backend), [macOS](https://docs.docker.com/docker-for-mac/install/), and [Linux](https://docs.docker.com/desktop/install/linux-install/).
 
 Once you've installed all of the prerequisites, you can run the following commands to get everything working.
 
