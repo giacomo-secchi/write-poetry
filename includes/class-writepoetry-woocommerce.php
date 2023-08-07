@@ -15,7 +15,7 @@
 
 
 
-class MCF_WooCommerce {
+class WritePoetry_WooCommerce {
 
 	/**
 	 * Initialize the class
@@ -33,12 +33,12 @@ class MCF_WooCommerce {
 
 			// Quantity layout
  			if (
-				defined( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') &&
-				'select' === MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ||
-				'select' === get_option('mcf_qty_layout')
+				defined( 'WRITEPOETRY_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') &&
+				'select' === WRITEPOETRY_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ||
+				'select' === get_option('writepoetry_qty_layout')
 			) {
 
-				if ( ! defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) || get_option( 'mcf_product_max_qty' ) ) {
+				if ( ! defined( 'WRITEPOETRY_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) || get_option( 'writepoetry_product_max_qty' ) ) {
 					$this->change_quantity_input( 99 );
 
 				}
@@ -46,9 +46,9 @@ class MCF_WooCommerce {
 				add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
 
 			} else if (
-				defined( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') &&
-				'buttons' === MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ||
-				'buttons' === get_option('mcf_qty_layout')
+				defined( 'WRITEPOETRY_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT') &&
+				'buttons' === WRITEPOETRY_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT ||
+				'buttons' === get_option('writepoetry_qty_layout')
 			) {
  				add_action( 'woocommerce_before_quantity_input_field', array( $this, 'display_quantity_minus' ) );
 				add_action( 'woocommerce_after_quantity_input_field', array( $this, 'display_quantity_plus' ) );
@@ -59,7 +59,7 @@ class MCF_WooCommerce {
 			else {
 
 
-				add_filter( 'mcf_exclude_woocommerce_template', function() {
+				add_filter( 'writepoetry_exclude_woocommerce_template', function() {
 					return 'global/quantity-input.php';
 				} );
 			}
@@ -67,44 +67,44 @@ class MCF_WooCommerce {
 
 
 			if (
-				defined( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY' ) &&
-				MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY ||
-				get_option( 'mcf_disable_qty' )
+				defined( 'WRITEPOETRY_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY' ) &&
+				WRITEPOETRY_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY ||
+				get_option( 'writepoetry_disable_qty' )
 			) {
 				$this->change_quantity_input( 1 );
-			} else if ( defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) || get_option( 'mcf_product_max_qty' ) ) {
-				$qty = defined( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) ? MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT : get_option( 'mcf_product_max_qty' );
+			} else if ( defined( 'WRITEPOETRY_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) || get_option( 'writepoetry_product_max_qty' ) ) {
+				$qty = defined( 'WRITEPOETRY_WOOCOMMERCE_MAX_QUANTITY_INPUT' ) ? WRITEPOETRY_WOOCOMMERCE_MAX_QUANTITY_INPUT : get_option( 'writepoetry_product_max_qty' );
 				$this->change_quantity_input( $qty );
 			}
 
 			// Product zoom
-			if ( defined( 'MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM' ) &&
-				false === MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM ||
-				'no' === get_option( 'mcf_enable_product_zoom' )
+			if ( defined( 'WRITEPOETRY_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM' ) &&
+				false === WRITEPOETRY_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM ||
+				'no' === get_option( 'writepoetry_enable_product_zoom' )
 			) {
 				$this->disable_product_zoom();
 			}
 
 			// Additional informations
-			if ( defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) || get_option( 'mcf_infos_layout' ) ) {
+			if ( defined( 'WRITEPOETRY_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) || get_option( 'writepoetry_infos_layout' ) ) {
  				add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
 			}
 
 			if (
-				defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) &&
-				'tabs' === MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT ||
-				'tabs' === get_option( 'mcf_infos_layout' )
+				defined( 'WRITEPOETRY_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) &&
+				'tabs' === WRITEPOETRY_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT ||
+				'tabs' === get_option( 'writepoetry_infos_layout' )
 			) {
 
-				add_filter( 'mcf_exclude_woocommerce_template', function() {
+				add_filter( 'writepoetry_exclude_woocommerce_template', function() {
 					return 'single-product/tabs/tabs.php';
 				} );
 			}
 
 			if (
-				defined( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) &&
-				'accordion' === MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT ||
-				'accordion' === get_option( 'mcf_infos_layout' )
+				defined( 'WRITEPOETRY_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) &&
+				'accordion' === WRITEPOETRY_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT ||
+				'accordion' === get_option( 'writepoetry_infos_layout' )
 			) {
 
 				add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
@@ -121,9 +121,9 @@ class MCF_WooCommerce {
 
 			// redirect checkout
 			if (
-				defined( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT' ) &&
-				MCF_WOOCOMMERCE_REDIRECT_CHECKOUT ||
-				'yes' === get_option( 'mcf_redirect_checkout' )
+				defined( 'WRITEPOETRY_WOOCOMMERCE_REDIRECT_CHECKOUT' ) &&
+				WRITEPOETRY_WOOCOMMERCE_REDIRECT_CHECKOUT ||
+				'yes' === get_option( 'writepoetry_redirect_checkout' )
 			) {
 
 				add_filter( 'woocommerce_add_to_cart_redirect', array( $this, 'skip_cart_redirect_checkout' ) );
@@ -148,10 +148,10 @@ class MCF_WooCommerce {
 			$template_path = $woocommerce->template_url;
 		}
 
-		$plugin_path  = untrailingslashit( MCF__PLUGIN_DIR )  . '/woocommerce/';
+		$plugin_path  = untrailingslashit( WRITEPOETRY_PLUGIN_DIR )  . '/woocommerce/';
 
 		// Apply filter to exclude specific template
-		$excluded_template = apply_filters( 'mcf_exclude_woocommerce_template', 'excluded-template.php' );
+		$excluded_template = apply_filters( 'writepoetry_exclude_woocommerce_template', 'excluded-template.php' );
 		if ( $template_name === $excluded_template ) {
 			return $template;
 		}

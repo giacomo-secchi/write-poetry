@@ -1,7 +1,7 @@
 <?php
 /**
  * Remove unwanted assets
- * 
+ *
  * @package           MyCustomFunctions
  * @subpackage        MyCustomFunctions/includes
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
@@ -10,7 +10,7 @@
  * @since             1.0.0
  */
 
-class MCF_Dev_Tools {
+class WritePoetry_Dev_Tools {
 
 	/**
 	 * Initialize the class
@@ -26,7 +26,7 @@ class MCF_Dev_Tools {
 
 	// Remove query string from static CSS files
 	public static function remove_query_string_from_static_files( $src ) {
-		if ( ! MCF_Plugin::is_development_environment() ) {
+		if ( ! WritePoetry_Plugin::is_development_environment() ) {
 			return;
 		}
 

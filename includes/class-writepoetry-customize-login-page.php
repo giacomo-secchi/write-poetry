@@ -1,7 +1,7 @@
 <?php
 /**
  * Admin Login Screen
- * 
+ *
  * @package           MyCustomFunctions
  * @subpackage        MyCustomFunctions/includes
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
@@ -10,7 +10,7 @@
  * @since             1.0.0
  */
 
-class MCF_Customize_Login_Page {
+class WritePoetry_Customize_Login_Page {
 
     /**
      * Initialize the class

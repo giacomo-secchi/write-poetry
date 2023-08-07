@@ -23,19 +23,19 @@ define( 'GTM4WP_HARDCODED_GTM_ID', '' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_AUTH', '' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_PREVIEW', '' );
 
-// define( 'MCF_WOOCOMMERCE_REDIRECT_CHECKOUT', true );
- define( 'MCF_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', false );
-// define( 'MCF_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM', true );
+// define( 'WRITEPOETRY_WOOCOMMERCE_REDIRECT_CHECKOUT', true );
+ define( 'WRITEPOETRY_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', false );
+// define( 'WRITEPOETRY_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM', true );
 
-// define( 'MCF_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT', 'input' );
-// define( 'MCF_WOOCOMMERCE_MAX_QUANTITY_INPUT', 20 );
+// define( 'WRITEPOETRY_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT', 'input' );
+// define( 'WRITEPOETRY_WOOCOMMERCE_MAX_QUANTITY_INPUT', 20 );
 
 
 // Possible vaules are accordion, tabs or list
-// define( 'MCF_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT', 'list' );
+// define( 'WRITEPOETRY_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT', 'list' );
 
 // add elements to disable
-add_filter( 'mcf_disable_features', function () {
+add_filter( 'writepoetry_disable_features', function () {
 	$args[] = 'woocommerce_sale_flash';
 	// $args[] = 'woocommerce_twenty_twenty_two_styles';
 
@@ -44,7 +44,7 @@ add_filter( 'mcf_disable_features', function () {
 
 
 // Add parameters to url
-add_filter( 'mcf_query_vars', function () {
+add_filter( 'writepoetry_query_vars', function () {
     return array( 'show-wheel', 'test-1' );
 } );
 
@@ -54,7 +54,7 @@ add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {
 }, 10, 2 );
 
 
-add_filter( 'mcf_add_custom_taxonomies', function () {
+add_filter( 'writepoetry_add_custom_taxonomies', function () {
  	$string = array(
 		'product-type' => array(
 			'post_type' => 'product',
@@ -83,7 +83,7 @@ add_filter( 'mcf_add_custom_taxonomies', function () {
 
 
 
-add_filter( 'mcf_add_custom_post_types', function () {
+add_filter( 'writepoetry_add_custom_post_types', function () {
 	$string = array(
 		'come-raggiungerci' =>
 			array(

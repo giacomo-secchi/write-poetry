@@ -6,7 +6,7 @@
  */
 
 
-add_filter( 'mcf_enqueue_block_style', function () {
+add_filter( 'writepoetry_enqueue_block_style', function () {
 	$blocks = array(
 		'core/navigation',
         'core/site-title',
@@ -19,7 +19,7 @@ add_filter( 'mcf_enqueue_block_style', function () {
 } );
 
 
-add_filter( 'mcf_register_block_style', function () {
+add_filter( 'writepoetry_register_block_style', function () {
 	// Define block styles with their labels and CSS styles
 	$block_styles = array(
 		'core/group'	=> array(

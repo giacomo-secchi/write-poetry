@@ -1,7 +1,7 @@
 <?php
 /**
  * Register Custom Taxonomies
- * 
+ *
  * @package           MyCustomFunctions
  * @subpackage        MyCustomFunctions/includes
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
@@ -10,7 +10,7 @@
  * @since             1.0.0
  */
 
-class MCF_Register_Taxonomies {
+class WritePoetry_Register_Taxonomies {
 
     /**
      * Initialize the class
@@ -36,7 +36,7 @@ class MCF_Register_Taxonomies {
         );
 
 
-		foreach ( apply_filters( 'mcf_add_custom_taxonomies', array() ) as $taxonomy => $args ) {
+		foreach ( apply_filters( 'writepoetry_add_custom_taxonomies', array() ) as $taxonomy => $args ) {
 			if ( taxonomy_exists( $taxonomy ) ) {
 				return;
 			}

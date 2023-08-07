@@ -1,7 +1,7 @@
 <?php
 /**
- * Remove unwanted assets
- * 
+ * Add new mime types
+ *
  * @package           MyCustomFunctions
  * @subpackage        MyCustomFunctions/includes
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
@@ -10,29 +10,25 @@
  * @since             1.0.0
  */
 
-
-class MCF_GTM {
+class WritePoetry_Add_Mime_Types {
 
 	/**
 	 * Initialize the class
 	 */
 	public function __construct() {
-		add_action		( 'wp_body_open', 		array( $this, 'GTM_noscript_container_code' ) );
-
+		add_filter( 'upload_mimes', array( $this, 'add_svg' ) );
 	}
-
-
 
 	/**
-	 * Manually coded Container code compatibility mode
-	 *
-	 * @return void
-	 */
-	public static function GTM_noscript_container_code() {
-		if ( function_exists( 'gtm4wp_the_gtm_tag' ) ) { gtm4wp_the_gtm_tag(); }
+     * Add SVG mime type
+     *
+     * @since  1.0.0
+     * @access public
+     * @return viod
+     */
+	public function add_svg( $mimes ){
+		$mimes['svg'] = 'image/svg+xml';
+		return $mimes;
 	}
 
-
 }
-
-

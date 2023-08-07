@@ -1,7 +1,7 @@
 <?php
 /**
  * Register custom post types
- * 
+ *
  * @package           MyCustomFunctions
  * @subpackage        MyCustomFunctions/includes
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
@@ -10,7 +10,7 @@
  * @since             1.0.0
  */
 
-class MCF_Register_Post_Types {
+class WritePoetry_Register_Post_Types {
 
     /**
      * Initialize the class
@@ -45,7 +45,7 @@ class MCF_Register_Post_Types {
 		);
 
 
-		foreach ( apply_filters( 'mcf_add_custom_post_types', array() ) as $post_type => $args ) {
+		foreach ( apply_filters( 'writepoetry_add_custom_post_types', array() ) as $post_type => $args ) {
 			if ( post_type_exists( $post_type ) ) {
 				return;
 			}

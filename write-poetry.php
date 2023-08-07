@@ -1,25 +1,25 @@
 <?php
 /**
- * My Custom Functions
+ * Write Poetry
  *
- * @package           MyCustomFunctions
+ * @package           WritePoetry
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
  *
  * @wordpress-plugin
- * Plugin Name:       My Custom Functions
- * Plugin URI:        https://github.com/giacomo-secchi/functionality-plugin
+ * Plugin Name:       Write Poetry
+ * Plugin URI:        https://github.com/giacomo-secchi/write-poetry
  * Description:       This is an awesome custom plugin with functionality that I'd like to keep when switching things.
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Giacomo Secchi
  * Author URI:        https://resume.giacomosecchi.com
- * Text Domain:       my-custom-functions
+ * Text Domain:       writepoetry
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Update URI:        https://github.com/giacomo-secchi/functionality-plugin/
+ * Update URI:        https://github.com/giacomo-secchi/write-poetry/
  */
 
 // If this file is called directly, abort.
@@ -37,14 +37,14 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 
-define( 'MCF__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'WRITEPOETRY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
-if ( ! defined( 'MCF__GITHUB_USERNAME' ) ) {
-	define( 'MCF__GITHUB_USERNAME', 'giacomo-secchi'  );
+if ( ! defined( 'WRITEPOETRY_GITHUB_USERNAME' ) ) {
+	define( 'WRITEPOETRY_GITHUB_USERNAME', 'giacomo-secchi'  );
 }
 
-if ( ! defined( 'MCF__GITHUB_REPO' ) ) {
-	define( 'MCF__GITHUB_REPO', 'functionality-plugin' );
+if ( ! defined( 'WRITEPOETRY_GITHUB_REPO' ) ) {
+	define( 'WRITEPOETRY_GITHUB_REPO', 'functionality-plugin' );
 }
 
 if ( ! class_exists( 'Smashing_Updater' ) ){
@@ -52,8 +52,8 @@ if ( ! class_exists( 'Smashing_Updater' ) ){
 }
 
 $updater = new Smashing_Updater( __FILE__ );
-$updater->set_username( MCF__GITHUB_USERNAME );
-$updater->set_repository( MCF__GITHUB_REPO );
+$updater->set_username( WRITEPOETRY_GITHUB_USERNAME );
+$updater->set_repository( WRITEPOETRY_GITHUB_REPO );
 /*
 	$updater->authorize( 'abcdefghijk1234567890' ); // Your auth code goes here for private repos
 */
@@ -61,8 +61,8 @@ $updater->initialize();
 
 
 
-if ( ! class_exists( 'MCF_Plugin' ) ) {
-    class MCF_Plugin {
+if ( ! class_exists( 'WritePoetry_Plugin' ) ) {
+    class WritePoetry_Plugin {
 		/**
 		 * Instance of the class
 		 *
@@ -84,15 +84,15 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 		 * If an instance exists, this returns it.  If not, it creates one and
 		 * retuns it.
 		 *
-		 * @return MCF_Plugin
+		 * @return WritePoetry_Plugin
 		 */
 
 		public static function getInstance() {
-			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof MCF_Plugin ) ) {
-				self::$instance = new MCF_Plugin;
+			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof WritePoetry_Plugin ) ) {
+				self::$instance = new WritePoetry_Plugin;
 			}
  			self::$instance->includes();
-			self::$instance->init = new MCF_Init();
+			self::$instance->init = new WritePoetry_Init();
 
 
 			return self::$instance;
@@ -113,22 +113,22 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
 		 */
 		private function includes() {
 
-			$includes_path = MCF__PLUGIN_DIR . 'includes/';
-			require_once $includes_path . 'class-mcf-register-post-types.php';
-			require_once $includes_path . 'class-mcf-register-taxonomies.php';
-			require_once $includes_path . 'class-mcf-add-mime-types.php';
-			require_once $includes_path . 'class-mcf-remove-unwanted-features.php';
-			require_once $includes_path . 'class-mcf-metafield.php';
-			require_once $includes_path . 'class-mcf-customize-login-page.php';
-			require_once $includes_path . 'class-mcf-gtm.php';
-			require_once $includes_path . 'class-mcf-set-query-vars.php';
-			require_once $includes_path . 'class-mcf-woocommerce.php';
-			require_once $includes_path . 'class-mcf-theme.php';
-			require_once $includes_path . 'class-mcf-init.php';
+			$includes_path = WRITEPOETRY_PLUGIN_DIR . 'includes/';
+			require_once $includes_path . 'class-writepoetry-register-post-types.php';
+			require_once $includes_path . 'class-writepoetry-register-taxonomies.php';
+			require_once $includes_path . 'class-writepoetry-add-mime-types.php';
+			require_once $includes_path . 'class-writepoetry-remove-unwanted-features.php';
+			require_once $includes_path . 'class-writepoetry-metafield.php';
+			require_once $includes_path . 'class-writepoetry-customize-login-page.php';
+			require_once $includes_path . 'class-writepoetry-gtm.php';
+			require_once $includes_path . 'class-writepoetry-set-query-vars.php';
+			require_once $includes_path . 'class-writepoetry-woocommerce.php';
+			require_once $includes_path . 'class-writepoetry-theme.php';
+			require_once $includes_path . 'class-writepoetry-init.php';
 
 			if ( is_admin() ) {
 				// we are in admin mode
-				require_once $includes_path . '/admin/functionality-plugin-admin.php';
+				require_once $includes_path . '/admin/class-writepoetry-admin.php';
 			}
 
 		}
@@ -142,7 +142,7 @@ if ( ! class_exists( 'MCF_Plugin' ) ) {
  * @since 1.0.0
  * @return object The Safety Links instance
  */
-function MCF_Run() {
-	return MCF_Plugin::getInstance();
+function WritePoetry_Run() {
+	return WritePoetry_Plugin::getInstance();
 }
-MCF_Run();
+WritePoetry_Run();

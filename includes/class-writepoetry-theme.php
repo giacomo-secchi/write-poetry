@@ -10,7 +10,7 @@
  * @since             1.0.0
  */
 
-class MCF_Theme {
+class WritePoetry_Theme {
 
 	/**
 	 * Initialize the class
@@ -139,7 +139,7 @@ class MCF_Theme {
 		/*
 		* Load additional block styles.
 		*/
-		foreach ( apply_filters( 'mcf_enqueue_block_style', array() ) as $blocks => $block ) {
+		foreach ( apply_filters( 'writepoetry_enqueue_block_style', array() ) as $blocks => $block ) {
 
 			// Replace slash with hyphen for filename.
 			$slug = str_replace( '/', '-', $block );
@@ -161,7 +161,7 @@ class MCF_Theme {
 
 		// Register each block style with its label and CSS style
 		if ( function_exists( 'register_block_style' ) ) {
-			foreach ( apply_filters( 'mcf_register_block_style', array() ) as $block_name => $style_properties ) {
+			foreach ( apply_filters( 'writepoetry_register_block_style', array() ) as $block_name => $style_properties ) {
 
 				register_block_style( $block_name, $style_properties );
 			}

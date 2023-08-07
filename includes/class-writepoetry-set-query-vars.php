@@ -1,7 +1,7 @@
 <?php
 /**
  * Add new mime types
- * 
+ *
  * @package           MyCustomFunctions
  * @subpackage        MyCustomFunctions/includes
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
@@ -10,25 +10,29 @@
  * @since             1.0.0
  */
 
-class MCF_Add_Mime_Types {
+class WritePoetry_Add_Query_Variables {
 
 	/**
 	 * Initialize the class
 	 */
 	public function __construct() {
-		add_filter( 'upload_mimes', array( $this, 'add_svg' ) );
+		add_action( 'query_vars', array( $this, 'add_val' ) );
 	}
 
 	/**
-     * Add SVG mime type
+     * Add query string parameters site-wide
      *
      * @since  1.0.0
      * @access public
      * @return viod
      */
-	public function add_svg( $mimes ){
-		$mimes['svg'] = 'image/svg+xml';
-		return $mimes;
+	public function add_val( $qvars ) {
+
+		foreach( apply_filters( 'writepoetry_query_vars', array() ) as $qv ) {
+			$qvars[] = $qv;
+		}
+
+		return $qvars;
 	}
 
 }

@@ -10,7 +10,7 @@
  * @since             1.0.0
  */
 
-class MCF_Metadata {
+class WritePoetry_Metadata {
 
 	/**
 	 * Initialize the class
@@ -32,10 +32,10 @@ class MCF_Metadata {
 	 */
 	public static function enqueue_block_assets() {
 		// Automatically load imported dependencies and assets version.
-		$asset_file = include( MCF__PLUGIN_DIR . 'build/index.asset.php' );
+		$asset_file = include( WRITEPOETRY_PLUGIN_DIR . 'build/index.asset.php' );
 
 		wp_enqueue_script(
-			'mcf-gutenberg-sidebar',
+			'writepoetry-gutenberg-sidebar',
 			plugins_url( 'build/index.js', __DIR__ ),
 			$asset_file['dependencies'],
     		$asset_file['version']
@@ -47,7 +47,7 @@ class MCF_Metadata {
 
 		register_post_meta(
 			'jetpack-portfolio',
-			'_mcf_project_year',
+			'_writepoetry_project_year',
 			 array(
 				'show_in_rest' => true,
 				'type' => 'number',
@@ -60,7 +60,7 @@ class MCF_Metadata {
 
 		register_post_meta(
 			'jetpack-portfolio',
-			'_mcf_project_client',
+			'_writepoetry_project_client',
 				array(
 					'show_in_rest' => true,
 					'type' => 'string',
@@ -73,7 +73,7 @@ class MCF_Metadata {
 
 		register_post_meta(
 			'jetpack-portfolio',
-			'_mcf_project_expertise',
+			'_writepoetry_project_expertise',
 				array(
 					'show_in_rest' => true,
 					'type' => 'string',
@@ -86,7 +86,7 @@ class MCF_Metadata {
 
 		register_post_meta(
 			'jetpack-portfolio',
-			'_mcf_project_industry',
+			'_writepoetry_project_industry',
 				array(
 					'show_in_rest' => true,
 					'type' => 'string',

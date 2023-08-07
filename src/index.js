@@ -28,8 +28,8 @@ let PluginMetaFields = ( props ) => {
 
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
-	const yearValue = meta[ '_mcf_project_year' ];
-	const clientValue = meta[ '_mcf_project_client' ];
+	const yearValue = meta[ '_writepoetry_project_year' ];
+	const clientValue = meta[ '_writepoetry_project_client' ];
 
 	const updateMetaValue = ( key, newValue ) => {
 		setMeta( { ...meta, [ key ]: newValue } );
@@ -40,7 +40,7 @@ let PluginMetaFields = ( props ) => {
 			<NumberControl
 				label={ __( 'Year', 'textdomain' ) }
 				onChange={ ( value ) =>
-					updateMetaValue( '_mcf_project_year', value )
+					updateMetaValue( '_writepoetry_project_year', value )
 				}
 				shiftStep={ 10 }
 				value={ yearValue }
@@ -49,14 +49,14 @@ let PluginMetaFields = ( props ) => {
 				label={ __( 'Client', 'textdomain' ) }
 				value={ clientValue }
 				onChange={ ( value ) =>
-					updateMetaValue( '_mcf_project_client', value )
+					updateMetaValue( '_writepoetry_project_client', value )
 				}
 			/>
 			<TextControl
 				label={ __( 'Client', 'textdomain' ) }
 				value={ clientValue }
 				onChange={ ( value ) =>
-					updateMetaValue( '_mcf_project_client', value )
+					updateMetaValue( '_writepoetry_project_client', value )
 				}
 			/>
 		</>
@@ -66,7 +66,7 @@ let PluginMetaFields = ( props ) => {
 // PluginMetaFields = withSelect(
 //     (select) => {
 //         return {
-//             project_year_metafield: select( 'core/editor' ).getEditedPostAttribute( 'meta' )['_mcf_project_year'],
+//             project_year_metafield: select( 'core/editor' ).getEditedPostAttribute( 'meta' )['_writepoetry_project_year'],
 //         }
 //     }
 // )(PluginMetaFields);
@@ -75,7 +75,7 @@ let PluginMetaFields = ( props ) => {
 //     (dispatch) => {
 //         return {
 //             onMetaFieldChange: ( value ) => {
-//                 dispatch( 'core/editor' ).editPost( { meta: { _mcf_project_year: value } })
+//                 dispatch( 'core/editor' ).editPost( { meta: { _writepoetry_project_year: value } })
 //             }
 //         }
 //     }

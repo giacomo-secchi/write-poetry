@@ -10,7 +10,7 @@
  * @since             1.0.0
  */
 
-class MCF_Remove_Unwated_Features {
+class WritePoetry_Remove_Unwated_Features {
 
 	/**
 	 * Initialize the class
@@ -36,7 +36,7 @@ class MCF_Remove_Unwated_Features {
 		);
 
 
-		foreach ( apply_filters( 'mcf_disable_features', $hook_names ) as $hook_name ) {
+		foreach ( apply_filters( 'writepoetry_disable_features', $hook_names ) as $hook_name ) {
 			if ( empty( $hook_name ) ) {
 				return;
 			}
