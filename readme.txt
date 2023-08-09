@@ -1,9 +1,9 @@
-=== Test ===
-Contributors: (this should be a list of wordpress.org userid's)
+=== Write Poetry ===
+Contributors: giacomosecchi
 Donate link: https://example.com/
 Tags: comments, spam
 Requires at least: 4.5
-Tested up to: 6.1.1
+Tested up to: 6.2.2
 Requires PHP: 5.6
 Stable tag: 0.1.0
 License: GPLv2 or later

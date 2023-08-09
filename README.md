@@ -16,12 +16,31 @@ Once you've installed all of the prerequisites, you can run the following comman
 ```bash
 # Ensure that you're using the correct version of Node
 nvm use
-# Install the Node.js packages and dependencies 
+# Install the Node.js packages and dependencies
 npm install
-# Start the local environment 
+# Start the local environment
 npm run wp-env start
 ```
 Finally, navigate to http://localhost:8888 in your web browser to see WordPress running with the local WritePietry plugin and Twenty Twenty-Child theme running and activated. Default login credentials are username: admin password: password.
 
 ### Debugging
 Read the [official `wp-env` documentation](https://github.com/WordPress/gutenberg/tree/trunk/packages/env#using-xdebug) to enable Xdebug when working on this project.
+
+### Xdebug VS Code support
+
+Read the section of the guide that explain [how to enable Xdebug in VS Code](https://github.com/WordPress/gutenberg/blob/trunk/packages/env/README.md#xdebug-ide-support)
+
+Remember that the `pathMappings` inside `.vscode/launch.json` file should be as the following
+```json
+{
+	"pathMappings": {
+		"/var/www/html/wp-content/plugins/write-poetry": "${workspaceFolder}/",
+		"/var/www/html/wp-content/themes/twentytwenty-child": "${workspaceFolder}/themes/twentytwenty-child/",
+		"/var/www/html/wp-content/mu-plugins": "${workspaceFolder}/mu-plugins/"
+	}
+}
+```
+
+
+
+
