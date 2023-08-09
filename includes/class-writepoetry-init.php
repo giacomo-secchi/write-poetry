@@ -18,7 +18,6 @@ class WritePoetry_Init {
 	 */
 	public function __construct() {
 
-		$register_post_types		= new WritePoetry_Register_Post_Types();
 		$register_taxonomies		= new WritePoetry_Register_Taxonomies();
 		$add_mime_types				= new WritePoetry_Add_Mime_Types();
 		$remove_features			= new WritePoetry_Remove_Unwated_Features();

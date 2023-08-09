@@ -1,0 +1,20 @@
+{
+    "name": "giacomosecchi/write-poetry",
+    "type": "wordpress-plugin",
+    "description": "The Swiss knife plugin designed for developers and advanced users. Unlock the full potential of WordPress with this versatile tool. Empower your workflow without getting your hands dirty.",
+    "require": {
+        "yoast/wp-test-utils": "^1.1"
+    },
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "classmap": [
+          "src/"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Giacomo Secchi",
+            "email": "giacomo.secchi@gmail.com"
+        }
+    ]
+}

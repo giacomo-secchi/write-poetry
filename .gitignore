@@ -9,3 +9,5 @@ node_modules/
 *.tar.gz
 *.zip
 .vscode/
+
+/vendor/

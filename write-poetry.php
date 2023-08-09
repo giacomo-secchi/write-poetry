@@ -11,7 +11,7 @@
  * Plugin Name:       Write Poetry
  * Plugin URI:        https://github.com/giacomo-secchi/write-poetry
  * Description:       The Swiss knife plugin designed for developers and advanced users. Unlock the full potential of WordPress with this versatile tool. Empower your workflow without getting your hands dirty.
- * Version:           1.0.0
+ * Version:           0.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Giacomo Secchi
@@ -26,6 +26,17 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+
+if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
+    require __DIR__ . '/vendor/autoload.php';
+}
+
+
+use WritePoetry\Init;
+use WritePoetry\RegisterPostTypes;
+use WritePoetry\Admin\AdminSettings;
+
 
 
 
@@ -114,7 +125,7 @@ if ( ! class_exists( 'WritePoetry_Plugin' ) ) {
 		private function includes() {
 
 			$includes_path = WRITEPOETRY_PLUGIN_DIR . 'includes/';
-			require_once $includes_path . 'class-writepoetry-register-post-types.php';
+
 			require_once $includes_path . 'class-writepoetry-register-taxonomies.php';
 			require_once $includes_path . 'class-writepoetry-add-mime-types.php';
 			require_once $includes_path . 'class-writepoetry-remove-unwanted-features.php';
@@ -125,6 +136,9 @@ if ( ! class_exists( 'WritePoetry_Plugin' ) ) {
 			require_once $includes_path . 'class-writepoetry-woocommerce.php';
 			require_once $includes_path . 'class-writepoetry-theme.php';
 			require_once $includes_path . 'class-writepoetry-init.php';
+
+
+
 
 			if ( is_admin() ) {
 				// we are in admin mode

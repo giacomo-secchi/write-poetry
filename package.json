@@ -29,7 +29,8 @@
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --progress",
-		"wp-env": "wp-env"
+		"wp-env": "wp-env",
+    "composer": "wp-env run cli --env-cwd=wp-content/plugins/write-poetry composer"
 	},
 	"npmpackagejsonlint": {
 		"extends": "@wordpress/npm-package-json-lint-config",

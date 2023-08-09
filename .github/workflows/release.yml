@@ -4,7 +4,7 @@ run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
 on:
   push:
     tags:
-      - v*.*.*
+      - *.*.*
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-  
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -43,7 +43,7 @@ jobs:
       - name: Install packages
         if: steps.cache-npm.outputs.cache-hit != 'true'
         run: npm install
-        
+
       - run: npm run build --if-present
 
       - name: Upload Build Artifact
@@ -51,7 +51,7 @@ jobs:
         with:
           name: build-output
           path: build
-          
+
   release:
     name: Create Release
     runs-on: ubuntu-latest
@@ -68,7 +68,9 @@ jobs:
         with:
           name: build-output
           path: build
-         
+      - name: Composer install
+        run: |
+          composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
       - name: Zip Release Asset
         run: |
           zip -r ${{ github.event.repository.name}}.zip . -x '.git/*' '.github/*' @
@@ -82,6 +84,5 @@ jobs:
             ${{ github.event.repository.name}}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
 
- 
+
