@@ -4,7 +4,7 @@ run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
 on:
   push:
     tags:
-      - *.*.*
+      - '[0–9]+.[0–9]+.[0–9]+'
 
 jobs:
   build:

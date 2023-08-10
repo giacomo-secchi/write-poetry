@@ -23,7 +23,7 @@ npm run wp-env start
 ```
 Finally, navigate to http://localhost:8888 in your web browser to see WordPress running with the local WritePietry plugin and Twenty Twenty-Child theme running and activated. Default login credentials are username: admin password: password.
 
-### Debugging
+## Debugging
 Read the [official `wp-env` documentation](https://github.com/WordPress/gutenberg/tree/trunk/packages/env#using-xdebug) to enable Xdebug when working on this project.
 
 ### Xdebug VS Code support
@@ -42,5 +42,14 @@ Remember that the `pathMappings` inside `.vscode/launch.json` file should be as 
 ```
 
 
+## Creating a stable release
 
+Contributors who want to make a new release, follow these steps:
+
+1. Change the plugin `version` header field in the [main plugin file](write-poetry.php) and the `Stable tag` field in the Header informations of [readme.txt](readme.txt) file following the [WordPress versioning scheme](https://make.wordpress.org/core/handbook/about/release-cycle/version-numbering/)
+2. Remember to check the comaptibility in readme.txt
+3. Add a git tag to the last commit with the same number of the plugin version, like this:
+```bash
+	git tag -a 0.2.1 HEAD -m "Release 0.2.1"
+```
 
