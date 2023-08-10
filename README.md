@@ -52,4 +52,7 @@ Contributors who want to make a new release, follow these steps:
 ```bash
 	git tag -a 0.2.1 HEAD -m "Release 0.2.1"
 ```
-
+4. Push the tag
+```bash
+git push upstream 0.2.1
+```
