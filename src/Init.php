@@ -7,24 +7,48 @@
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
- * @since             1.0.0
+ * @since             0.2.1
  */
 
 namespace WritePoetry;
 
-class Init {
+
+final class Init
+{
+	/**
+	 * Store all the classes inside an array
+	 * @return array Full list of classes
+	 */
+	public static function get_services() {
+		return [
+			// Pages\Admin::class,
+			Base\Development\Environment::class,
+			// Base\SettingsLinks::class
+		];
+	}
+
+	/**
+	 * Loop through the classes, initialize them,
+	 * and call the register() method if it exists
+	 * @return
+	 */
+	public static function register_services() {
+		foreach ( self::get_services() as $class ) {
+			$service = self::instantiate( $class );
+			if ( method_exists( $service, 'register' ) ) {
+				$service->register();
+			}
+		}
+	}
 
 	/**
 	 * Initialize the class
+	 * @param  class $class    class from the services array
+	 * @return class instance  new instance of the class
 	 */
-	public function __construct() {
+	private static function instantiate( $class ) {
+		$service = new $class();
 
-
-		var_dump('1');
-
-
+		return $service;
 	}
-
-
-
 }

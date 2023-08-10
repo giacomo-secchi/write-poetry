@@ -34,10 +34,6 @@ if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
 
 
 use WritePoetry\Init;
-use WritePoetry\RegisterPostTypes;
-use WritePoetry\Admin\AdminSettings;
-
-
 
 
 /**
@@ -110,10 +106,6 @@ if ( ! class_exists( 'WritePoetry_Plugin' ) ) {
 		}
 
 
-		public static function is_development_environment() {
-			return in_array( wp_get_environment_type(), array( 'development', 'local' ), true );
-		}
-
 
 		/**
 		 * Load the required files
@@ -160,3 +152,12 @@ function WritePoetry_Run() {
 	return WritePoetry_Plugin::getInstance();
 }
 WritePoetry_Run();
+
+
+/**
+ * Initialize all the core classes of the plugin
+ * @since 0.2.2
+ */
+if ( class_exists( 'WritePoetry\\Init' ) ) {
+	WritePoetry\Init::register_services();
+}
