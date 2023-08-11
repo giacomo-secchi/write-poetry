@@ -18,6 +18,8 @@ Once you've installed all of the prerequisites, you can run the following comman
 nvm use
 # Install the Node.js packages and dependencies
 npm install
+# Install Composer dependencies
+npm run composer install -- --no-dev --no-interaction --prefer-dist --optimize-autoloader
 # Start the local environment
 npm run wp-env start
 ```
