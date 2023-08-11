@@ -27,6 +27,7 @@ define( 'GTM4WP_HARDCODED_GTM_ENV_PREVIEW', '' );
  define( 'WRITEPOETRY_WOOCOMMERCE_DISABLE_SINGLE_PRODUCT_QTY', false );
 // define( 'WRITEPOETRY_WOOCOMMERCE_ENABLE_PRODUCT_ZOOM', true );
 
+
 // define( 'WRITEPOETRY_WOOCOMMERCE_QUANTITY_INPUT_LAYOUT', 'input' );
 // define( 'WRITEPOETRY_WOOCOMMERCE_MAX_QUANTITY_INPUT', 20 );
 
@@ -41,6 +42,10 @@ add_filter( 'writepoetry_disable_features', function () {
 
 	return $args;
 }, 10, 1 );
+
+
+add_filter( 'writepoetry_remove_query_strings', '__return_true' );
+
 
 
 // Add parameters to url

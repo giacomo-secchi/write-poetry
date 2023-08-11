@@ -17,7 +17,12 @@ namespace WritePoetry\Base\Development;
 /**
 *
 */
-class ExampleClass {
+class Example {
+	/**
+	 * Invoke hooks.
+	 *
+	 * @return void
+	 */
 	public function register() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 	}
