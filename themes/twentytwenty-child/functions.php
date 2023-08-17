@@ -6,7 +6,8 @@
  */
 
 
-add_filter( 'writepoetry_enqueue_block_style', function () {
+// Use this filter to add assets to blocks
+add_filter( 'writepoetry_enqueue_blocks_style', function () {
 	$blocks = array(
 		'core/navigation',
         'core/site-title',
@@ -17,6 +18,13 @@ add_filter( 'writepoetry_enqueue_block_style', function () {
 
 	return $blocks;
 } );
+
+
+// Use this filter to change the default path for additional blocks styles.
+
+// add_filter( 'writepoetry_blocks_style_asset_path', function () {
+// 	return 'assets/css/block';
+// } );
 
 
 add_filter( 'writepoetry_register_block_style', function () {

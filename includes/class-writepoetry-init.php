@@ -26,7 +26,6 @@ class WritePoetry_Init {
 		$gtm						= new WritePoetry_GTM();
 		$qv							= new WritePoetry_Add_Query_Variables();
 		$woocommerce				= new WritePoetry_WooCommerce();
-		$theme						= new WritePoetry_Theme();
 
 		if ( is_admin() ) {
 			$admin					= new WritePoetry_Admin();

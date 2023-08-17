@@ -5,13 +5,13 @@
   "settings": {
     "custom": {
       "scripts": {
-        "files" :   [
-          {
+        "files" : [{
             "handle" : "test-script",
             "src" : "/assets/js/test.js",
-            "deps" : ["hoverintent-js"],
+            "deps" : [""],
             "ver" : "2.0.1",
-            "in_footer" : ""
+            "in_footer" : "",
+            "is_page": ["cart"]
           },
           {
             "handle" : "test2-script",
@@ -19,9 +19,9 @@
             "deps" : null,
             "ver" : null,
             "in_footer" : "",
-            "plugins_deps" :  ["woocommerce/woocommerce","duracelltomi-google-tag-manager/duracelltomi-google-tag-manager-for-wordpress"]
-          }
-        ]
+            "is_page": ["checkout","sample-page"],
+            "is_plugin_active" :  ["woocommerce/woocommerce.php","duracelltomi-google-tag-manager/duracelltomi-google-tag-manager-for-wordpress.php"]
+          }]
       },
 
       "styles" : {
@@ -46,7 +46,7 @@
             "deps" : [],
             "ver" : "",
             "media" : "",
-            "plugins_deps" :  ["woocommerce/woocommerce"]
+            "is_plugin_active" :  ["woocommerce/woocommerce"]
           }
         ],
         "blocks" : [

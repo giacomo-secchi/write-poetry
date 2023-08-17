@@ -20,14 +20,12 @@ class AdminSettings {
 	public function __construct() {
 
 
-		var_dump('1');
 
 
 	}
 
 
 	public function test() {
-		var_dump('111111');
 	}
 
 }

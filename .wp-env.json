@@ -12,4 +12,8 @@
 	"mappings": {
 		"wp-content/mu-plugins": "./mu-plugins"
 	}
+  ,
+  "lifecycleScripts": {
+    "afterStart": "npx wp-env run cli 'wp theme activate twentytwenty-child'"
+  }
 }

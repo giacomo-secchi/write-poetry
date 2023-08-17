@@ -16,5 +16,5 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 */
 
 body {
-	background-color: pink;
+	background-color: pink !important;
 }

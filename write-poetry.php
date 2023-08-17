@@ -126,7 +126,6 @@ if ( ! class_exists( 'WritePoetry_Plugin' ) ) {
 			require_once $includes_path . 'class-writepoetry-gtm.php';
 			require_once $includes_path . 'class-writepoetry-set-query-vars.php';
 			require_once $includes_path . 'class-writepoetry-woocommerce.php';
-			require_once $includes_path . 'class-writepoetry-theme.php';
 			require_once $includes_path . 'class-writepoetry-init.php';
 
 
