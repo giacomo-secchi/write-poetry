@@ -24,7 +24,6 @@ class WritePoetry_Init {
 		$custom_login				= new WritePoetry_Customize_Login_Page();
 		$metadata					= new WritePoetry_Metadata();
 		$gtm						= new WritePoetry_GTM();
-		$qv							= new WritePoetry_Add_Query_Variables();
 		$woocommerce				= new WritePoetry_WooCommerce();
 
 		if ( is_admin() ) {

@@ -23,6 +23,7 @@ final class Init
 		return [
 			// Pages\Admin::class,
 			Base\Development\Utils::class,
+			Base\Utils::class,
 			FSE\Theme\Assets::class,
 			// Base\SettingsLinks::class
 		];

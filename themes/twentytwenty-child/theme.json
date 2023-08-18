@@ -8,10 +8,10 @@
         "files" : [{
             "handle" : "test-script",
             "src" : "/assets/js/test.js",
-            "deps" : [""],
+            "deps" : [],
             "ver" : "2.0.1",
             "in_footer" : "",
-            "is_page": ["cart"]
+            "is_page": [ "sample-page"]
           },
           {
             "handle" : "test2-script",
@@ -19,7 +19,7 @@
             "deps" : null,
             "ver" : null,
             "in_footer" : "",
-            "is_page": ["checkout","sample-page"],
+            "is_page": ["sample-page"],
             "is_plugin_active" :  ["woocommerce/woocommerce.php","duracelltomi-google-tag-manager/duracelltomi-google-tag-manager-for-wordpress.php"]
           }]
       },

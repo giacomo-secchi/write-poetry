@@ -9,19 +9,18 @@ Stable tag: 0.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+The Swiss knife plugin designed for developers and advanced users. Unlock the full potential of WordPress with this versatile tool. Empower your workflow without getting your hands dirty.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+Welcome to the Write Poetry WordPress Plugin, a versatile tool meticulously crafted for developers and advanced users who seek to elevate their website development experience. Embrace a world of enhanced functionalities and seamless integration with popular plugins like WooCommerce and Jetpack. Write Poetry is your secret weapon to amplify your WordPress capabilities without the hassle of intricate coding.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Write Poetry is designed with developers and advanced users in mind. It acts as a bridge, providing a seamless way to extend the functionalities of official WordPress plugins such as WooCommerce, Jetpack, and more. With Write Poetry, you can tap into the potential of these plugins without having to dive into complex code, saving you time and effort.
 
-A few notes about the sections above:
+Major features in Write Poetry include:
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
+*   Load styles and scripts assets from your theme without using code (only configurations in `theme.json`).
+*   Add multipe Query Vars via `writepoetry_query_vars`.
 *   "Requires at least" is the lowest version that the plugin will work on
 *   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
 higher versions... this is just the highest one you've verified.

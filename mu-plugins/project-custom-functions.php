@@ -47,11 +47,15 @@ add_filter( 'writepoetry_disable_features', function () {
 add_filter( 'writepoetry_remove_query_strings', '__return_true' );
 
 
+// Limit this hook here in order to keep clean production env.
+if ( in_array( wp_get_environment_type(), array( 'development', 'local' ) )) {
+	// Add parameters to url
+	add_filter( 'writepoetry_query_vars', function () {
+		// Test here http://localhost:8888/sample-page/?test-param=ciao&test-param2=caro
+		return array( 'test-param', 'test-param2' );
+	} );
+}
 
-// Add parameters to url
-add_filter( 'writepoetry_query_vars', function () {
-    return array( 'show-wheel', 'test-1' );
-} );
 
 
 add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {

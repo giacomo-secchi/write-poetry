@@ -92,23 +92,22 @@ class Assets {
 
 		foreach ( $params as $conditional_tag => $param ) {
 
-
 			if ( strpos( $conditional_tag, 'is_' ) === 0 ) {
 
 				if ( ! function_exists( $conditional_tag ) ) {
 					return false;
 				}
 
-				foreach ($param as $condition ) {
-
+				foreach ( $param as $condition ) {
 					if ( ! call_user_func( $conditional_tag, $condition ) ) {
 						return false;
 					}
 				}
 			}
+
 		}
 
-
+		return true; // All conditions are met.
 	}
 
 
@@ -128,8 +127,6 @@ class Assets {
 			// when loading assets from theme.json
 			// Load the asset only if conditionals tags return true
 			$this->check_conditional_tags( $file );
-
-
 
 			$default_options = array(
 				$file['handle'],
