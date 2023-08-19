@@ -1,5 +1,11 @@
-![write-poetry](https://github.com/giacomo-secchi/write-poetry/assets/13584040/c51ec84c-9f4e-46eb-819d-5d9af34dceec)
+# Write Poetry WordPress Plugin
+
+![Banner](assets/banner-772x250.png)
+
 ![Release](https://github.com/giacomo-secchi/write-poetry/actions/workflows/release.yml/badge.svg)
+
+[![WordPress Plugin Download](https://img.shields.io/badge/Download-write--poetry.zip-FA6900)](https://github.com/giacomo-secchi/write-poetry/releases/latest/download/write-poetry.zip)
+
 
 Welcome to the WritePoetry Repo on GitHub. Here you can find the source code used in the development of the WritePoetry plugin. You can browse the source, look at open issues, contribute code, and keep tracking of ongoing development.
 
