@@ -11,8 +11,8 @@
  * Plugin Name:       Write Poetry
  * Plugin URI:        https://github.com/giacomo-secchi/write-poetry
  * Description:       The Swiss knife plugin designed for developers and advanced users. Unlock the full potential of WordPress with this versatile tool. Empower your workflow without getting your hands dirty.
- * Version:           0.2.2
- * Requires at least: 5.2
+ * Version:           0.2.3
+ * Requires at least: 5.9
  * Requires PHP:      7.2
  * Author:            Giacomo Secchi
  * Author URI:        https://resume.giacomosecchi.com
