@@ -2,10 +2,10 @@
 Contributors: giacomosecchi
 Donate link: https://example.com/
 Tags: comments, spam
-Requires at least: 4.5
+Requires at least: 5.9
 Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 0.2.2
+Stable tag: "trunk"
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,11 +21,10 @@ Major features in Write Poetry include:
 
 *   Load styles and scripts assets from your theme without using code (only configurations in `theme.json`).
 *   Add multipe Query Vars via `writepoetry_query_vars`.
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+*   Including CSS for block styles without write a line of code: you just need to add the css files following the
+naming convention rule: `my-theme/assets/css/blocks/prefix/blockname.css` (i.e., `my-theme/assets/css/blocks/core/site-titleprefix/blockname.css`).
+the file will load automatically only when the block with the same name will be rendered.
+In addition, if you want to change the default base folder for blocks styles (`assets/css/blocks`) you can use this filter `writepoetry_blocks_styles_asset_path`
 
     Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
 if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used

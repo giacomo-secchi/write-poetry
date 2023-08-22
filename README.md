@@ -55,8 +55,7 @@ Remember that the `pathMappings` inside `.vscode/launch.json` file should be as 
 Contributors who want to make a new release, follow these steps:
 
 1. Change the plugin `version` header field in the [main plugin file](write-poetry.php) and the `Stable tag` field in the Header informations of [readme.txt](readme.txt) file following the [WordPress versioning scheme](https://make.wordpress.org/core/handbook/about/release-cycle/version-numbering/)
-2. Remember to check the comaptibility in readme.txt
-3. Add a git tag to the last commit with the same number of the plugin version, like this:
+2. Add a git tag to the last commit with the same number of the plugin version, like this:
 ```bash
 	git tag -a 0.2.1 HEAD -m "Release 0.2.1"
 ```
