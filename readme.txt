@@ -62,6 +62,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+### 0.2.4 -
+#### Added
+-  Add a settings page link to the Plugins list table.
+
 ### 0.2.2 - 2023-08-11
 #### Added
 - Remove query string from static resources, to enable this option add this line of code `add_filter( 'writepoetry_remove_query_strings', '__return_true' );` to your `wp-config.php` file.

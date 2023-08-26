@@ -25,7 +25,7 @@ final class Init
 			Base\Development\Utils::class,
 			Base\Utils::class,
 			FSE\Theme\Assets::class,
-			// Base\SettingsLinks::class
+			Pages\Admin\SettingsLink::class,
 		];
 	}
 
