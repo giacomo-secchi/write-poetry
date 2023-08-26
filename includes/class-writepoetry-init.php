@@ -19,11 +19,9 @@ class WritePoetry_Init {
 	public function __construct() {
 
 		$register_taxonomies		= new WritePoetry_Register_Taxonomies();
-		$add_mime_types				= new WritePoetry_Add_Mime_Types();
 		$remove_features			= new WritePoetry_Remove_Unwated_Features();
 		$custom_login				= new WritePoetry_Customize_Login_Page();
 		$metadata					= new WritePoetry_Metadata();
-		$gtm						= new WritePoetry_GTM();
 		$woocommerce				= new WritePoetry_WooCommerce();
 
 		if ( is_admin() ) {

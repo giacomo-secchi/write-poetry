@@ -24,8 +24,10 @@ final class Init
 			// Pages\Admin::class,
 			Base\Development\Utils::class,
 			Base\Utils::class,
+			Base\AddMimeTypes::class,
 			FSE\Theme\Assets::class,
 			Pages\Admin\SettingsLink::class,
+			// Plugins\Gtm4wp::class
 		];
 	}
 

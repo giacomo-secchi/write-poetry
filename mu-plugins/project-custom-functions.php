@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
  // custom code for the current project
 
 
-define( 'GTM4WP_HARDCODED_GTM_ID', '' );
+define( 'GTM4WP_HARDCODED_GTM_ID', 'GTM-XXXXXX' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_AUTH', '' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_PREVIEW', '' );
 
@@ -48,7 +48,7 @@ add_filter( 'writepoetry_remove_query_strings', '__return_true' );
 
 
 // Limit this hook here in order to keep clean production env.
-if ( in_array( wp_get_environment_type(), array( 'development', 'local' ) )) {
+if ( in_array( wp_get_environment_type(), array( 'development', 'local' ) ) ) {
 	// Add parameters to url
 	add_filter( 'writepoetry_query_vars', function () {
 		// Test here http://localhost:8888/sample-page/?test-param=ciao&test-param2=caro

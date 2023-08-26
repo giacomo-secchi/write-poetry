@@ -33,8 +33,6 @@ if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 
-use WritePoetry\Init;
-
 
 /**
  * Check plugin version and update it
@@ -45,6 +43,7 @@ use WritePoetry\Init;
 
 
 define( 'WRITEPOETRY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+
 
 if ( ! defined( 'WRITEPOETRY_GITHUB_USERNAME' ) ) {
 	define( 'WRITEPOETRY_GITHUB_USERNAME', 'giacomo-secchi'  );
@@ -116,14 +115,12 @@ if ( ! class_exists( 'WritePoetry_Plugin' ) ) {
 		 */
 		private function includes() {
 
-			$includes_path = WRITEPOETRY_PLUGIN_DIR . 'includes/';
+			$includes_path = plugin_dir_path( __FILE__ ) . 'includes/';
 
 			require_once $includes_path . 'class-writepoetry-register-taxonomies.php';
-			require_once $includes_path . 'class-writepoetry-add-mime-types.php';
 			require_once $includes_path . 'class-writepoetry-remove-unwanted-features.php';
 			require_once $includes_path . 'class-writepoetry-metafield.php';
 			require_once $includes_path . 'class-writepoetry-customize-login-page.php';
-			require_once $includes_path . 'class-writepoetry-gtm.php';
 			require_once $includes_path . 'class-writepoetry-woocommerce.php';
 			require_once $includes_path . 'class-writepoetry-init.php';
 
