@@ -20,7 +20,6 @@ class WritePoetry_Init {
 
 		$register_taxonomies		= new WritePoetry_Register_Taxonomies();
 		$remove_features			= new WritePoetry_Remove_Unwated_Features();
-		$custom_login				= new WritePoetry_Customize_Login_Page();
 		$metadata					= new WritePoetry_Metadata();
 		$woocommerce				= new WritePoetry_WooCommerce();
 

@@ -132,5 +132,3 @@ add_filter( 'writepoetry_add_custom_post_types', function () {
 
 
 
-
-

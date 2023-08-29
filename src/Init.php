@@ -21,11 +21,12 @@ final class Init
 	 */
 	public static function get_services() {
 		return [
-			// Pages\Admin::class,
 			Base\Development\Utils::class,
 			Base\Utils::class,
 			Base\AddMimeTypes::class,
 			FSE\Theme\Assets::class,
+			Pages\Admin::class,
+			Pages\Admin\LoginScreen::class,
 			Pages\Admin\SettingsLink::class,
 			// Plugins\Gtm4wp::class
 		];

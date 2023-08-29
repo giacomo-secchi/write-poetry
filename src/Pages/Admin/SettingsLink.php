@@ -23,8 +23,7 @@ class SettingsLink extends BaseController {
 	 *
 	 * @return void
 	 */
-	public function register() {
-
+	public function register () {
 		add_action( "plugin_action_links_$this->plugin_name", array( $this, 'add_action_links' ) );
 	}
 

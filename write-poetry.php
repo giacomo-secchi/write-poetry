@@ -120,7 +120,6 @@ if ( ! class_exists( 'WritePoetry_Plugin' ) ) {
 			require_once $includes_path . 'class-writepoetry-register-taxonomies.php';
 			require_once $includes_path . 'class-writepoetry-remove-unwanted-features.php';
 			require_once $includes_path . 'class-writepoetry-metafield.php';
-			require_once $includes_path . 'class-writepoetry-customize-login-page.php';
 			require_once $includes_path . 'class-writepoetry-woocommerce.php';
 			require_once $includes_path . 'class-writepoetry-init.php';
 
