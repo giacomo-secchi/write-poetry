@@ -62,10 +62,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
-### 0.2.4 - 2023-08-29
+### 0.2.4 - 2023-08-31
 #### Added
 - Add a settings page link to the Plugins list table.
 - Add support for SVG file type Media upload
+- Add setup for multiple Gutenberg blocks
 
 ### 0.2.2 - 2023-08-11
 #### Added

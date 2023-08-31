@@ -25,9 +25,11 @@ final class Init
 			Base\Utils::class,
 			Base\AddMimeTypes::class,
 			FSE\Theme\Assets::class,
+			// FSE\Blocks::class,
 			Pages\Admin::class,
 			Pages\Admin\LoginScreen::class,
 			Pages\Admin\SettingsLink::class,
+			// Plugins\Jetpack\Portfolio::class
 			// Plugins\Gtm4wp::class
 		];
 	}

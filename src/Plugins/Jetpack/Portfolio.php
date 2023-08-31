@@ -1,27 +1,39 @@
 <?php
 /**
- * Add metafields to portfolio CPT
+ * Add metafields to portfolio CPT.
  *
- * @package           MyCustomFunctions
- * @subpackage        MyCustomFunctions/includes
+ * @package           WritePoetry
+ * @subpackage        WritePoetry/Base
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
- * @since             1.0.0
+ * @since             0.2.4
  */
 
-class WritePoetry_Metadata {
+namespace WritePoetry\Plugins\Jetpack;
 
+use \WritePoetry\Base\BaseController;
+
+/**
+*
+*/
+class Portfolio extends BaseController {
 	/**
-	 * Initialize the class
+	 * Invoke hooks.
+	 *
+	 * @return void
 	 */
-	public function __construct() {
+	public function register() {
 
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
-		// add_action( 'add_meta_boxes', array( $this, 'add_portfolio_meta_box' ) );
-		add_action( 'init', array( $this, 'register_portfolio_meta' ) );
+		if ( ! post_type_exists( 'jetpack-portfolio' ) ) {
+
+			return false;
+		}
+
+		// add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
+		// // add_action( 'add_meta_boxes', array( $this, 'add_portfolio_meta_box' ) );
+		// add_action( 'init', array( $this, 'register_portfolio_meta' ) );
 	}
-
 
 
 	/**
@@ -38,7 +50,7 @@ class WritePoetry_Metadata {
 			'writepoetry-gutenberg-sidebar',
 			plugins_url( 'build/index.js', __DIR__ ),
 			$asset_file['dependencies'],
-    		$asset_file['version']
+			$asset_file['version']
 		);
 	}
 
@@ -48,7 +60,7 @@ class WritePoetry_Metadata {
 		register_post_meta(
 			'jetpack-portfolio',
 			'_writepoetry_project_year',
-			 array(
+			array(
 				'show_in_rest' => true,
 				'type' => 'number',
 				'single' => true,
@@ -108,6 +120,10 @@ class WritePoetry_Metadata {
 			'default',
 			array( '__back_compat_meta_box' => true )
 		);
-	}
 }
+
+}
+
+
+
 

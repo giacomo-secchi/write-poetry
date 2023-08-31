@@ -50,7 +50,7 @@ if ( ! defined( 'WRITEPOETRY_GITHUB_USERNAME' ) ) {
 }
 
 if ( ! defined( 'WRITEPOETRY_GITHUB_REPO' ) ) {
-	define( 'WRITEPOETRY_GITHUB_REPO', 'functionality-plugin' );
+	define( 'WRITEPOETRY_GITHUB_REPO', 'write-poetry' );
 }
 
 if ( ! class_exists( 'Smashing_Updater' ) ){
@@ -119,7 +119,6 @@ if ( ! class_exists( 'WritePoetry_Plugin' ) ) {
 
 			require_once $includes_path . 'class-writepoetry-register-taxonomies.php';
 			require_once $includes_path . 'class-writepoetry-remove-unwanted-features.php';
-			require_once $includes_path . 'class-writepoetry-metafield.php';
 			require_once $includes_path . 'class-writepoetry-woocommerce.php';
 			require_once $includes_path . 'class-writepoetry-init.php';
 
