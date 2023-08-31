@@ -1,17 +1,19 @@
 {
-	"name": "functionality-plugin",
+	"name": "writepoetry-plugin",
 	"description": "Example block scaffolded with Create Block tool.",
 	"author": "Giacomo Secchi",
 	"license": "GPL-2.0-or-later",
 	"dependencies": {
-		"@wordpress/api-fetch": "^6.35.0",
+		"@wordpress/api-fetch": "^6.37.0",
 		"@wordpress/components": "^25.4.0",
-		"@wordpress/data": "^9.8.0",
+		"@wordpress/data": "^9.10.0",
 		"@wordpress/date": "^4.38.0",
 		"@wordpress/edit-post": "^7.15.0",
 		"@wordpress/i18n": "^4.38.0",
-		"@wordpress/icons": "^9.29.0",
-		"@wordpress/plugins": "^6.6.0"
+		"@wordpress/icons": "^9.31.0",
+		"@wordpress/plugins": "^6.6.0",
+		"animate.css": "^4.1.1",
+		"swiper": "^10.2.0"
 	},
 	"devDependencies": {
 		"@wordpress/env": "^8.4.0",
@@ -19,6 +21,7 @@
 	},
 	"scripts": {
 		"build": "wp-scripts build",
+    "build:custom": "wp-scripts build",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
@@ -30,7 +33,7 @@
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --progress",
 		"wp-env": "wp-env",
-    "composer": "wp-env run cli --env-cwd=wp-content/plugins/write-poetry composer"
+		"composer": "wp-env run cli --env-cwd=wp-content/plugins/write-poetry composer"
 	},
 	"npmpackagejsonlint": {
 		"extends": "@wordpress/npm-package-json-lint-config",
