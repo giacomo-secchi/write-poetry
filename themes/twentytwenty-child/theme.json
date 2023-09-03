@@ -1,7 +1,6 @@
 {
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 2,
-
   "settings": {
     "custom": {
       "scripts": {
@@ -60,5 +59,30 @@
         ]
       }
     }
-  }
+  },
+  "styles": {
+		"blocks": {
+      "core/button": {
+				"variations": {
+					"outline": {
+						"border": {
+							"color": "var( --wp--preset--color--black )",
+							"radius": "0",
+							"style": "solid",
+							"width": "3px"
+						},
+						"shadow": "var( --wp--preset--shadow--outlined )",
+						"spacing": {
+							"padding": {
+								"top": "0.5rem",
+								"bottom": "0.5rem",
+								"left": "1.5rem",
+								"right": "1.5rem"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

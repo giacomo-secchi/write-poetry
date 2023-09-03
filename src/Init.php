@@ -25,7 +25,7 @@ final class Init
 			Base\Utils::class,
 			Base\AddMimeTypes::class,
 			FSE\Theme\Assets::class,
-			// FSE\Blocks::class,
+			FSE\Blocks::class,
 			Pages\Admin::class,
 			Pages\Admin\LoginScreen::class,
 			Pages\Admin\SettingsLink::class,

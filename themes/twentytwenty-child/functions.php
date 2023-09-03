@@ -45,19 +45,21 @@ add_filter( 'writepoetry_register_block_style', function () {
 			'name'			=> 'inline',
 			'label'			=> __( 'Inline', 'twenties' ),
 			// 'is_default'	=> true,
-			'inline_style'	=> '.wp-block-group .is-style-inline { display: inline-flex; }'
+			'inline_style'	=> '.wp-block-group.is-style-inline { display: inline-flex; }'
 		),
 		'core/cover'	=> array(
-			'name'			=> 'inline1',
-			'label'			=> __( 'Inline1', 'twenties' ),
-			// 'is_default'	=> true,
-			'inline_style'	=> '  .is-style-inline1 { display: block; }'
-		),
-		'core/cover'	=> array(
-			'name'			=> 'cicao',
-			'label'			=> __( 'Inline2', 'twenties' ),
-			// 'is_default'	=> true,
-			'inline_style'	=> '  .is-style-inline2 { display: inline-flex; }'
+			array(
+				'name'			=> 'inline1',
+				'label'			=> __( 'Inline1', 'twenties' ),
+				// 'is_default'	=> true,
+				'inline_style'	=> '  .is-style-inline1 { display: block; }'
+			),
+			array(
+				'name'			=> 'inline2',
+				'label'			=> __( 'Inline2', 'twenties' ),
+				// 'is_default'	=> true,
+				'inline_style'	=> '  .is-style-inline2 { display: inline-flex; }'
+			)
 		)
 	);
 

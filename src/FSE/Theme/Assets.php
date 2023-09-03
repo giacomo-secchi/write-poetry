@@ -24,11 +24,6 @@ class Assets {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 1 );
 		add_action( 'after_setup_theme', array( $this, 'load_blocks_styles' ) );
-
-		// add_action( 'init', array( $this, 'register_block_styles' ) );
-
-
-
 	}
 
 	/**
@@ -191,15 +186,6 @@ class Assets {
 
 	}
 
-	function register_block_styles() {
 
-		// Register each block style with its label and CSS style
-		if ( function_exists( 'register_block_style' ) ) {
-			foreach ( apply_filters( 'writepoetry_register_block_style', array() ) as $block_name => $style_properties ) {
-
-				register_block_style( $block_name, $style_properties );
-			}
-		}
-	}
 }
 
