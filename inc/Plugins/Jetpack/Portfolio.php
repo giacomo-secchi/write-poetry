@@ -25,14 +25,11 @@ class Portfolio extends BaseController {
 	 */
 	public function register() {
 
-		if ( ! post_type_exists( 'jetpack-portfolio' ) ) {
 
-			return false;
-		}
 
 		// add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
 		// // add_action( 'add_meta_boxes', array( $this, 'add_portfolio_meta_box' ) );
-		// add_action( 'init', array( $this, 'register_portfolio_meta' ) );
+		add_action( 'init', array( $this, 'register_portfolio_meta' ) );
 	}
 
 
@@ -120,7 +117,7 @@ class Portfolio extends BaseController {
 			'default',
 			array( '__back_compat_meta_box' => true )
 		);
-}
+	}
 
 }
 
