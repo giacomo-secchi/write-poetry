@@ -14,6 +14,6 @@
 	}
   ,
   "lifecycleScripts": {
-    "afterStart": "npm run composer install && npm run wp-env run cli 'wp theme activate twentytwenty-child'"
+    "afterStart": "npm run composer install && wp-env run cli wp theme activate twentytwenty-child"
   }
 }
