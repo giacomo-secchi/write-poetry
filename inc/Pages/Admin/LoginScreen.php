@@ -31,13 +31,22 @@ class LoginScreen extends BaseController {
 	}
 
 	function custom_loginlogo() {
-		if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+
+		$site_icon = get_site_icon_url();
+		$background_image = '';
+
+		if ( ! empty( $site_icon ) ) {
+			$background_image = $site_icon;
+		} else if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
 			$custom_logo_id = get_theme_mod( 'custom_logo' );
 			$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+			$background_image = $image[0];
+		}
 
+		if ( ! empty( $background_image ) ) {
 			echo '<style>
 			.login h1 a {
-				background-image:url( ' . $image[0] . ');
+				background-image:url( ' . esc_url( $background_image ) . ');
 				background-position: center;
 			}
 			</style>';
