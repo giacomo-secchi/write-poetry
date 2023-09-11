@@ -12,12 +12,12 @@
 
 namespace WritePoetry\Pages\Admin;
 
-use \WritePoetry\Base\BaseController;
+use \WritePoetry\Pages\AdminController;
 
 /**
 *
 */
-class LoginScreen extends BaseController {
+class LoginScreen extends AdminController {
 	/**
 	 * Invoke hooks.
 	 *

@@ -20,18 +20,27 @@ final class Init
 	 * @return array Full list of classes
 	 */
 	public static function get_services() {
-		return [
+
+		$services = array(
 			Base\Development\Utils::class,
 			Base\Utils::class,
-			Base\AddMimeTypes::class,
-			FSE\Theme\Assets::class,
 			FSE\Blocks::class,
-			Pages\Admin::class,
-			Pages\Admin\LoginScreen::class,
-			Pages\Admin\SettingsLink::class,
+			FSE\Theme\Assets::class,
 			Plugins\Jetpack\Portfolio::class
 			// Plugins\Gtm4wp::class
-		];
+		);
+
+
+		if ( is_admin() ) {
+			array_push( $services,
+				Pages\Admin\SettingsPage::class,
+				Pages\Admin\CustomMediaType::class,
+				Pages\Admin\LoginScreen::class,
+				Pages\Admin\SettingsLink::class
+			);
+		}
+
+		return $services;
 	}
 
 	/**

@@ -12,12 +12,12 @@
 
 namespace WritePoetry\Pages\Admin;
 
-use \WritePoetry\Base\BaseController;
+use \WritePoetry\Pages\AdminController;
 
 /**
 *
 */
-class SettingsLink extends BaseController {
+class SettingsLink extends AdminController {
 	/**
 	 * Invoke hooks.
 	 *
@@ -25,11 +25,12 @@ class SettingsLink extends BaseController {
 	 */
 	public function register () {
 		add_action( "plugin_action_links_$this->plugin_name", array( $this, 'add_action_links' ) );
+
 	}
 
 	public function add_action_links ( $actions ) {
 		// Build URL.
-		$url = add_query_arg( 'page', 'custom-settings', get_admin_url() . 'options-general.php' );
+		$url = add_query_arg( 'page', $this->menu_slug, get_admin_url() . 'options-general.php' );
 
 		$mylinks = array(
 		   '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'writepoetry' ) . '</a>',
