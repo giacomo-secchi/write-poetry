@@ -24,6 +24,8 @@ class LoginScreen extends AdminController {
 	 * @return void
 	 */
 	public function register() {
+
+
 		add_action( 'login_head', array( $this, 'custom_loginlogo' ) );
 		add_filter( 'login_headerurl', array( $this, 'custom_loginlogo_url') );
 		add_filter( 'login_headertext', array( $this, 'custom_login_title' ) );
@@ -31,7 +33,6 @@ class LoginScreen extends AdminController {
 	}
 
 	function custom_loginlogo() {
-
 		$site_icon = get_site_icon_url();
 		$background_image = '';
 
@@ -45,9 +46,12 @@ class LoginScreen extends AdminController {
 
 		if ( ! empty( $background_image ) ) {
 			echo '<style>
+			#login h1 a,
 			.login h1 a {
 				background-image:url( ' . esc_url( $background_image ) . ');
 				background-position: center;
+				background-size: contain;
+				background-repeat: no-repeat;
 			}
 			</style>';
 		}
