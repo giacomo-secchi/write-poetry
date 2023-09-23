@@ -26,19 +26,37 @@ final class Init
 			Base\Utils::class,
 			FSE\Blocks::class,
 			FSE\Theme\Assets::class,
-			Plugins\Jetpack\Portfolio::class
+			Pages\Admin\LoginScreen::class,
+			Plugins\Jetpack\Portfolio::class,
 			// Plugins\Gtm4wp::class
 		);
 
 
 		if ( is_admin() ) {
+
 			array_push( $services,
 				Pages\Admin\SettingsPage::class,
 				Pages\Admin\CustomMediaType::class,
-				Pages\Admin\LoginScreen::class,
-				Pages\Admin\SettingsLink::class
+				Pages\Admin\SettingsLink::class,
+				Pages\Admin\WooCommercePage::class
 			);
 		}
+
+		// TODO: Restore filter to be sure that all plugins are loaded before check if WooCommerce is enabled
+		// add_filter( 'plugins_loaded', function ( ) use ( $services ) {
+
+			if ( class_exists( 'WooCommerce' ) ) {
+				array_push( $services,
+					Plugins\WooCommerce\CartRedirect::class,
+					Plugins\WooCommerce\ProductZoom::class,
+					Plugins\WooCommerce\ProductAdditionalInfos::class,
+					Plugins\WooCommerce\WooCommerceController::class,
+					Plugins\WooCommerce\QuantityLayout::class
+				);
+			}
+
+		// } );
+
 
 		return $services;
 	}

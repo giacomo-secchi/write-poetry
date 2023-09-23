@@ -35,7 +35,9 @@ class AdminController extends BaseController {
 	}
 
 
-
+	public function regeneration_was_aborted() {
+		return true;
+	}
 
 
 	/**
