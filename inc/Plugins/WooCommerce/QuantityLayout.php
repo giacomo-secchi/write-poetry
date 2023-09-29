@@ -25,52 +25,57 @@ class QuantityLayout extends WooCommerceController {
 	 */
 	public function register() {
 
+		$product_quantity = 7;
 
-
-
-		if ( 'select' === get_option("{$this->prefix}_product_qty_layout" ) ) {
-
-		// 	if ( get_option( "{$this->prefix}_product_max_qty" ) ) {
-		// 		$this->change_quantity_input( 99 );
-		// 	}
-
-			$this->change_quantity_input( 8 );
-			add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
-
-		} else {
-			// this filter prevent to override the `quantity-input.php` template
-			add_filter( "{$this->prefix}_exclude_woocommerce_template", function() {
-				return 'global/quantity-input.php';
-			} );
+		// product max quantity configurations
+		if ( get_option( "{$this->prefix}_product_max_quantity" ) ) {
+			$product_quantity = get_option( "{$this->prefix}_product_max_quantity" );
 		}
 
 
+		// product quantity selector configurations
+
+		// this filter prevent to override the `quantity-input.php` template
+		add_filter( "{$this->prefix}_exclude_woocommerce_template", function( $templates ) {
+ 			$templates[] = 'global/quantity-input.php';
+			return $templates;
+		} );
 
 
-		if ( 'input' == get_option( "{$this->prefix}_product_qty_layout" ) ) {
+		if ( 'input' == get_option( "{$this->prefix}_product_quantity_layout" ) ) {
 			return false;
 		}
 
-
 		// Set product quantity to one item at a time if added to cart
-		if ( 'hidden' == get_option( "{$this->prefix}_product_qty_layout" ) ) {
+		if ( 'hidden' == get_option( "{$this->prefix}_product_quantity_layout" ) ) {
 			$this->change_quantity_input( 1 );
 		}
 
-		if ( 'buttons' === get_option("{$this->prefix}_product_qty_layout" ) ) {
+		if ( 'buttons' === get_option("{$this->prefix}_product_quantity_layout" ) ) {
 			add_action( 'woocommerce_before_quantity_input_field', array( $this, 'display_quantity_minus' ) );
 			add_action( 'woocommerce_after_quantity_input_field', array( $this, 'display_quantity_plus' ) );
 			add_action( 'wp_footer', array( $this, 'add_cart_quantity_plus_minus' ) );
 			add_action( 'wp_head', array( $this, 'custom_styles' ) );
 		}
 
+		if ( 'select' === get_option("{$this->prefix}_product_quantity_layout" ) ) {
+			$this->change_quantity_input( $product_quantity );
 
 
+			// this readd quantity input to the filter
+			add_filter( "{$this->prefix}_exclude_woocommerce_template", function( $templates ) {
+			 return array_filter( $templates, fn($template) => strpos( $template, 'global/quantity-input.php' ) === false );
+		   } );
 
-		// } else if ( get_option( "{$this->prefix}_product_max_qty" ) ) {
-		// 	$qty = get_option( "{$this->prefix}_product_max_qty" );
-		// 	$this->change_quantity_input( $qty );
-		// }
+
+		}
+
+		// product quantity input configurations
+		if ( get_option( "{$this->prefix}_quantity_input_step" ) ) {
+			add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {
+				return get_option( "{$this->prefix}_quantity_input_step" );
+			}, 10, 2 );
+		}
 
 	}
 
@@ -78,19 +83,18 @@ class QuantityLayout extends WooCommerceController {
 
 	public function custom_styles() {
 		echo '<style>
-
 			/* Chrome, Safari, Edge, Opera */
 			input::-webkit-outer-spin-button,
 			input::-webkit-inner-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
+				-webkit-appearance: none;
+				margin: 0;
 			}
 
 			/* Firefox */
 			input[type=number] {
-			-moz-appearance: textfield;
+				-moz-appearance: textfield;
 			}
-			</style>';
+		</style>';
 	}
 
 	public function display_quantity_minus() {
@@ -103,7 +107,8 @@ class QuantityLayout extends WooCommerceController {
 
 	function add_cart_quantity_plus_minus() {
 		if ( ! is_product() && ! is_cart() ) {
-			return;
+
+			return false;
 		}
 
 		wc_enqueue_js( "

@@ -100,10 +100,10 @@ class WooCommercePage extends AdminController {
 			// Add quantity layout field option
 			$settings_appearance[] = array(
 				'name'     => __( 'Product quantity selector', 'writepoetry' ),
-				'id'       => "{$this->prefix}_product_qty_layout",
+				'id'       => "{$this->prefix}_product_quantity_layout",
 				'default'  => 'input',
 				'type'     => 'select',
-				'value'    => get_option( "{$this->prefix}_product_qty_layout" ),
+				'value'    => get_option( "{$this->prefix}_product_quantity_layout" ),
 				'desc'     => __( 'Choose the layout of quantity selector on the product page', 'writepoetry' ),
 				'options' => array(
 					'hidden' =>  __( 'Hidden (Product quantity will be always forced to one item)', 'writepoetry' ),
@@ -111,20 +111,31 @@ class WooCommercePage extends AdminController {
 					'select' =>  __( 'Select', 'writepoetry' ),
 					'buttons' =>  __( 'Buttons', 'writepoetry' )
 			   	), // array of options for select/multiselects only
-				'custom_attributes' => has_filter( "option_{$this->prefix}_product_qty_layout" ) || has_filter( "pre_option_{$this->prefix}_product_qty_layout" ) ? array( 'disabled' => 'disabled' ) : array()
+				'custom_attributes' => has_filter( "option_{$this->prefix}_product_quantity_layout" ) || has_filter( "pre_option_{$this->prefix}_product_quantity_layout" ) ? array( 'disabled' => 'disabled' ) : array()
 
 			);
 
 
 			// Add single product checkbox option
 			$settings_appearance[] = array(
-				'desc_tip' => __( 'This will automatically insert your slider into the single product page', 'writepoetry' ),
-				'id'       => "{$this->prefix}_product_max_qty",
+				'id'       => "{$this->prefix}_product_max_quantity",
 				'type'     => 'number',
 				'css'      => 'width:80px;',
 				'desc'     => __( 'Max quantity input', 'writepoetry' ),
-				'custom_attributes' => has_filter( "option_{$this->prefix}_product_max_qty" ) || has_filter( "pre_option_{$this->prefix}_product_max_qty" ) ? array( 'disabled' => 'disabled' ) : array()
+				'custom_attributes' => has_filter( "option_{$this->prefix}_product_max_quantity" ) || has_filter( "pre_option_{$this->prefix}_product_max_quantity" ) ? array( 'disabled' => 'disabled' ) : array()
 			);
+
+
+			// Add single product checkbox option quantity input steps values
+			$settings_appearance[] = array(
+				'desc_tip' => __( 'Adjust the quantity input steps values', 'writepoetry' ),
+				'id'       => "{$this->prefix}_quantity_input_step",
+				'type'     => 'number',
+				'css'      => 'width:80px;',
+				'desc'     => __( 'Product quantity input steps', 'writepoetry' ),
+				'custom_attributes' => has_filter( "option_{$this->prefix}_quantity_input_step" ) || has_filter( "pre_option_{$this->prefix}_quantity_input_step" ) ? array( 'disabled' => 'disabled' ) : array()
+			);
+
 
 			// Add product zoom checkbox option
 			$settings_appearance[] = array(
@@ -142,20 +153,19 @@ class WooCommercePage extends AdminController {
 
 
 
-
 			// Add additional info layout field option
 			$settings_appearance[] = array(
 				'name'     => __( 'Additional infos layout', 'writepoetry' ),
-				'id'       => 'writepoetry_infos_layout',
+				'id'       => "{$this->prefix}_product_infos_layout",
 				'type'     => 'select',
 				'desc'     => __( 'Choose the layout of additional informations box with this option!', 'writepoetry' ),
 				'default'  => 'tabs',
 				'options' => array(
-					'key' => 'tabs',
-					'key2' => 'list',
-					'key3' => 'accordion',
+					'tabs' => 'Tabs',
+					'list' => 'List',
+					'accordion' => 'Accordion',
 				), // array of options for select/multiselects only
-				'custom_attributes' => has_filter( "option_{$this->prefix}_product_additional_infos_layout" ) || has_filter( "pre_option_{$this->prefix}_product_additional_infos_layout" ) ? array( 'disabled' => 'disabled' ) : array()
+				'custom_attributes' => has_filter( "option_{$this->prefix}_product_infos_layout" ) || has_filter( "pre_option_{$this->prefix}_product_infos_layout" ) ? array( 'disabled' => 'disabled' ) : array()
 			);
 
 			$settings_appearance[] = array( 'type' => 'sectionend', 'id' => 'appearance' );

@@ -19,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use \WritePoetry\Api\PluginConfig;
+
 /**
  * Filter tabs and allow third parties to add their own.
  *
@@ -27,7 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see woocommerce_default_product_tabs()
  */
 $product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
-$layout = defined( 'WRITEPOETRY_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT' ) ? WRITEPOETRY_WOOCOMMERCE_SINGLE_PRODUCT_ADDITIONAL_INFORMATIONS_LAYOUT : get_option('writepoetry_qty_layout');
+$config = PluginConfig::getInstance();
+$layout = get_option( "{$config->prefix}_product_infos_layout" );
 
 if ( ! empty( $product_tabs ) ) : ?>
 

@@ -26,21 +26,15 @@ class ProductAdditionalInfos extends WooCommerceController {
 	public function register() {
 
 		// Additional informations
-		if ( get_option( "{$this->prefix}_product_additional_infos_layout" ) ) {
-			add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
-		}
-
-		if ( 'tabs' === get_option( "{$this->prefix}_product_additional_infos_layout" ) ) {
-
-			add_filter( 'writepoetry_exclude_woocommerce_template', function() {
-				return 'single-product/tabs/tabs.php';
+		if ( 'tabs' === get_option( "{$this->prefix}_product_infos_layout" ) ) {
+			add_filter( "{$this->prefix}_exclude_woocommerce_template", function( $templates ) {
+				$templates[] = 'single-product/tabs/tabs.php';
+				return $templates;
 			} );
 		}
 
-		if ( 'accordion' === get_option( "{$this->prefix}_product_additional_infos_layout" ) ) {
 
-			add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
-
+		if ( 'accordion' === get_option( "{$this->prefix}_product_infos_layout" ) ) {
 			add_filter( 'wp_enqueue_scripts', function() {
 				wp_enqueue_script( 'jquery-ui-accordion' );
 				wp_add_inline_script( 'jquery-ui-accordion', '

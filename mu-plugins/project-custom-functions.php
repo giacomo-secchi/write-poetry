@@ -30,12 +30,14 @@ add_filter( 'pre_option_writepoetry_product_zoom', function ( $default ) {
 } );
 
 add_filter( 'pre_option_writepoetry_product_quantity_layout', function ( $default ) {
-	return 'hidden';
+	// 'hidden';
+	// 'input';
+	// 'buttons';
+	// 'select';
+	return 'select';
 } );
 
-add_filter( 'pre_option_writepoetry_product_max_quantity', function ( $default ) {
-	return 20;
-} );
+
 
 add_filter( 'pre_option_writepoetry_redirect_after_add', function ( $default ) {
 	// 'product-checkout';
@@ -46,9 +48,24 @@ add_filter( 'pre_option_writepoetry_redirect_after_add', function ( $default ) {
 } );
 
 
+add_filter( 'pre_option_writepoetry_product_max_quantity', function ( $default ) {
+	return 20;
+} );
+
+
+
+add_filter( 'pre_option_writepoetry_quantity_input_step', function ( $default ) {
+	return 5;
+} );
+
+
+
 // Possible vaules are accordion, tabs or list
-add_filter( 'pre_option_writepoetry_product_additional_infos_layout', function ( $default ) {
-	return 'list';
+add_filter( 'pre_option_writepoetry_product_infos_layout', function ( $default ) {
+	// 'tabs'
+	// 'list'
+	// 'accordion'
+	return 'tabs';
 } );
 
 
@@ -77,12 +94,6 @@ if ( in_array( wp_get_environment_type(), array( 'development', 'local' ) ) ) {
 		return array( 'test-param', 'test-param2' );
 	} );
 }
-
-
-
-// add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {
-// 	return 5;
-// }, 10, 2 );
 
 
 add_filter( 'writepoetry_add_custom_taxonomies', function () {

@@ -1,7 +1,15 @@
 <?php
 /**
- * @package  AlecadddPlugin
+ * Base configurations.
+ *
+ * @package           WritePoetry
+ * @subpackage        WritePoetry/Plugins
+ * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
+ * @copyright         2023 Giacomo Secchi
+ * @license           GPL-2.0-or-later
+ * @since             1.0.0
  */
+
 namespace WritePoetry\Base;
 
 use \WritePoetry\Base\BaseController;
