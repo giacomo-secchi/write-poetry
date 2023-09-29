@@ -25,7 +25,6 @@ class SettingsLink extends AdminController {
 	 */
 	public function register () {
 		add_action( "plugin_action_links_$this->plugin_name", array( $this, 'add_action_links' ) );
-
 	}
 
 	public function add_action_links ( $actions ) {
@@ -36,7 +35,7 @@ class SettingsLink extends AdminController {
 		   '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'writepoetry' ) . '</a>',
 		);
 
-		$actions = array_merge( $actions, $mylinks );
+		$actions = array_merge( $mylinks, $actions );
 		return $actions;
 	}
 }

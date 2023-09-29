@@ -1,6 +1,6 @@
 <?php
 /**
- * Example class.
+ * Product zoom class.
  *
  * @package           WritePoetry
  * @subpackage        WritePoetry/Base
@@ -25,17 +25,13 @@ class ProductZoom extends WooCommerceController {
 	 */
 	public function register() {
 
-
-
-		// Product zoom
+		// Check option for product zoom
 		if ( 'no' === get_option( "{$this->prefix}_product_zoom" ) ) {
 			$this->disable_product_zoom();
 		}
-
-
 	}
 
-	// Disable zoom
+	// Disable product zoom
 	public function disable_product_zoom() {
 		add_action( 'wp', function () {
 			remove_theme_support( 'wc-product-gallery-zoom' );

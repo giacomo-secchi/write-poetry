@@ -62,7 +62,7 @@ class WooCommercePage extends AdminController {
 				if ( isset( $setting['id'] ) && $setting['id'] == 'woocommerce_cart_redirect_after_add' ) {
 					$settings[$index] = array(
 						'name'     => __( 'Add to cart behaviour', 'woocommerce' ),
-						'desc_tip' => $regeneration_aborted_warning,
+						// 'desc_tip' => $regeneration_aborted_warning,
 						'id'       => "{$this->prefix}_redirect_after_add",
 						'type'     => 'select',
 						'default'  => '',
@@ -77,7 +77,9 @@ class WooCommercePage extends AdminController {
 							), // array of options for select/multiselects only
 						'custom_attributes' => has_filter( "option_{$this->prefix}_redirect_after_add" ) || has_filter( "pre_option_{$this->prefix}_redirect_after_add" ) ? array( 'disabled' => 'disabled' ) : array()
 					);
-
+				}
+				if ( isset( $setting['id'] ) && $setting['id'] == 'woocommerce_enable_ajax_add_to_cart' ) {
+					$settings[$index]['checkboxgroup'] ='start';
 
 				}
 			}
@@ -94,23 +96,35 @@ class WooCommercePage extends AdminController {
 			// Add Title to the Settings
 			$settings_appearance[] = array( 'name' => __( 'Appearence', 'writepoetry' ), 'type' => 'title', 'desc' => __( 'The following options are used to configure single product page design', 'writepoetry' ), 'id' => 'appeareance' );
 
+
 			// Add quantity layout field option
 			$settings_appearance[] = array(
-				'name'     => __( 'Quantity input layout', 'writepoetry' ),
+				'name'     => __( 'Product quantity selector', 'writepoetry' ),
 				'id'       => "{$this->prefix}_product_qty_layout",
 				'default'  => 'input',
 				'type'     => 'select',
 				'value'    => get_option( "{$this->prefix}_product_qty_layout" ),
 				'desc'     => __( 'Choose the layout of quantity selector on the product page', 'writepoetry' ),
 				'options' => array(
-					'input' => 'input',
-					'select' => 'select',
-					'buttons' => 'buttons'
+					'hidden' =>  __( 'Hidden (Product quantity will be always forced to one item)', 'writepoetry' ),
+					'input'	 =>  __( 'Input', 'writepoetry' ),
+					'select' =>  __( 'Select', 'writepoetry' ),
+					'buttons' =>  __( 'Buttons', 'writepoetry' )
 			   	), // array of options for select/multiselects only
 				'custom_attributes' => has_filter( "option_{$this->prefix}_product_qty_layout" ) || has_filter( "pre_option_{$this->prefix}_product_qty_layout" ) ? array( 'disabled' => 'disabled' ) : array()
 
 			);
 
+
+			// Add single product checkbox option
+			$settings_appearance[] = array(
+				'desc_tip' => __( 'This will automatically insert your slider into the single product page', 'writepoetry' ),
+				'id'       => "{$this->prefix}_product_max_qty",
+				'type'     => 'number',
+				'css'      => 'width:80px;',
+				'desc'     => __( 'Max quantity input', 'writepoetry' ),
+				'custom_attributes' => has_filter( "option_{$this->prefix}_product_max_qty" ) || has_filter( "pre_option_{$this->prefix}_product_max_qty" ) ? array( 'disabled' => 'disabled' ) : array()
+			);
 
 			// Add product zoom checkbox option
 			$settings_appearance[] = array(
@@ -125,30 +139,7 @@ class WooCommercePage extends AdminController {
 				'custom_attributes' => has_filter( "option_{$this->prefix}_product_zoom" ) || has_filter( "pre_option_{$this->prefix}_product_zoom" ) ? array( 'disabled' => 'disabled' ) : array()
 			);
 
-			// Add disable single product quantity option
-			$settings_appearance[] = array(
-				'name'     => __( 'Single product quantity option', 'writepoetry' ),
-				'desc_tip' => __( 'This option will disable quantity option on single product page', 'writepoetry' ),
-				'id'       => "{$this->prefix}_product_qty",
-				'type'     => 'checkbox',
-				'default'  => 'no',
-				'value'    => get_option( "{$this->prefix}_product_qty" ),
-				// 'css'      => 'min-width:300px;',
-				'desc'     => __( 'Disable quantity option', 'writepoetry' ),
-				'custom_attributes' => has_filter( "option_{$this->prefix}_product_qty" ) || has_filter( "pre_option_{$this->prefix}_product_qty" ) ? array( 'disabled' => 'disabled' ) : array()
-			);
 
-
-			// Add single product checkbox option
-			$settings_appearance[] = array(
-				'name'     => __( 'Max quantity input', 'writepoetry' ),
-				'desc_tip' => __( 'This will automatically insert your slider into the single product page', 'writepoetry' ),
-				'id'       => "{$this->prefix}_product_max_qty",
-				'type'     => 'number',
-				'css'      => 'width:80px;',
-				'desc'     => __( '', 'writepoetry' ),
-				'custom_attributes' => has_filter( "option_{$this->prefix}_product_max_qty" ) || has_filter( "pre_option_{$this->prefix}_product_max_qty" ) ? array( 'disabled' => 'disabled' ) : array()
-			);
 
 
 

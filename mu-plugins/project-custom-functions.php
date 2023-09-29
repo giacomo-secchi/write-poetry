@@ -24,17 +24,13 @@ define( 'GTM4WP_HARDCODED_GTM_ENV_AUTH', '' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_PREVIEW', '' );
 
 
-add_filter( 'pre_option_writepoetry_product_qty', function ( $default ) {
+
+add_filter( 'pre_option_writepoetry_product_zoom', function ( $default ) {
 	return 'yes';
 } );
 
-add_filter( 'pre_option_writepoetry_product_zoom', function ( $default ) {
-	return 'no';
-} );
-
-
 add_filter( 'pre_option_writepoetry_product_quantity_layout', function ( $default ) {
-	return 'select';
+	return 'hidden';
 } );
 
 add_filter( 'pre_option_writepoetry_product_max_quantity', function ( $default ) {
@@ -84,9 +80,9 @@ if ( in_array( wp_get_environment_type(), array( 'development', 'local' ) ) ) {
 
 
 
-add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {
-	return 5;
-}, 10, 2 );
+// add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {
+// 	return 5;
+// }, 10, 2 );
 
 
 add_filter( 'writepoetry_add_custom_taxonomies', function () {

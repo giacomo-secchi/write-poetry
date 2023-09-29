@@ -29,9 +29,6 @@ class AdminController extends BaseController {
 		parent::__construct();
 		$this->menu_slug = "{$this->prefix}-settings";
 		// $this->settings = new SettingsApi();
-
-
-
 	}
 
 

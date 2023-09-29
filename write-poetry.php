@@ -66,6 +66,21 @@ $updater->set_repository( WRITEPOETRY_GITHUB_REPO );
 $updater->initialize();
 
 
+/**
+ * The code that runs during plugin activation
+ */
+register_activation_hook( __FILE__, function() {
+	WritePoetry\Base\Activate::activate();
+} );
+
+
+/**
+ * The code that runs during plugin deactivation
+ */
+register_deactivation_hook( __FILE__, function() {
+	WritePoetry\Base\Deactivate::deactivate();
+} );
+
 
 /**
  * Initialize all the core classes of the plugin

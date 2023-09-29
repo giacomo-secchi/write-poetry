@@ -1,6 +1,6 @@
 <?php
 /**
- * Example class.
+ * Base class.
  *
  * @package           WritePoetry
  * @subpackage        WritePoetry/Base
@@ -11,6 +11,7 @@
  */
 
 namespace WritePoetry\Base;
+use \WritePoetry\Api\PluginConfig;
 
 
 /**
@@ -18,16 +19,28 @@ namespace WritePoetry\Base;
 */
 class BaseController {
 
-	public $plugin_path;
-	public $plugin_url;
-	public $plugin_name;
-	public $prefix;
+
+	private $config;
+
 
 	public function __construct() {
-		$this->plugin_path = plugin_dir_path( dirname( __FILE__, 2 ) );
-		$this->plugin_url = plugin_dir_url( dirname( __FILE__, 2 ) );
-		$this->plugin_name = plugin_basename( dirname( __FILE__, 3 ) . '/write-poetry.php' );
-		$this->prefix = preg_replace( "/[^A-Za-z0-9 ]/", '', plugin_basename( $this->plugin_path ) );
+		$this->config = new PluginConfig();
+	}
+
+	public function __get( $property ) {
+
+		if ( property_exists( $this->config, $property ) ) {
+            return $this->config->$property;
+        } else {
+            throw new \Exception("Property '$property' does not exist.");
+        }
+    }
+
+	public function is_woocommerce_activated() {
+		add_filter( 'plugins_loaded', function () {
+
+			return class_exists( 'WooCommerce' ) ? true : false;
+		} );
 
 	}
 }
