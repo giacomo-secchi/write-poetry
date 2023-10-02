@@ -1,32 +1,36 @@
 <?php
 /**
- * Register Custom Taxonomies
+ * Register Custom Taxonomies.
  *
- * @package           MyCustomFunctions
- * @subpackage        MyCustomFunctions/includes
+ * @package           WritePoetry
+ * @subpackage        WritePoetry/Api
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
- * @since             1.0.0
+ * @since             0.2.5
  */
 
-class WritePoetry_Register_Taxonomies {
+ namespace WritePoetry\Api;
+
+use WritePoetry\Base\BaseController;
+
+class RegisterPostTaxonomies extends BaseController {
 
     /**
      * Initialize the class
      */
-    public function __construct() {
-        add_action( 'init', array( $this, 'register_sustom_taxonomies' ) );
+    public function register() {
+        add_action( 'init', array( $this, 'register_custom_taxonomies' ) );
     }
 
-    /**
+	/**
      * Register Custom Taxonomies
      *
-     * @since  1.0.0
+     * @since  0.2.5
      * @access public
      * @return void
      */
-    public function register_sustom_taxonomies() {
+    public function register_custom_taxonomies() {
 
 
 		$default_args = array(
@@ -36,12 +40,13 @@ class WritePoetry_Register_Taxonomies {
         );
 
 
-		foreach ( apply_filters( 'writepoetry_add_custom_taxonomies', array() ) as $taxonomy => $args ) {
+		foreach ( apply_filters( "{$this->prefix}_add_custom_taxonomies", array() ) as $taxonomy => $args ) {
 			if ( taxonomy_exists( $taxonomy ) ) {
 				return;
 			}
 
 			$args = array_merge( $default_args, $args );
+
 
 			$object_type = $args["post_type"];
 
@@ -49,3 +54,5 @@ class WritePoetry_Register_Taxonomies {
 		}
     }
 }
+
+

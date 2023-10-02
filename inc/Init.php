@@ -22,6 +22,8 @@ final class Init
 	public static function get_services() {
 
 		$services = array(
+			Api\RegisterPostTypes::class,
+			Api\RegisterPostTaxonomies::class,
 			Base\Development\Utils::class,
 			Base\Utils::class,
 			FSE\Blocks::class,
