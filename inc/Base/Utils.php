@@ -7,16 +7,18 @@
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
- * @since             1.0.0
+ * @since             0.2.0
  */
 
 namespace WritePoetry\Base;
+
+use WritePoetry\Base\BaseController;
 
 
 /**
 *
 */
-class Utils {
+class Utils extends BaseController {
 	/**
 	 * Invoke hooks.
 	 *
@@ -36,7 +38,7 @@ class Utils {
      */
 	public function add_query_vars( $qvars ) {
 
-		foreach( apply_filters( 'writepoetry_query_vars', array() ) as $qv ) {
+		foreach( apply_filters( "{$this->prefix}_query_vars", array() ) as $qv ) {
 			$qvars[] = $qv;
 		}
 

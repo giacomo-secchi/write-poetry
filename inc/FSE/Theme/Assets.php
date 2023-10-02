@@ -7,16 +7,17 @@
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
- * @since             1.0.0
+ * @since             0.2.5
  */
 
 namespace WritePoetry\FSE\Theme;
 
+use WritePoetry\Base\BaseController;
 
 /**
 *
 */
-class Assets {
+class Assets extends BaseController {
 /**
 	 * Initialize the class
 	 */
@@ -155,7 +156,7 @@ class Assets {
 
 		// Get the base assets path using a filter hook.
 		// This allows customization of the path through the 'writepoetry_blocks_styles_asset_path' filter.
-		$base_assets_path = apply_filters( 'writepoetry_blocks_styles_asset_path', 'assets/css/blocks' );
+		$base_assets_path = apply_filters( "{$this->prefix}_blocks_styles_asset_path", 'assets/css/blocks' );
 
 		// Use glob to get the list of stylesheets files in the assets folder
 		$blocks = glob( get_theme_file_path( $base_assets_path ) .'/*/*.css' );

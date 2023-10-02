@@ -25,11 +25,16 @@ class QuantityLayout extends WooCommerceController {
 	 */
 	public function register() {
 
-		$product_quantity = 7;
+		$min_quantity = 10;
+		$max_quantity = 7;
 
 		// product max quantity configurations
 		if ( get_option( "{$this->prefix}_product_max_quantity" ) ) {
-			$product_quantity = get_option( "{$this->prefix}_product_max_quantity" );
+			$max_quantity = get_option( "{$this->prefix}_product_max_quantity" );
+		}
+
+		if ( get_option( "{$this->prefix}_product_min_quantity" ) ) {
+			$min_quantity = get_option( "{$this->prefix}_product_min_quantity" );
 		}
 
 
@@ -48,7 +53,7 @@ class QuantityLayout extends WooCommerceController {
 
 		// Set product quantity to one item at a time if added to cart
 		if ( 'hidden' == get_option( "{$this->prefix}_product_quantity_layout" ) ) {
-			$this->change_quantity_input( 1 );
+			$this->change_quantity_input( $min_quantity );
 		}
 
 		if ( 'buttons' === get_option("{$this->prefix}_product_quantity_layout" ) ) {
@@ -56,10 +61,12 @@ class QuantityLayout extends WooCommerceController {
 			add_action( 'woocommerce_after_quantity_input_field', array( $this, 'display_quantity_plus' ) );
 			add_action( 'wp_footer', array( $this, 'add_cart_quantity_plus_minus' ) );
 			add_action( 'wp_head', array( $this, 'custom_styles' ) );
+			$this->change_quantity_input( $max_quantity, $min_quantity );
+
 		}
 
 		if ( 'select' === get_option("{$this->prefix}_product_quantity_layout" ) ) {
-			$this->change_quantity_input( $product_quantity );
+			$this->change_quantity_input( $max_quantity, $min_quantity );
 
 
 			// this readd quantity input to the filter
@@ -128,9 +135,9 @@ class QuantityLayout extends WooCommerceController {
 
 				if ( $( this ).is( '.quantity__plus' ) ) {
 					if ( max && ( max <= val ) ) {
-					qty.val( max ).change();
+						qty.val( max ).change();
 					} else {
-					qty.val( val + step ).change();
+						qty.val( val + step ).change();
 					}
 				} else {
 					if ( min && ( min >= val ) ) {

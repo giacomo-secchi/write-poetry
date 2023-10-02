@@ -3,11 +3,11 @@
  * Base configurations.
  *
  * @package           WritePoetry
- * @subpackage        WritePoetry/Plugins
+ * @subpackage        WritePoetry/Base
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
- * @since             1.0.0
+ * @since             0.2.5
  */
 
 namespace WritePoetry\Base;

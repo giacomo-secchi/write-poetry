@@ -125,6 +125,15 @@ class WooCommercePage extends AdminController {
 				'custom_attributes' => has_filter( "option_{$this->prefix}_product_max_quantity" ) || has_filter( "pre_option_{$this->prefix}_product_max_quantity" ) ? array( 'disabled' => 'disabled' ) : array()
 			);
 
+			// Add single product minal quantity option
+			$settings_appearance[] = array(
+				'id'       => "{$this->prefix}_product_min_quantity",
+				'type'     => 'number',
+				'css'      => 'width:80px;',
+				'desc'     => __( 'Min quantity input', 'writepoetry' ),
+				'custom_attributes' => has_filter( "option_{$this->prefix}_product_min_quantity" ) || has_filter( "pre_option_{$this->prefix}_product_min_quantity" ) ? array( 'disabled' => 'disabled' ) : array()
+			);
+
 
 			// Add single product checkbox option quantity input steps values
 			$settings_appearance[] = array(
