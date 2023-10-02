@@ -34,7 +34,7 @@ add_filter( 'pre_option_writepoetry_product_quantity_layout', function ( $defaul
 	// 'input';
 	// 'buttons';
 	// 'select';
-	return 'select';
+	return 'buttons';
 } );
 
 
@@ -50,6 +50,11 @@ add_filter( 'pre_option_writepoetry_redirect_after_add', function ( $default ) {
 
 add_filter( 'pre_option_writepoetry_product_max_quantity', function ( $default ) {
 	return 20;
+} );
+
+
+add_filter( 'pre_option_writepoetry_product_min_quantity', function ( $default ) {
+	return 2;
 } );
 
 
@@ -69,13 +74,8 @@ add_filter( 'pre_option_writepoetry_product_infos_layout', function ( $default )
 } );
 
 
-
-
-
-
-
 // add elements to disable
-add_filter( 'writepoetry_disable_features', function () {
+add_filter( 'writepoetry_disable_features', function ( $args ) {
 	$args[] = 'woocommerce_sale_flash';
 	// $args[] = 'woocommerce_twenty_twenty_two_styles';
 
