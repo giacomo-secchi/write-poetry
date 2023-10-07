@@ -59,18 +59,18 @@ class SettingsPage extends AdminController {
 			wp_die('Unauthorized user');
 		}
 
-		// $nonce = 'wpshout_option_page_example_action';
+		$nonce = 'wpshout_option_page_example_action';
 
-		// // check_admin_referer( $nonce );
+		// check_admin_referer( $nonce );
 
-		// if ( isset( $_POST['awesome_text'] ) ) {
-		// 	$value = $_POST['awesome_text'];
-		// 	update_option( 'awesome_text', $value );
-		// }
+		if ( isset( $_POST['awesome_text'] ) ) {
+			$value = $_POST['awesome_text'];
+			update_option( 'awesome_text', $value );
+		}
 
-		// $value = get_option( 'awesome_text', 'hey-ho' );
+		$value = get_option( 'awesome_text', 'hey-ho' );
 
-		// echo \WritePoetry\Pages\Admin\Views\HtmlContent::getForm( $value, $nonce );
+		echo \WritePoetry\Pages\Admin\Views\HtmlContent::getForm( $value, $nonce );
 	}
 }
 
