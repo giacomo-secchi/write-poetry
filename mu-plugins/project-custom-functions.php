@@ -64,6 +64,16 @@ add_filter( 'pre_option_writepoetry_quantity_input_step', function ( $default ) 
 } );
 
 
+add_filter( 'pre_option_writepoetry_in_maintenance', function ( $default ) {
+	return 'no';
+} );
+
+// If maintenance mode is enable with this filter
+// you can add or remove the pages exluded from being under maintenance
+add_filter( 'writepoetry_maintenance_excluded_pages', function ( $condition ) {
+	$condition[''] = 'index.php';
+	return $condition;
+} );
 
 // Possible vaules are accordion, tabs or list
 add_filter( 'pre_option_writepoetry_product_infos_layout', function ( $default ) {

@@ -37,14 +37,6 @@ class Example extends BaseController {
 	    // register a new setting for "media" page
 	    // register_setting( 'media', 'mime_type' );
 
-	    // register a new section in the "reading" page
-	    add_settings_section(
-	        'wp_custom_setting_section',
-	        __( 'Add media types support', 'writepoetry' ),
-	        array($this,'wp_custom_setting_section_cb'),
-	        'media'
-	    );
-
 		add_settings_field(
 			'myprefix_setting-id', // $id
 			'This is the setting title', // $title
