@@ -27,6 +27,14 @@ class BaseController {
 		$this->config = new PluginConfig();
 	}
 
+    /**
+     * Magic method that allows accessing configuration properties as if they were class properties.
+     *
+     * @param string $property The name of the property to retrieve from the $config object.
+     *
+     * @return mixed The value of the requested property if it exists in $config.
+     * @throws \Exception If the requested property does not exist in the $config object.
+     */
 	public function __get( $property ) {
 
 		if ( property_exists( $this->config, $property ) ) {

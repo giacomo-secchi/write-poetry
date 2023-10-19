@@ -20,16 +20,29 @@
 */
 class SettingsPage extends AdminController {
 
-	public $menu_slug;
+	private $page_slug;
 
+	private $option_group;
+
+    /**
+     * Holds the values to be used in the fields callbacks
+     */
+    private $options;
 
 	public function __construct() {
 
 		parent::__construct();
-		$this->menu_slug = "{$this->prefix}-settings";
-		// $this->settings = new SettingsApi();
+		$this->page_slug = "{$this->prefix}-settings";
+		$this->option_group = "{$this->prefix}-settings-group";
 	}
 
+	public function getPageSlug() {
+        return $this->page_slug;
+    }
+
+	public function getOptionGroup() {
+        return $this->option_group;
+    }
 
 	/**
 	 * Invoke hooks.
@@ -37,40 +50,163 @@ class SettingsPage extends AdminController {
 	 * @return void
 	 */
 	public function register() {
-	 add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+		add_action( 'admin_menu', array( $this, 'adminMenu' ) );
+		add_action( 'admin_init', array( $this, 'pageInit' ) );
 	}
 
 
-	public function admin_menu() {
+	public function adminMenu() {
 		$page_title = __( 'Write Poetry', 'writepoetry' );
 		$menu_title = __( 'Write Poetry', 'writepoetry' );
 		$capability = 'manage_options';
-		$menu_slug = $this->menu_slug;
-		$callback = array( $this, 'settings_page' );
+		$menu_slug = $this->page_slug;
+		$callback = array( $this, 'createAdminPage' );
 		$position = 24;
 
+		// This page will be under "Settings"
 		add_options_page( $page_title, $menu_title, $capability, $menu_slug, $callback, $position );
-
 	}
 
-	public function settings_page() {
-
+	/**
+     * Options page callback
+     */
+	public function createAdminPage() {
 		if ( ! current_user_can('manage_options') ) {
 			wp_die('Unauthorized user');
 		}
 
-		$nonce = 'wpshout_option_page_example_action';
+		// Set class property
+		echo \WritePoetry\Pages\Admin\Views\HtmlContent::getForm();
+	}
 
-		// check_admin_referer( $nonce );
 
-		if ( isset( $_POST['awesome_text'] ) ) {
-			$value = $_POST['awesome_text'];
-			update_option( 'awesome_text', $value );
+	/**
+	 * Register and add settings
+     */
+	public function pageInit()
+    {
+		$page = $this->page_slug;
+		$option_group = $this->option_group;
+
+
+		$sections = array(
+			array(
+				'id' => 'setting_section_custom_login',
+				'title' => __( 'Customize login page', 'writepoetry' ),
+				'description' => sprintf(
+					__( 'Displays site logo if it is set instead of default Wordpress logo, if site logo is not set site icon is used. Enable custom logo on admin login image custom login logo,Link to customuzer page that add site icon <a href="%s">%s</a>.', 'writepoetry' ),
+					self_admin_url( '/customize.php?autofocus[section]=title_tagline' ),
+					__( 'Customizer' )
+
+				)
+			),
+			array(
+				'id' => 'setting_section_maintenance_mode',
+				'title' => __( 'Enhanced maintenance mode', 'writepoetry' ),
+				'description' => __( 'Put your website under maintenance', 'writepoetry' )
+			)
+			// Add more sections as needed
+		);
+
+		foreach ( $sections as $section ) {
+
+			$id = $section['id'];
+			$title = $section['title'];
+			$callback = function () use ( $section ) {
+				$callback_name = $section['callback'] ?? 'section_callback';
+				call_user_func( array( $this, $callback_name ), $section );
+			};
+
+			add_settings_section( $id, $title, $callback, $page	);
 		}
 
-		$value = get_option( 'awesome_text', 'hey-ho' );
 
-		echo \WritePoetry\Pages\Admin\Views\HtmlContent::getForm( $value, $nonce );
+		$fields = array(
+			array(
+				'id' => "{$this->prefix}_maintenance_mode",
+				'title' => __( 'Enable Maintenance', 'writepoetry' ),
+				'callback' => 'checkboxInputTemplate',
+				'section' => 'setting_section_maintenance_mode'
+			),
+			array(
+				'id' => "{$this->prefix}_custom_login",
+				'title' => __( 'Enable custom login page', 'writepoetry' ),
+				'callback' => 'checkboxInputTemplate',
+				'section' => 'setting_section_custom_login'
+			)
+			// Add more sections as needed
+		);
+
+		foreach ( $fields as $field ) {
+
+			$option_name = $field['id'];
+			$title = $field['title'];
+			$section = $field['section'];
+			$callback = function () use ( $field ) {
+				call_user_func( array( $this, $field['callback'] ), $field );
+			};
+
+			// Create Setting
+			add_settings_field( $option_name, $title, $callback, $page, $section );
+
+			$args = array(
+				'type' => 'string',
+				'sanitize_callback' => array( $this, 'sanitize' ),
+				'default' => 1,
+			);
+
+			register_setting( $option_group, $option_name, $args );
+		}
+    }
+
+	/**
+	 * Section callback function.
+	 *
+	 * @param array $args  The settings array, defining title, id, callback.
+	 */
+	function section_callback( $args ) {
+		?>
+		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php _e( $args['description'] ); ?></p>
+		<?php
 	}
+
+
+
+	/**
+     * Sanitize each setting field as needed
+     *
+     * @param array $input Contains all settings fields as array keys
+     */
+    public function sanitize( $input )
+    {
+		var_dump($input);die;
+
+        $new_input = array();
+        if ( isset( $input['id_number'] ) ){
+
+		}
+            $new_input['id_number'] = absint( $input['id_number'] );
+
+        if( isset( $input['title'] ) )
+            $new_input['title'] = sanitize_text_field( $input['title'] );
+
+        return $new_input;
+    }
+
+
+
+
+	/**
+     * Get the settings option array and print one of its values
+     */
+    public function checkboxInputTemplate( $args )
+    {
+		$disable_checkbox_field = $this->hasFiltersForOption( $args['id'] );
+		$checked = get_option( $args['id'] );
+		$current = 1;
+		$disable_current = true;
+		?><input type="checkbox" id="<?php echo esc_attr( $args['id'] ); ?>" name="<?php echo esc_attr( $args['id'] ); ?>" value="1"<?php checked( $checked, $current ); ?>  <?php disabled( $disable_checkbox_field, $disable_current ); ?>/>
+		<?php
+    }
 }
 

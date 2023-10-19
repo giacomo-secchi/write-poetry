@@ -38,7 +38,7 @@ final class Init
 		if ( is_admin() ) {
 
 			array_push( $services,
-				// Pages\Admin\SettingsPage::class,
+				Pages\Admin\SettingsPage::class,
 				Pages\Admin\CustomMediaType::class,
 				Pages\Admin\SettingsLink::class,
 				Pages\Admin\WooCommercePage::class

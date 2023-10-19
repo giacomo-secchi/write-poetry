@@ -44,7 +44,7 @@ class MaintenanceMode extends BaseController {
 			return;
 		}
 
-		if ( 'yes' == get_option( "{$this->prefix}_in_maintenance" ) ) {
+		if ( 'yes' == get_option( "{$this->prefix}_maintenance_mode" ) ) {
 			$this->wp_maintenance();
 		}
 	}

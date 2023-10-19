@@ -28,6 +28,15 @@ class WooCommercePage extends AdminController {
 		add_filter( 'woocommerce_get_settings_products', array( $this, 'all_settings' ), 10, 2 );
 	}
 
+	private function setCustomAttribute( $option ) {
+
+		if ( $this->hasFiltersForOption( $option ) ) {
+			return array( 'disabled' => 'disabled' );
+		}
+
+		return array();
+	}
+
 	/**
 	 * Create the section beneath the products tab
 	 **/
@@ -75,7 +84,7 @@ class WooCommercePage extends AdminController {
 							// 'product-cart'			=> __( 'Redirect to cart page (only from single product page)', 'writepoetry' ),
 							// 'product-checkout'		=> __( 'Redirect to checkout page (only from single product page)', 'writepoetry' ),
 							), // array of options for select/multiselects only
-						'custom_attributes' => has_filter( "option_{$this->prefix}_redirect_after_add" ) || has_filter( "pre_option_{$this->prefix}_redirect_after_add" ) ? array( 'disabled' => 'disabled' ) : array()
+						'custom_attributes' =>  $this->setCustomAttribute( "{$this->prefix}_redirect_after_add" )
 					);
 				}
 				if ( isset( $setting['id'] ) && $setting['id'] == 'woocommerce_enable_ajax_add_to_cart' ) {
@@ -111,7 +120,7 @@ class WooCommercePage extends AdminController {
 					'select' =>  __( 'Select', 'writepoetry' ),
 					'buttons' =>  __( 'Buttons', 'writepoetry' )
 			   	), // array of options for select/multiselects only
-				'custom_attributes' => has_filter( "option_{$this->prefix}_product_quantity_layout" ) || has_filter( "pre_option_{$this->prefix}_product_quantity_layout" ) ? array( 'disabled' => 'disabled' ) : array()
+				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_product_quantity_layout" )
 
 			);
 
@@ -122,7 +131,7 @@ class WooCommercePage extends AdminController {
 				'type'     => 'number',
 				'css'      => 'width:80px;',
 				'desc'     => __( 'Max quantity input', 'writepoetry' ),
-				'custom_attributes' => has_filter( "option_{$this->prefix}_product_max_quantity" ) || has_filter( "pre_option_{$this->prefix}_product_max_quantity" ) ? array( 'disabled' => 'disabled' ) : array()
+				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_product_max_quantity" )
 			);
 
 			// Add single product minal quantity option
@@ -131,7 +140,7 @@ class WooCommercePage extends AdminController {
 				'type'     => 'number',
 				'css'      => 'width:80px;',
 				'desc'     => __( 'Min quantity input', 'writepoetry' ),
-				'custom_attributes' => has_filter( "option_{$this->prefix}_product_min_quantity" ) || has_filter( "pre_option_{$this->prefix}_product_min_quantity" ) ? array( 'disabled' => 'disabled' ) : array()
+				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_product_min_quantity" )
 			);
 
 
@@ -142,7 +151,7 @@ class WooCommercePage extends AdminController {
 				'type'     => 'number',
 				'css'      => 'width:80px;',
 				'desc'     => __( 'Product quantity input steps', 'writepoetry' ),
-				'custom_attributes' => has_filter( "option_{$this->prefix}_quantity_input_step" ) || has_filter( "pre_option_{$this->prefix}_quantity_input_step" ) ? array( 'disabled' => 'disabled' ) : array()
+				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_quantity_input_step" )
 			);
 
 
@@ -156,7 +165,7 @@ class WooCommercePage extends AdminController {
 				'value'	   => get_option( "{$this->prefix}_product_zoom" ),
 				'css'      => 'min-width:300px;',
 				'desc'     => __( 'Enable Product Zoom', 'writepoetry' ),
-				'custom_attributes' => has_filter( "option_{$this->prefix}_product_zoom" ) || has_filter( "pre_option_{$this->prefix}_product_zoom" ) ? array( 'disabled' => 'disabled' ) : array()
+				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_product_zoom" )
 			);
 
 
@@ -174,7 +183,7 @@ class WooCommercePage extends AdminController {
 					'list' => 'List',
 					'accordion' => 'Accordion',
 				), // array of options for select/multiselects only
-				'custom_attributes' => has_filter( "option_{$this->prefix}_product_infos_layout" ) || has_filter( "pre_option_{$this->prefix}_product_infos_layout" ) ? array( 'disabled' => 'disabled' ) : array()
+				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_product_infos_layout" )
 			);
 
 			$settings_appearance[] = array( 'type' => 'sectionend', 'id' => 'appearance' );

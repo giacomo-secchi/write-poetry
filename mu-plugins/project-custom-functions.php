@@ -39,6 +39,14 @@ add_filter( 'pre_option_writepoetry_product_quantity_layout', function ( $defaul
 
 
 
+add_filter( 'option_writepoetry_redirect_after_add', function ( $default ) {
+	// 'product-checkout';
+	// 'product-cart';
+	// 'checkout';
+	// 'cart';
+	return 'checkout';
+} );
+
 add_filter( 'pre_option_writepoetry_redirect_after_add', function ( $default ) {
 	// 'product-checkout';
 	// 'product-cart';
@@ -64,8 +72,8 @@ add_filter( 'pre_option_writepoetry_quantity_input_step', function ( $default ) 
 } );
 
 
-add_filter( 'pre_option_writepoetry_in_maintenance', function ( $default ) {
-	return 'no';
+add_filter( 'pre_option_writepoetry_maintenance_mode', function ( $default ) {
+	return 1;
 } );
 
 // If maintenance mode is enable with this filter

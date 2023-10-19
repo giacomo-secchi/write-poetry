@@ -57,4 +57,7 @@ Contributors who want to make a new release, follow these steps:
 ```bash
 	git tag -a 0.2.1 HEAD -m "Release 0.2.1"
 ```
-
+3. To trigger the release GitHub Action run:
+```bash
+	git push --tags
+```

@@ -28,8 +28,10 @@ class SettingsLink extends AdminController {
 	}
 
 	public function add_action_links ( $actions ) {
+		$settingsPage = new SettingsPage();
+
 		// Build URL.
-		$url = add_query_arg( 'page', $this->menu_slug, get_admin_url() . 'options-general.php' );
+		$url = add_query_arg( 'page', $settingsPage->getPageSlug(), get_admin_url() . 'options-general.php' );
 
 		$mylinks = array(
 		   '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'writepoetry' ) . '</a>',

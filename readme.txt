@@ -28,6 +28,7 @@ In addition, if you want to change the default base folder for blocks styles (`a
 *   Add new Block Styles just using the `writepoetry_register_block_style` hook. An example here: [Add new Blocks Styles via filter](https://github.com/giacomo-secchi/write-poetry/blob/f39ad41e6ac3a9b5c8ec6f2467ea44b7055ef8df/themes/twentytwenty-child/functions.php#L41).
 *	When you enable this plugin is adds by default: SVG, ttf, woff and woff2 mime types; In this way you can quickly add vectors and fonts to WordPress Media Library.
 	If you want to disable this behaviour you can just remove the unwanted mime types using the `upload_mimes` and `mime_types` filters. [Here an example](https://github.com/giacomo-secchi/write-poetry/blob/de14197dfd774608425b648c0075adf285ba1396/themes/twentytwenty-child/functions.php#L22).
+*	Enhanced maintenance mode that keeps the admin alive. To enable it go to 'Write Poetry Settings Page' (insert link) and check the box 'enable maintenace option'
 
     Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
 if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used

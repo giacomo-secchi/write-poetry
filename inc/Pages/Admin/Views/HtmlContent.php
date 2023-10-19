@@ -1,19 +1,36 @@
 <?php
 
-// namespace \WritePoetry\Pages\Admin\Views;
 namespace WritePoetry\Pages\Admin\Views;
 
+use \WritePoetry\Api\PluginConfig;
+use \WritePoetry\Pages\Admin\SettingsPage;
+
+
 class HtmlContent {
-    public static function getForm( $value, $nonce ) {
+    public static function getForm(  ) {
+
+		$settingsPage = new SettingsPage();
+		$page = $settingsPage->getPageSlug();
+		$option_group = $settingsPage->getOptionGroup();
 
 		?>
-		<h1>My Awesome Settings Page</h1>
-		<form method="POST">
-		<label for="awesome_text"><?php $value; ?></label>
-		<input type="text" name="awesome_text" id="awesome_text" value="<?php $value; ?>">
-		<?php  wp_nonce_field( $nonce ) ?>
-		<input type="submit" value="Save" class="button button-primary button-large">
-		</form>
+		<div class="wrap">
+			<h1><?php echo esc_html( sprintf( __( '%s Settings' ),  get_admin_page_title() ) ); ?></h1>
+
+			<?php settings_errors(); ?>
+
+			<form action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" method="post">
+				<?php
+        			// output security fields for the registered setting "{$config->prefix}-settings-group"
+					settings_fields( $option_group );
+					// output setting sections and their fields
+					// (sections are registered for "{$config->prefix}-settings", each field is registered to a specific section)
+					do_settings_sections( $page );
+					// output save settings button
+					submit_button( __( 'Save Settings', 'writepoetry' ) );
+				?>
+			</form>
+		</div>
         <?php
     }
 }
