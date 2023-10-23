@@ -94,7 +94,7 @@ class SettingsPage extends AdminController {
 				'id' => 'setting_section_custom_login',
 				'title' => __( 'Customize login page', 'writepoetry' ),
 				'description' => sprintf(
-					__( 'Displays site logo if it is set instead of default Wordpress logo, if site logo is not set site icon is used. Enable custom logo on admin login image custom login logo,Link to customuzer page that add site icon <a href="%s">%s</a>.', 'writepoetry' ),
+					__( 'Replace the default WordPress logo, link and link text on the login screen page with your site logo or site icon if no logo is configured. <a href="%s">Add the site icon</a>.', 'writepoetry' ),
 					self_admin_url( '/customize.php?autofocus[section]=title_tagline' ),
 					__( 'Customizer' )
 
@@ -155,7 +155,9 @@ class SettingsPage extends AdminController {
 				'default' => 1,
 			);
 
-			register_setting( $option_group, $option_name, $args );
+			register_setting( $option_group, $option_name, function () use ( $args ) {
+				call_user_func( array( $this, 'sanitize' ), $args );
+			} );
 		}
     }
 
@@ -179,7 +181,7 @@ class SettingsPage extends AdminController {
      */
     public function sanitize( $input )
     {
-		var_dump($input);die;
+
 
         $new_input = array();
         if ( isset( $input['id_number'] ) ){

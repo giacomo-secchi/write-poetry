@@ -45,4 +45,16 @@ class Utils extends BaseController {
 		return $qvars;
 	}
 
+	/**
+     * This method attempts to retrieve the user's IP address by checking
+	 * the 'HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', and 'REMOTE_ADDR'
+	 * server variables in that order, and returns the first valid IP address.
+     *
+     * @since  0.2.6
+     * @access public
+     * @return string The user's IP address or an empty string if not found.
+     */
+	public static function get_user_ip() {
+		return $_SERVER['HTTP_CLIENT_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'];
+	}
 }

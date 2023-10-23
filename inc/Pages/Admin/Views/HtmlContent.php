@@ -7,7 +7,7 @@ use \WritePoetry\Pages\Admin\SettingsPage;
 
 
 class HtmlContent {
-    public static function getForm(  ) {
+    public static function getForm() {
 
 		$settingsPage = new SettingsPage();
 		$page = $settingsPage->getPageSlug();

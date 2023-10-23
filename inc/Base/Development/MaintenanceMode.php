@@ -13,6 +13,7 @@
 namespace WritePoetry\Base\Development;
 
 use \WritePoetry\Base\BaseController;
+use \WritePoetry\Base\Utils;
 
 /**
 *
@@ -34,19 +35,30 @@ class MaintenanceMode extends BaseController {
 			return;
 		}
 
-		add_action('init', array( $this, 'excluded_pages' ) );
+		add_action('wp', array( $this, 'excluded_pages' ) );
 	}
 
-	public function excluded_pages() {
-		global $pagenow;
 
-		if ( is_user_logged_in() || is_login() || in_array( $pagenow, apply_filters( "{$this->prefix}_maintenance_excluded_pages", array() ) ) ) {
+
+	public function excluded_pages() {
+		global $post;
+
+		if ( ! empty( $post->post_name ) ) {
+			$current_page = $post->post_name;
+		}
+
+		if (
+			is_user_logged_in() ||
+			is_login() ||
+			in_array( $current_page, apply_filters( "{$this->prefix}_maintenance_excluded_pages", array() ) )
+		) {
 			return;
 		}
 
-		if ( 'yes' == get_option( "{$this->prefix}_maintenance_mode" ) ) {
+		if ( '1' == get_option( "{$this->prefix}_maintenance_mode" ) ) {
 			$this->wp_maintenance();
 		}
+
 	}
 
 	public function wp_maintenance() {
