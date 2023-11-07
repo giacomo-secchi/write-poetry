@@ -156,20 +156,20 @@ class Assets extends BaseController {
 
 		// Get the base assets path using a filter hook.
 		// This allows customization of the path through the 'writepoetry_blocks_styles_asset_path' filter.
-		$base_assets_path = apply_filters( "{$this->prefix}_blocks_styles_asset_path", 'assets/css/blocks' );
+		$base_assets_path = apply_filters( "{$this->prefix}_blocks_styles_asset_path", join( DIRECTORY_SEPARATOR, array('assets', 'css', 'blocks') ) );
 
 		// Use glob to get the list of stylesheets files in the assets folder
-		$blocks = glob( get_theme_file_path( $base_assets_path ) .'/*/*.css' );
+		$blocks_path = glob( get_theme_file_path( $base_assets_path ) .'/*/*.css' );
 
 		/*
 		* Load additional block styles.
 		*/
-		foreach ( $blocks as $block ) {
+		foreach ( $blocks_path as $block_path ) {
 
-			$file_path = pathinfo( $block );
+			$block_info = pathinfo( $block_path );
 
 			// Reconstruct block name core/site-title
-			$block_name = basename( $file_path['dirname'] ) . '/' . $file_path['filename'];
+			$block_name = basename( $block_info['dirname'] ) . '/' . $block_info['filename'];
 
 			// Replace slash with hyphen for filename.
 			$block_slug = str_replace( '/', '-', $block_name );
@@ -177,16 +177,11 @@ class Assets extends BaseController {
 			// Enqueue asset.
 			wp_enqueue_block_style( $block_name, array(
 				'handle' => "$theme_slug-block-$block_slug",
-				'src'    => get_theme_file_uri( $base_assets_path . '/' . $file_path['basename'] ),
-				'path'   => $block,
+				'src'    => get_theme_file_uri( "$base_assets_path/$block_name.css" ),
+				'path'   => wp_normalize_path( $block_path ),
 				'ver'	 => $this->get_theme_version()
 			) );
-
 		}
-
-
 	}
-
-
 }
 
