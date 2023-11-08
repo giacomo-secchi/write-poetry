@@ -42,9 +42,6 @@ if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
 
 
 
-define( 'WRITEPOETRY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-
-
 if ( ! defined( 'WRITEPOETRY_GITHUB_USERNAME' ) ) {
 	define( 'WRITEPOETRY_GITHUB_USERNAME', 'giacomo-secchi'  );
 }

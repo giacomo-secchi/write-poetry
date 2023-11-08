@@ -17,17 +17,19 @@ class PluginConfig {
     private static $instance;
 	public $plugin_path;
 	public $plugin_url;
+	public $build_path;
+	public $build_url;
 	public $plugin_name;
 	public $prefix;
 
 
     public function __construct() {
-
-		$this->plugin_path = plugin_dir_path( dirname( __FILE__, 2 ) );
+		$this->plugin_path =  wp_normalize_path( plugin_dir_path( dirname( __FILE__, 2 ) ) );
 		$this->plugin_url = plugin_dir_url( dirname( __FILE__, 2 ) );
+		$this->build_path = $this->plugin_path . 'build';
+		$this->build_url = $this->plugin_url . 'build';
 		$this->plugin_name = plugin_basename( dirname( __FILE__, 3 ) . '/write-poetry.php' );
 		$this->prefix = preg_replace( "/[^A-Za-z0-9 ]/", '', plugin_basename( $this->plugin_path ) );
-
     }
 
     public static function getInstance() {

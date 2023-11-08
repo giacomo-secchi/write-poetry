@@ -24,11 +24,8 @@ class Portfolio extends BaseController {
 	 * @return void
 	 */
 	public function register() {
-
-
-
-		// add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
-		// // add_action( 'add_meta_boxes', array( $this, 'add_portfolio_meta_box' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
+		add_action( 'add_meta_boxes', array( $this, 'add_portfolio_meta_box' ) );
 		add_action( 'init', array( $this, 'register_portfolio_meta' ) );
 	}
 
@@ -39,13 +36,15 @@ class Portfolio extends BaseController {
 	 * @param [type] $src
 	 * @return void
 	 */
-	public static function enqueue_block_assets() {
+	public function enqueue_block_assets() {
+		$file_name = 'plugin-jetpack';
+
 		// Automatically load imported dependencies and assets version.
-		$asset_file = include( WRITEPOETRY_PLUGIN_DIR . 'build/index.asset.php' );
+		$asset_file = include( sprintf( '%s%s%s.asset.php', $this->build_path, DIRECTORY_SEPARATOR, $file_name ) );
 
 		wp_enqueue_script(
 			'writepoetry-gutenberg-sidebar',
-			plugins_url( 'build/index.js', __DIR__ ),
+			sprintf( '%s/%s.js', $this->build_url, $file_name ),
 			$asset_file['dependencies'],
 			$asset_file['version']
 		);

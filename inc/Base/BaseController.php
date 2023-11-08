@@ -20,7 +20,8 @@ use \WritePoetry\Api\PluginConfig;
 class BaseController {
 
 
-	private $config;
+	public $config;
+
 
 
 	public function __construct() {

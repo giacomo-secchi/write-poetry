@@ -30,7 +30,7 @@ final class Init
 			FSE\Blocks::class,
 			FSE\Theme\Assets::class,
 			Pages\Admin\LoginScreen::class,
-			Plugins\Jetpack\Portfolio::class,
+			// Plugins\Jetpack\Portfolio::class,
 			// Plugins\Gtm4wp::class
 		);
 
