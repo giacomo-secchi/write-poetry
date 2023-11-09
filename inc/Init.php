@@ -11,6 +11,8 @@
  */
 
 namespace WritePoetry;
+use \WritePoetry\Api\PluginConfig;
+
 
 
 final class Init
@@ -20,6 +22,7 @@ final class Init
 	 * @return array Full list of classes
 	 */
 	public static function get_services() {
+		$config = PluginConfig::getInstance();
 
 		$services = array(
 			Api\RegisterPostTypes::class,
@@ -36,14 +39,16 @@ final class Init
 
 
 		if ( is_admin() ) {
-
 			array_push( $services,
 				Pages\Admin\SettingsPage::class,
 				Pages\Admin\CustomMediaType::class,
 				Pages\Admin\SettingsLink::class,
-				Pages\Admin\WooCommercePage::class
+				Pages\Admin\WooCommercePage::class,
+				Base\Updater\Updater::class
 			);
 		}
+
+
 
 		// TODO: Restore filter to be sure that all plugins are loaded before check if WooCommerce is enabled
 		// add_filter( 'plugins_loaded', function ( ) use ( $services ) {

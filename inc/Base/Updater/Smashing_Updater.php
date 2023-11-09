@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Check plugin version and update it
+ *
+ * @link https://www.smashingmagazine.com/2015/08/deploy-wordpress-plugins-with-github-using-transients/
+ */
+
+
+namespace WritePoetry\Base\Updater;
+
+
+
 class Smashing_Updater {
 
 	private $file;

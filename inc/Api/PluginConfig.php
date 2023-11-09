@@ -20,7 +20,11 @@ class PluginConfig {
 	public $build_path;
 	public $build_url;
 	public $plugin_name;
+	public $plugin_main_file;
 	public $prefix;
+	public $github_username;
+	public $github_repo;
+	public $authorize;
 
 
     public function __construct() {
@@ -29,13 +33,18 @@ class PluginConfig {
 		$this->build_path = $this->plugin_path . 'build';
 		$this->build_url = $this->plugin_url . 'build';
 		$this->plugin_name = plugin_basename( dirname( __FILE__, 3 ) . '/write-poetry.php' );
+		$this->plugin_main_file = wp_normalize_path( $this->plugin_path .'write-poetry.php' );
 		$this->prefix = preg_replace( "/[^A-Za-z0-9 ]/", '', plugin_basename( $this->plugin_path ) );
+		$this->github_username = 'giacomo-secchi';
+		$this->github_repo =  'write-poetry';
+		$this->authorize = 'abcdefghijk1234567890';
     }
 
     public static function getInstance() {
         if (self::$instance === null) {
             self::$instance = new self();
         }
+
         return self::$instance;
     }
 }

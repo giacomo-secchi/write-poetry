@@ -33,36 +33,6 @@ if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 
-
-/**
- * Check plugin version and update it
- *
- * @link https://www.smashingmagazine.com/2015/08/deploy-wordpress-plugins-with-github-using-transients/
- */
-
-
-
-if ( ! defined( 'WRITEPOETRY_GITHUB_USERNAME' ) ) {
-	define( 'WRITEPOETRY_GITHUB_USERNAME', 'giacomo-secchi'  );
-}
-
-if ( ! defined( 'WRITEPOETRY_GITHUB_REPO' ) ) {
-	define( 'WRITEPOETRY_GITHUB_REPO', 'write-poetry' );
-}
-
-if ( ! class_exists( 'Smashing_Updater' ) ){
-	include_once( plugin_dir_path( __FILE__ ) . 'updater.php' );
-}
-
-$updater = new Smashing_Updater( __FILE__ );
-$updater->set_username( WRITEPOETRY_GITHUB_USERNAME );
-$updater->set_repository( WRITEPOETRY_GITHUB_REPO );
-/*
-	$updater->authorize( 'abcdefghijk1234567890' ); // Your auth code goes here for private repos
-*/
-$updater->initialize();
-
-
 /**
  * The code that runs during plugin activation
  */
