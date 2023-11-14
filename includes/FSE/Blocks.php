@@ -24,7 +24,7 @@ class Blocks extends BaseController {
 	 * @return void
 	 */
 	public function register() {
-		// add_action( 'init', array( $this, 'register_multiple_blocks' ) );
+		add_action( 'init', array( $this, 'register_multiple_blocks' ) );
 		add_action( 'init', array( $this, 'register_block_styles' ) );
 	}
 
