@@ -25,7 +25,7 @@ nvm use
 # Install the Node.js packages and dependencies
 npm install
 # Start the local environment
-npm run wp-env start
+npm run env:start
 ```
 Finally, navigate to http://localhost:8888 in your web browser to see WordPress running with the local WritePietry plugin and Twenty Twenty-Child theme running and activated. Default login credentials are username: admin password: password.
 
