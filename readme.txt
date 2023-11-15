@@ -66,6 +66,20 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+### 0.2.7 - 2023-11-15
+#### Added
+- Add support for multipe blocks and enable it by default
+- Normalize block asset path
+- Add support for custom block styles
+
+#### Changed
+- The folder structure has been modified to match best practices suggested in the Plugin Handbook
+
+
+### 0.2.6 - 2023-10-31
+#### Refactored
+- Refactor admin section
+
 
 ### 0.2.4 - 2023-08-31
 #### Added
