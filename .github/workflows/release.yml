@@ -73,7 +73,7 @@ jobs:
           composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
       - name: Zip Release Asset
         run: |
-          zip -r ${{ github.event.repository.name}}.zip . -x '.git/*' '.github/*' @
+          npm run plugin-zip
         working-directory: ${{ github.workspace }}
 
       - name: Create Release
