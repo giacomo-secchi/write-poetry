@@ -52,7 +52,7 @@
   "files": [
     "assets",
     "build",
-    "inludes",
+    "includes",
     "vendor",
     "woocommerce",
     "index.php",
