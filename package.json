@@ -19,9 +19,9 @@
 		"@wordpress/env": "^8.11.0",
 		"@wordpress/scripts": "^26.16.0"
 	},
-  "prettier": "@wordpress/prettier-config",
+	"prettier": "@wordpress/prettier-config",
 	"scripts": {
-		"build": "wp-scripts build",
+		"build": "wp-scripts build --webpack-copy-php",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
@@ -31,10 +31,10 @@
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-    "start": "wp-scripts start",
-    "start:hot": "wp-scripts start --hot",
+		"start": "wp-scripts start --webpack-copy-php",
+		"start:hot": "wp-scripts start --hot",
 		"wp-env": "wp-env",
-    "env:start": "wp-env start && (npm run start)",
+		"env:start": "wp-env start && (npm run start)",
 		"env:start:debug": "wp-env start --xdebug",
 		"env:stop": "wp-env stop",
 		"composer": "wp-env run cli --env-cwd=wp-content/plugins/write-poetry composer"
@@ -49,15 +49,15 @@
 			"require-version": "off"
 		}
 	},
-  "files": [
-    "assets",
-    "build",
-    "includes",
-    "vendor",
-    "woocommerce",
-    "index.php",
-    "readme.txt",
-    "write-poetry.php",
-    "uninstall.php"
-  ]
+	"files": [
+		"assets",
+		"build",
+		"includes",
+		"vendor",
+		"woocommerce",
+		"index.php",
+		"readme.txt",
+		"write-poetry.php",
+		"uninstall.php"
+	]
 }
