@@ -17,6 +17,7 @@
 	},
 	"devDependencies": {
 		"@wordpress/env": "^8.11.0",
+		"@wordpress/eslint-plugin": "^17.3.0",
 		"@wordpress/scripts": "^26.16.0"
 	},
 	"prettier": "@wordpress/prettier-config",
