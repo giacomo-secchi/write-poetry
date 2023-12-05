@@ -18,6 +18,8 @@ use \WritePoetry\Base\BaseController;
 *
 */
 class Blocks extends BaseController {
+	private $block_name = array();
+
 	/**
 	 * Invoke hooks.
 	 *
@@ -31,7 +33,7 @@ class Blocks extends BaseController {
 
 	public function register_multiple_blocks() {
 
-		$build_dir = $this->plugin_path . 'build/blocks';
+		$build_dir = $this->build_path . '/blocks';
 
 		foreach ( scandir( $build_dir ) as $result ) {
 			$block_location = $build_dir . '/' . $result;
@@ -40,9 +42,32 @@ class Blocks extends BaseController {
 				continue;
 			}
 
-			register_block_type( $block_location );
-		}
+			if ( $result ) {
+				$this->block_name[] = $result;
+			}
 
+			$block_type = $block_location;
+
+			register_block_type( $block_type );
+		}
+	}
+
+	public function register_multiple_blocks_callback( $attributes, $content, $block ) {
+		ob_start();
+
+		foreach ( $this->block_name as $block_name ) {
+			$template_path = $this->build_path . '/blocks/' . $block_name . '/template.php';
+
+			if ( ! empty( $block->block_type->view_script_handles )) {
+				// viewScript is defined
+				wp_enqueue_script( $block->block_type->view_script_handles );
+			}
+
+			if ( file_exists( $template_path ) ) {
+				require_once $template_path;
+			}
+		}
+		return ob_get_clean();
 	}
 
 	/**

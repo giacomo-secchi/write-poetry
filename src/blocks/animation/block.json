@@ -9,7 +9,14 @@
 	"description": "Animate inner content.",
 	"attributes": {
 		"animationName": {
-			"type": "string"
+			"type": "string",
+      "enum": [
+        "bounce",
+        "flash",
+        "pulse",
+        "rubberBand"
+      ],
+      "default": "bounce"
 		},
 		"animationSpeed": {
 			"type": "string",
@@ -43,13 +50,22 @@
 		}
 	},
 	"example": {
-        "attributes": {
-            "animationName": "bounce",
-            "animationSpeed": "fast",
-            "animationDelay": "2",
-            "animationRepeat": "infinite"
-        }
+    "attributes": {
+        "animationName": "bounce",
+        "animationSpeed": "fast",
+        "animationDelay": "2",
+        "animationRepeat": "infinite"
     },
+    "innerBlocks": [
+      {
+        "name": "core/paragraph",
+        "attributes": {
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."
+        }
+      }
+    ]
+  },
+
 	"supports": {
 		"html": false
 	},

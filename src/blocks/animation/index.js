@@ -15,14 +15,20 @@ import { registerBlockType } from '@wordpress/blocks';
 import './style.scss';
 import 'animate.css';
 
-
 /**
  * Internal dependencies
  */
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
-import { Animation, Ball } from './MyIcon';
+import options from './options';
+import variations from './variations';
+import { animationIcon } from './icons';
+
+export const settings = {
+	options,
+	variations,
+};
 
 /**
  * Every block starts by registering a new block type definition.
@@ -30,7 +36,7 @@ import { Animation, Ball } from './MyIcon';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( metadata.name, {
-	icon: Animation,
+	icon: animationIcon,
 	/**
 	 * Sets animation.
 	 *
@@ -42,7 +48,7 @@ registerBlockType( metadata.name, {
 		// if ( undefined != animationName ) {
 		// 	return { 'data-animationName': animationName };
 		// }
-    },
+	},
 	/**
 	 * @see ./edit.js
 	 */

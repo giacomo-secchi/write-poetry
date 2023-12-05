@@ -6,7 +6,7 @@
  */
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
-// import classnames from 'classnames';
+import classnames from 'classnames';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -18,27 +18,27 @@ import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save( props ) {
-	// const {
-	// 	attributes: {
-	// 		animationName,
-	// 		animationSpeed,
-	// 		animationDelay,
-	// 		animationRepeat
-	// 	}
-	// } = props;
+	const {
+		attributes: {
+			animationName,
+			animationSpeed,
+			animationDelay,
+			animationRepeat,
+		},
+	} = props;
 
-	// const classes = classnames( 'animate__animated', {
-	// 	[`animate__${animationName}`]: true,
-	// 	[`animate__${animationSpeed}`]: true,
-	// 	[`animate__delay-${animationDelay}s`]: true,
-	// 	[`animate__${animationRepeat}`]: true,
-    // } );
+	const classes = classnames( 'animate__animated', {
+		[ `animate__${ animationName }` ]: true,
+		[ `animate__${ animationSpeed }` ]: true,
+		[ `animate__delay-${ animationDelay }s` ]: true,
+		[ `animate__${ animationRepeat }` ]: true,
+	} );
 
-
-	// const blockProps = useBlockProps.save( { className: classes, 'data-animation': animationName } );
-	// return (
-	// 	<div { ...blockProps }>
-	// 		<InnerBlocks.Content />
-	// 	</div>
-	// );
+	// debugger;
+	const blockProps = useBlockProps.save( { className: classes } );
+	return (
+		<div { ...blockProps }>
+			<InnerBlocks.Content />
+		</div>
+	);
 }
