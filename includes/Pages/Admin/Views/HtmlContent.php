@@ -27,7 +27,7 @@ class HtmlContent {
 					// (sections are registered for "{$config->prefix}-settings", each field is registered to a specific section)
 					do_settings_sections( $page );
 					// output save settings button
-					submit_button( __( 'Save Settings', 'writepoetry' ) );
+					submit_button( __( 'Save Settings', 'write-poetry' ) );
 				?>
 			</form>
 		</div>

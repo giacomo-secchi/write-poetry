@@ -56,8 +56,8 @@ class SettingsPage extends AdminController {
 
 
 	public function adminMenu() {
-		$page_title = __( 'Write Poetry', 'writepoetry' );
-		$menu_title = __( 'Write Poetry', 'writepoetry' );
+		$page_title = __( 'Write Poetry', 'write-poetry' );
+		$menu_title = __( 'Write Poetry', 'write-poetry' );
 		$capability = 'manage_options';
 		$menu_slug = $this->page_slug;
 		$callback = array( $this, 'createAdminPage' );
@@ -92,9 +92,9 @@ class SettingsPage extends AdminController {
 		$sections = array(
 			array(
 				'id' => 'setting_section_custom_login',
-				'title' => __( 'Customize login page', 'writepoetry' ),
+				'title' => __( 'Customize login page', 'write-poetry' ),
 				'description' => sprintf(
-					__( 'Replace the default WordPress logo, link and link text on the login screen page with your site logo or site icon if no logo is configured. <a href="%s">Add the site icon</a>.', 'writepoetry' ),
+					__( 'Replace the default WordPress logo, link and link text on the login screen page with your site logo or site icon if no logo is configured. <a href="%s">Add the site icon</a>.', 'write-poetry' ),
 					self_admin_url( '/customize.php?autofocus[section]=title_tagline' ),
 					__( 'Customizer' )
 
@@ -102,8 +102,8 @@ class SettingsPage extends AdminController {
 			),
 			array(
 				'id' => 'setting_section_maintenance_mode',
-				'title' => __( 'Enhanced maintenance mode', 'writepoetry' ),
-				'description' => __( 'Put your website under maintenance', 'writepoetry' )
+				'title' => __( 'Enhanced maintenance mode', 'write-poetry' ),
+				'description' => __( 'Put your website under maintenance', 'write-poetry' )
 			)
 			// Add more sections as needed
 		);
@@ -124,13 +124,13 @@ class SettingsPage extends AdminController {
 		$fields = array(
 			array(
 				'id' => "{$this->prefix}_maintenance_mode",
-				'title' => __( 'Enable Maintenance', 'writepoetry' ),
+				'title' => __( 'Enable Maintenance', 'write-poetry' ),
 				'callback' => 'checkboxInputTemplate',
 				'section' => 'setting_section_maintenance_mode'
 			),
 			array(
 				'id' => "{$this->prefix}_custom_login",
-				'title' => __( 'Enable custom login page', 'writepoetry' ),
+				'title' => __( 'Enable custom login page', 'write-poetry' ),
 				'callback' => 'checkboxInputTemplate',
 				'section' => 'setting_section_custom_login'
 			)

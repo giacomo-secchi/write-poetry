@@ -34,7 +34,7 @@ class SettingsLink extends AdminController {
 		$url = add_query_arg( 'page', $settingsPage->getPageSlug(), get_admin_url() . 'options-general.php' );
 
 		$mylinks = array(
-		   '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'writepoetry' ) . '</a>',
+		   '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'write-poetry' ) . '</a>',
 		);
 
 		$actions = array_merge( $mylinks, $actions );

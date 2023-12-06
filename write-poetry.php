@@ -16,7 +16,7 @@
  * Requires PHP:      7.2
  * Author:            Giacomo Secchi
  * Author URI:        https://resume.giacomosecchi.com
- * Text Domain:       writepoetry
+ * Text Domain:       write-poetry
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Update URI:        https://github.com/giacomo-secchi/write-poetry/
