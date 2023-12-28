@@ -19,7 +19,7 @@ Write Poetry is designed with developers and advanced users in mind. It acts as 
 
 Major features in Write Poetry include:
 
-*   Load styles and scripts assets from your theme without using code (only configurations in `theme.json`).
+*   Load styles and scripts assets from your theme without using code (only configurations in the dedicated file `write-poetry-theme.json`).
 *   Add multipe Query Vars via `writepoetry_query_vars`.
 *   Including CSS for block styles without write a line of code: you just need to add the css files following the
 naming convention rule: `my-theme/assets/css/blocks/prefix/blockname.css` (i.e., `twentytwenty-child/assets/css/blocks/core/site-title.css`).
@@ -66,6 +66,13 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+### 0.2.8 - 2023-12-28
+#### Added
+- `write-poetry-theme.json` dedicated file to load styles and scripts.
+
+#### Refactored
+- Significant code improvements in blocks structure.
+
 ### 0.2.7 - 2023-11-15
 #### Added
 - Add support for multipe blocks and enable it by default
