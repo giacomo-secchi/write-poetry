@@ -53,26 +53,31 @@ class Assets extends BaseController {
 	 */
 	function scripts() {
 
-		if ( ! wp_theme_has_theme_json() ) {
+		// Get configuration data from write-poetry-theme.json
+		$wp_theme_json_file =  get_theme_file_path( '/write-poetry-theme.json' );
+
+		// Check if the file exists
+		if ( ! file_exists( $wp_theme_json_file ) ) {
 			return;
 		}
 
-		// Get configuration data from theme.json
- 		$theme_data = \WP_Theme_JSON_Resolver::get_THEME_data()->get_raw_data();
+		// Get the JSON string from the file
+		// Decode the JSON string to a PHP array
+ 		$decoded_file = json_decode( file_get_contents( $wp_theme_json_file ), true );
 
+
+		// Check if the necessary keys exist in the theme data.
 		if (
-			! array_key_exists( 'custom', $theme_data['settings'] ) ||
-			! array_key_exists( 'scripts', $theme_data['settings']['custom'] ) ||
-			! array_key_exists( 'styles', $theme_data['settings']['custom'] )
+			! array_key_exists( 'files', $decoded_file ) ||
+			! array_key_exists( 'scripts', $decoded_file['files'] ) ||
+			! array_key_exists( 'styles', $decoded_file['files'] )
 		) {
 			return false;
 		}
 
-		$scripts	= $theme_data['settings']['custom']['scripts']['files'];
-		$styles		= $theme_data['settings']['custom']['styles']['files'];
-
-		// $this->enqueue_theme_files( $styles, 'style' );
-		$this->enqueue_theme_files( $scripts, 'script' );
+		foreach ( $decoded_file['files'] as $key => $value ) {
+			$this->enqueue_theme_files( $value, $key );
+		}
 	}
 
 
@@ -124,22 +129,31 @@ class Assets extends BaseController {
 			// Load the asset only if conditionals tags return true
 			$this->check_conditional_tags( $file );
 
-			$default_options = array(
-				$file['handle'],
-				get_theme_file_uri() . $file['src'],
-				$file['deps'],
-				$version_string
+			$params = array(
+				$file['handle']
 			);
 
-			if ( 'script' === $type ) {
-				// Enqueue theme scripts.
-				wp_enqueue_script( ...$default_options );
-
+			if ( ! empty( $file['src'] ) ) {
+				$params[] = get_theme_file_uri() . $file['src'];
 			}
 
-			if ( 'style' === $type ) {
+			if ( ! empty( $file['deps'] ) ) {
+				$params[] = $file['deps'];
+			}
+
+			// avoid to print version if there is only handle param
+			if ( count( $params ) > 1 ) {
+				$params[] = $version_string;
+			}
+
+			if ( 'scripts' === $type ) {
+				// Enqueue theme scripts.
+				wp_enqueue_script( ...$params );
+			}
+
+			if ( 'styles' === $type ) {
 				// Enqueue theme stylesheet.
-				wp_enqueue_style( ...$default_options );
+				wp_enqueue_style( ...$params );
 			}
 		}
 	}
