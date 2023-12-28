@@ -1,65 +1,7 @@
 {
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 2,
-  "settings": {
-    "custom": {
-      "scripts": {
-        "files" : [{
-            "handle" : "test-script",
-            "src" : "/assets/js/test.js",
-            "deps" : [],
-            "ver" : "2.0.1",
-            "in_footer" : "",
-            "is_page": [ "sample-page"]
-          },
-          {
-            "handle" : "test2-script",
-            "src" : "/assets/js/test2.js",
-            "deps" : null,
-            "ver" : null,
-            "in_footer" : "",
-            "is_page": ["sample-page"],
-            "is_plugin_active" :  ["woocommerce/woocommerce.php","duracelltomi-google-tag-manager/duracelltomi-google-tag-manager-for-wordpress.php"]
-          }]
-      },
-
-      "styles" : {
-        "files" : [
-          {
-            "handle" : "twentytwenty-child-style",
-            "src" : "/style.css",
-            "deps" : [],
-            "ver" : "",
-            "media" : ""
-          },
-          {
-            "handle" : "twentytwenty-child-style-editor",
-            "src" : "/assets/css/style-editor.css",
-            "deps" : [],
-            "ver" : "",
-            "media" : ""
-          },
-          {
-            "handle" : "twentytwenty-child-woocommerce-style",
-            "src" : "/assets/css/woocommerce.css",
-            "deps" : [],
-            "ver" : "",
-            "media" : "",
-            "is_plugin_active" :  ["woocommerce/woocommerce"]
-          }
-        ],
-        "blocks" : [
-          {
-            "name": "core/navigation",
-            "handle": "eewc-navigation",
-            "src"	: "assets/blocks/navigation.css",
-            "path"	: "assets/blocks/navigation.css",
-            "ver"	: null
-          }
-        ]
-      }
-    }
-  },
+  "settings": {},
   "styles": {
 		"blocks": {
       "core/button": {
