@@ -65,13 +65,8 @@ class Assets extends BaseController {
 		// Decode the JSON string to a PHP array
  		$decoded_file = json_decode( file_get_contents( $wp_theme_json_file ), true );
 
-
 		// Check if the necessary keys exist in the theme data.
-		if (
-			! array_key_exists( 'files', $decoded_file ) ||
-			! array_key_exists( 'scripts', $decoded_file['files'] ) ||
-			! array_key_exists( 'styles', $decoded_file['files'] )
-		) {
+		if ( ! array_key_exists( 'files', $decoded_file ) ) {
 			return false;
 		}
 
@@ -139,6 +134,8 @@ class Assets extends BaseController {
 
 			if ( ! empty( $file['deps'] ) ) {
 				$params[] = $file['deps'];
+			} else {
+				$params[] = array();
 			}
 
 			// avoid to print version if there is only handle param
@@ -152,6 +149,10 @@ class Assets extends BaseController {
 			}
 
 			if ( 'styles' === $type ) {
+				if ( ! empty( $file['media'] ) ) {
+					$params[] = $file['media'];
+				}
+
 				// Enqueue theme stylesheet.
 				wp_enqueue_style( ...$params );
 			}

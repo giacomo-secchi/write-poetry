@@ -31,8 +31,8 @@
         "handle" : "twentytwenty-child-style-editor",
         "src" : "/assets/css/style-editor.css",
         "deps" : [],
-        "ver" : "",
-        "media" : ""
+        "ver" : "1.1.1",
+        "media" : "print"
       },
       {
         "handle" : "twentytwenty-child-woocommerce-style",
