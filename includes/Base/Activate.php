@@ -12,13 +12,11 @@
 
 namespace WritePoetry\Base;
 
-use \WritePoetry\Base\BaseController;
 use \WritePoetry\Api\PluginConfig;
 
-class Activate extends BaseController {
+class Activate {
 
 	public static function activate() {
-		flush_rewrite_rules();
 
 		$config = PluginConfig::getInstance();
 
@@ -30,5 +28,7 @@ class Activate extends BaseController {
 
 			update_option( "{$config->prefix}_redirect_after_add", ( get_option( 'woocommerce_cart_redirect_after_add' ) === 'yes' ) ? 'cart' : '' );
 		}
+
+		flush_rewrite_rules();
 	}
 }

@@ -27,6 +27,14 @@ npm install
 # Start the local environment
 npm run env:start
 ```
+
+If no `vendor` folder is present, you have to install composer dependencies using this command:
+
+```bash
+npm run composer install -- --no-dev --no-interaction --prefer-dist --optimize-autoloader
+```
+
+
 Finally, navigate to http://localhost:8888 in your web browser to see WordPress running with the local WritePietry plugin and Twenty Twenty-Child theme running and activated. Default login credentials are username: admin password: password.
 
 ## Debugging
