@@ -70,6 +70,8 @@ function AnimationPlaceholder( { setAttributes } ) {
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  *
+ * @param {Object} props The properties passed to the function.
+ *
  * @return {WPElement} Element to render.
  */
 export default function Edit( props ) {

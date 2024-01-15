@@ -1,25 +1,26 @@
 import domReady from '@wordpress/dom-ready';
+import 'animate.css';
 
-
-
-const animateCSS = (element, animation, prefix = 'animate__') =>
-// We create a Promise and return it
-new Promise((resolve, reject) => {
-	const animationName = `${prefix}${animation}`;
-	// const node = document.querySelector(element);
+const animateCSS = ( element, animation, prefix = 'animate__' ) =>
+	// We create a Promise and return it
+	new Promise( ( resolve, reject ) => {
+		const animationName = `${ prefix }${ animation }`;
+		// const node = document.querySelector(element);
 		const node = element.target;
 
-		node.classList.add(`${prefix}animated`, animationName);
+		node.classList.add( `${ prefix }animated`, animationName );
 
 		// When the animation ends, we clean the classes and resolve the Promise
-		function handleAnimationEnd(event) {
+		function handleAnimationEnd( event ) {
 			event.stopPropagation();
-			node.classList.remove(`${prefix}animated`, animationName);
-			resolve('Animation ended');
+			node.classList.remove( `${ prefix }animated`, animationName );
+			resolve( 'Animation ended' );
 		}
 
-		node.addEventListener('animationend', handleAnimationEnd, {once: true});
-	});
+		node.addEventListener( 'animationend', handleAnimationEnd, {
+			once: true,
+		} );
+	} );
 
 /**
  * Builds a list of thresholds for the Intersection Observer API.
@@ -30,52 +31,52 @@ new Promise((resolve, reject) => {
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API}
  *
- * @returns {number[]} An array of thresholds.
+ * @return {number[]} An array of thresholds.
  */
 function buildThresholdList() {
-	let thresholds = [];
-	let numSteps = 20;
+	const thresholds = [];
+	const numSteps = 20;
 
-	for (let i = 1.0; i <= numSteps; i++) {
-		let ratio = i / numSteps;
-		thresholds.push(ratio);
+	for ( let i = 1.0; i <= numSteps; i++ ) {
+		const ratio = i / numSteps;
+		thresholds.push( ratio );
 	}
 
-	thresholds.push(0);
+	thresholds.push( 0 );
 	return thresholds;
 }
 
-
 domReady( function () {
+	const observer = new IntersectionObserver(
+		function ( entries, observer ) {
+			for ( const entry of entries ) {
+				let message = '';
+				if ( entry.isIntersecting ) {
+					if ( entry.intersectionRatio === 1 ) {
+						message = 'Target is fully visible in the screen';
+					} else if ( entry.intersectionRatio > 0.5 ) {
+						message =
+							'More than 50% of target is visible in the screen';
+					} else {
+						message =
+							'Less than 50% of target is visible in the screen';
+					}
 
-	let observer = new IntersectionObserver( function ( entries, observer ) {
-
-		for ( let entry of entries ) {
-			let message = '';
-			if ( entry.isIntersecting ) {
-				if ( entry.intersectionRatio  === 1 ) {
-					message = 'Target is fully visible in the screen';
-				} else if ( entry.intersectionRatio > 0.5 ) {
-					message =
-						'More than 50% of target is visible in the screen';
+					animateCSS( entry, entry.target.dataset.animation );
+					// observer.unobserve( entry.target );
 				} else {
-					message =
-					'Less than 50% of target is visible in the screen';
+					message = 'Target is not visible in the screen';
 				}
 
-				animateCSS( entry, entry.target.dataset.animation );
-				// observer.unobserve( entry.target );
-			} else {
-				message = 'Target is not visible in the screen';
+				console.log( message );
 			}
-
-			console.log( message );
-		}
-	}, { threshold: buildThresholdList() } );
-
-	document.querySelectorAll( '.animate__animated' ).forEach(
-		function( container) {
-			observer.observe( container );
-		}
+		},
+		{ threshold: buildThresholdList() }
 	);
+
+	document
+		.querySelectorAll( '.animate__animated' )
+		.forEach( function ( container ) {
+			observer.observe( container );
+		} );
 } );

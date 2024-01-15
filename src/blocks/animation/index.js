@@ -40,8 +40,9 @@ registerBlockType( metadata.name, {
 	/**
 	 * Sets animation.
 	 *
-	 * @param props
-	 * @returns {{'data-animationName': *}}
+	 * @param  props
+	 * @param  attributes
+	 * @return {{'data-animationName': *}}
 	 */
 	getEditWrapperProps( attributes ) {
 		// const { animationName } = attributes;
