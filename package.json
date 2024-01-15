@@ -6,6 +6,7 @@
 	"dependencies": {
 		"@wordpress/api-fetch": "^6.44.0",
 		"@wordpress/components": "^25.13.0",
+		"@wordpress/core-data": "^6.25.0",
 		"@wordpress/data": "^9.17.0",
 		"@wordpress/date": "^4.47.0",
 		"@wordpress/edit-post": "^7.24.0",

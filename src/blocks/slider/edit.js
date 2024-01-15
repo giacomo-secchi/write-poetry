@@ -1,50 +1,24 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
-import { __ } from '@wordpress/i18n';
+/* eslint-disable import/no-unresolved */
 
 /**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
+ * External dependencies
  */
-import { useBlockProps } from '@wordpress/block-editor';
 
 /**
- * WordPress components that create the necessary UI elements for the block
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-components/
+ * Internal dependencies
  */
- import { Spinner } from '@wordpress/components';
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
+import Carousel from './Carousel';
 import './editor.scss';
 
 /**
- * Custom imports
+ * WordPress dependencies
  */
- import apiFetch from '@wordpress/api-fetch';
- import { useState, Component } from '@wordpress/element';
-
-// import Swiper JS
-import Swiper from 'swiper';
-// import Swiper styles
-import 'swiper/css';
-
-const rootURL = 'https://wptavern.com/wp-json/';
-const nonce = '15a72f5e0c';
-
-apiFetch.use( apiFetch.createRootURLMiddleware( rootURL ) );
-apiFetch.use( apiFetch.createNonceMiddleware( nonce ) );
-
+import { __ } from '@wordpress/i18n';
+import { Spinner } from '@wordpress/components';
+import apiFetch from '@wordpress/api-fetch';
+import { useSelect } from '@wordpress/data';
+import { useState, Component } from '@wordpress/element';
+import { useBlockProps } from '@wordpress/block-editor';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -55,78 +29,75 @@ apiFetch.use( apiFetch.createNonceMiddleware( nonce ) );
  * @return {WPElement} Element to render.
  */
 
-class BlockEdit extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			list: [],
-			loading: true
-		}
+export default function Edit( props ) {
+	const blockProps = useBlockProps();
+	const { attributes, setAttributes } = props;
+	const { numberOfPosts } = attributes;
 
-	}
-
-
-	componentDidMount() {
-
-
-		// GET
-		apiFetch( { url: 'https://eternedile.it/wp-json/wp/v2/posts',
-		mode: 'cors', // no-cors, *cors, same-origin
-		cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-		credentials: 'omit', // include, *same-origin, omit
-		headers: {
-		  'Content-Type': 'application/json'
-		  // 'Content-Type': 'application/x-www-form-urlencoded',
-		},
-		redirect: 'follow', // manual, *follow, error
-		referrerPolicy: 'no-referrer',
-	} ).then( ( posts ) => {
-			console.log( posts );
-			this.setState({
-				list: posts,
-				loading: false
-			})
-			// debugger;
+	const posts = useSelect( ( select ) => {
+		return select( 'core' ).getEntityRecords( 'postType', 'post', {
+			per_page: numberOfPosts,
 		} );
-	}
+	} );
 
-	render() {
+	const isResolving = useSelect( ( select ) => {
+		return select( 'core/data' ).isResolving( 'core', 'getEntityRecords', [
+			'postType',
+			'post',
+			{ per_page: numberOfPosts },
+		] );
+	} );
 
-		const swiper = new Swiper('.swiper');
+	// const rootURL = 'https://wptavern.com/wp-json/';
+	// const nonce = '15a72f5e0c';
 
-		const posts = this.state.list;
-		const slides = [];
+	// apiFetch.use( apiFetch.createRootURLMiddleware( rootURL ) );
+	// apiFetch.use( apiFetch.createNonceMiddleware( nonce ) );
+	// GET
+	// 	apiFetch( { url: 'https://eternedile.it/wp-json/wp/v2/posts',
+	// 	mode: 'cors', // no-cors, *cors, same-origin
+	// 	cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+	// 	credentials: 'omit', // include, *same-origin, omit
+	// 	headers: {
+	// 	  'Content-Type': 'application/json'
+	// 	  // 'Content-Type': 'application/x-www-form-urlencoded',
+	// 	},
+	// 	redirect: 'follow', // manual, *follow, error
+	// 	referrerPolicy: 'no-referrer',
+	// } ).then( ( posts ) => {
+	// 		console.log( posts );
+	// 		this.setState({
+	// 			list: posts,
+	// 			isResolving: false
+	// 		})
+	// 	} );
 
-		posts.forEach((data) => {
-			//debugger;
-			{data.title}
-			slides.push(<div className='swiper-slide'>{data.title.rendered}</div>)
-		})
+	// this is an array of ReactNodes
+	const reactNodeArray = [
+		'Test',
+		42,
+		<span>I'm a span</span>,
+		null,
+		undefined,
+		false,
+		[
+			<p key="2">This is a paragraph in an array.</p>,
+			'Another string in an array',
+		],
+	];
 
-
-		return (
-
-			<div>
-				{ this.state.loading ? (
+	return (
+		// create a  wrapper div with the block props
+		<div { ...blockProps }>
+			{
+				/* here we use a conditional ternary operator to check  if the data is being fetched */
+				isResolving ? (
 					<Spinner />
 				) : (
-					<div className="swiper">
-					  <div className="swiper-wrapper">
-						{slides}
-					  </div>
-					  <div class="swiper-pagination"></div>
-
-					  <div class="swiper-button-prev"></div>
-					  <div class="swiper-button-next"></div>
-
-					  <div class="swiper-scrollbar"></div>
-					</div>
-				) }
-			</div>
-		);
-	}
-
+					/* print Carousel custom component with properties */
+					<Carousel delay={ 1000 } children={ reactNodeArray } />
+				)
+			}
+		</div>
+	);
 }
-
-export default BlockEdit;
-
