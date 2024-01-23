@@ -21,9 +21,10 @@ To get up and running within the WritePoetry Repo, you will need to make sure th
 > NOTE: If Docker Desktop application slows down your local machine, you could consider using [Local WP](https://localwp.com/) as an alternative.
 >
 > The steps are:
-> - Install [Local WP](https://localwp.com/help-docs/getting-started/installing-local/)
-> - Create a new website project in Local
+> - Install [Local WP](https://localwp.com/help-docs/getting-started/installing-local/).
+> - Create a new website project in Local.
 > - Clone the Write Poetry Plugin from GitHub directly into the `wp-content/plugins/` folder of the newly created project.
+> - Click on 'Start site' button and you are ready to go!
 
 Once you've installed all of the prerequisites, you can run the following commands to get everything working.
 
