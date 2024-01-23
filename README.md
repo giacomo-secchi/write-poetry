@@ -17,6 +17,14 @@ To get up and running within the WritePoetry Repo, you will need to make sure th
 -   [NVM](https://github.com/nvm-sh/nvm#installing-and-updating): While you can always install Node through other means, we recommend using NVM to ensure you're aligned with the version used by our development teams. The repository contains [an `.nvmrc` file](.nvmrc) which helps ensure you are using the correct version of Node.
 -   [Docker](https://docs.docker.com/get-docker/):     `wp-env` is powered by Docker. There are instructions available for installing Docker on [Windows](https://docs.docker.com/desktop/install/windows-install/) (we recommend the WSL2 backend), [macOS](https://docs.docker.com/docker-for-mac/install/), and [Linux](https://docs.docker.com/desktop/install/linux-install/).
 
+
+> NOTE: If Docker Desktop application slows down your local machine, you could consider using [Local WP](https://localwp.com/) as an alternative.
+>
+> The steps are:
+> - Install [Local WP](https://localwp.com/help-docs/getting-started/installing-local/)
+> - Create a new website project in Local
+> - Clone the Write Poetry Plugin from GitHub directly into the `wp-content/plugins/` folder of the newly created project.
+
 Once you've installed all of the prerequisites, you can run the following commands to get everything working.
 
 ```bash
