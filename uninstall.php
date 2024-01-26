@@ -1,6 +1,9 @@
 <?php
+/**
+ * Functionality that is executed when WritePoetry is uninstalled via built-in WordPress commands.
+ *
+ */
 
-// Testing for Anumit Jooloor
 
 // if uninstall.php is not called by WordPress, die
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
