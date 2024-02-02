@@ -64,6 +64,15 @@ Remember that the `pathMappings` inside `.vscode/launch.json` file should be as 
 }
 ```
 
+## Coding Standard
+
+
+Run the following command from the root directory to check the code for "sniffs".
+
+```bash
+vendor/bin/phpcs -ps
+```
+
 
 ## Creating a stable release
 
@@ -76,9 +85,9 @@ Contributors who want to make a new release, follow these steps:
 
 2. Add a git tag to the last commit with the same number of the plugin version, like this:
 ```bash
-	git tag -a 0.2.1 HEAD -m "Release 0.2.1"
+git tag -a 0.2.1 HEAD -m "Release 0.2.1"
 ```
 3. To trigger the release GitHub Action run:
 ```bash
-	git push --tags
+git push --tags
 ```
