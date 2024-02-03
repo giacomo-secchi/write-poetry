@@ -64,35 +64,11 @@ Remember that the `pathMappings` inside `.vscode/launch.json` file should be as 
 }
 ```
 
-## Coding Standard
 
+Contributing to WooCommerce
+If you have a patch or have stumbled upon an issue with WooCommerce core, you can contribute this back to the code. Please read our contributor guidelines for more information on how you can do this.
 
-Run the following command from the root directory to check the code for "sniffs".
-```bash
-npm run composer run-script check-cs
-```
+## Contributing to WritePoetry
 
-If you were unable to install the Docker program, as an alternative, you can [install composer the traditional way](https://getcomposer.org/download/) and run this command to check for "sniffs".
+Please read this plugin [contributor guidelines](CONTRIBUTING.md) for more information on how you can do this.
 
-```bash
-vendor/bin/phpcs -ps
-```
-
-
-## Creating a stable release
-
-Contributors who want to make a new release, follow these steps:
-
-1. Change the plugin `version` header field in the [main plugin file](write-poetry.php) and the `Stable tag` field in the Header informations of [readme.txt](readme.txt) file following the [WordPress versioning scheme](https://make.wordpress.org/core/handbook/about/release-cycle/version-numbering/)
-
-**N.B.: Don't forget to update the changelog with the details of the changes made in the new version.**
-
-
-2. Add a git tag to the last commit with the same number of the plugin version, like this:
-```bash
-git tag -a 0.2.1 HEAD -m "Release 0.2.1"
-```
-3. To trigger the release GitHub Action run:
-```bash
-git push --tags
-```
