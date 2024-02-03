@@ -68,6 +68,11 @@ Remember that the `pathMappings` inside `.vscode/launch.json` file should be as 
 
 
 Run the following command from the root directory to check the code for "sniffs".
+```bash
+npm run composer run-script check-cs
+```
+
+If you were unable to install the Docker program, as an alternative, you can [install composer the traditional way](https://getcomposer.org/download/) and run this command to check for "sniffs".
 
 ```bash
 vendor/bin/phpcs -ps
