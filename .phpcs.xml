@@ -29,6 +29,9 @@
 	<!-- Exclude Javascript files. -->
 	<exclude-pattern>*.js</exclude-pattern>
 
+	<!-- Exclude Stylesheets files. -->
+	<exclude-pattern>*.css</exclude-pattern>
+
 	<!-- Strip the filepaths down to the relevant bit. -->
 	<arg name="basepath" value="."/>
 
