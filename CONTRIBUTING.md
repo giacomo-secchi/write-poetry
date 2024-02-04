@@ -13,6 +13,8 @@ Some hints [here](https://www.git-tower.com/learn/git/faq/change-author-name-ema
 
 Commit all your changes in your own branch. Before making any code change, start a new Git branch where all your changes will be made.
 
+### Suggestions for commit messages
+Read here for some guidelines on [writing better commit messages](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/).
 
 
 ## Coding Standard
