@@ -15,10 +15,10 @@ namespace WritePoetry\FSE\Theme;
 use WritePoetry\Base\BaseController;
 
 /**
-*
-*/
+ *
+ */
 class Assets extends BaseController {
-/**
+	/**
 	 * Initialize the class
 	 */
 	public function register() {
@@ -40,7 +40,6 @@ class Assets extends BaseController {
 
 	/**
 	 * Get active theme name.
-	 *
 	 */
 	public function get_theme_slug() {
 		return get_stylesheet();
@@ -54,7 +53,7 @@ class Assets extends BaseController {
 	function scripts() {
 
 		// Get configuration data from write-poetry-theme.json
-		$wp_theme_json_file =  get_theme_file_path( '/write-poetry-theme.json' );
+		$wp_theme_json_file = get_theme_file_path( '/write-poetry-theme.json' );
 
 		// Check if the file exists
 		if ( ! file_exists( $wp_theme_json_file ) ) {
@@ -63,7 +62,7 @@ class Assets extends BaseController {
 
 		// Get the JSON string from the file
 		// Decode the JSON string to a PHP array
- 		$decoded_file = json_decode( file_get_contents( $wp_theme_json_file ), true );
+		$decoded_file = json_decode( file_get_contents( $wp_theme_json_file ), true );
 
 		// Check if the necessary keys exist in the theme data.
 		if ( ! array_key_exists( 'files', $decoded_file ) ) {
@@ -85,7 +84,6 @@ class Assets extends BaseController {
 	 */
 	private function check_conditional_tags( $params ) {
 
-
 		foreach ( $params as $conditional_tag => $param ) {
 
 			if ( strpos( $conditional_tag, 'is_' ) === 0 ) {
@@ -100,7 +98,6 @@ class Assets extends BaseController {
 					}
 				}
 			}
-
 		}
 
 		return true; // All conditions are met.
@@ -115,8 +112,7 @@ class Assets extends BaseController {
 	 */
 	private function enqueue_theme_files( $files, $type ) {
 
-		$version_string = empty( $file['ver'] ) ?  $this->get_theme_version() : $file['ver'];
-
+		$version_string = empty( $file['ver'] ) ? $this->get_theme_version() : $file['ver'];
 
 		foreach ( $files as $file ) {
 			// Check required dependencies
@@ -125,7 +121,7 @@ class Assets extends BaseController {
 			$this->check_conditional_tags( $file );
 
 			$params = array(
-				$file['handle']
+				$file['handle'],
 			);
 
 			if ( ! empty( $file['src'] ) ) {
@@ -171,10 +167,10 @@ class Assets extends BaseController {
 
 		// Get the base assets path using a filter hook.
 		// This allows customization of the path through the 'writepoetry_blocks_styles_asset_path' filter.
-		$base_assets_path = apply_filters( "{$this->prefix}_blocks_styles_asset_path", join( DIRECTORY_SEPARATOR, array('assets', 'css', 'blocks') ) );
+		$base_assets_path = apply_filters( "{$this->prefix}_blocks_styles_asset_path", join( DIRECTORY_SEPARATOR, array( 'assets', 'css', 'blocks' ) ) );
 
 		// Use glob to get the list of stylesheets files in the assets folder
-		$blocks_path = glob( get_theme_file_path( $base_assets_path ) .'/*/*.css' );
+		$blocks_path = glob( get_theme_file_path( $base_assets_path ) . '/*/*.css' );
 
 		/*
 		* Load additional block styles.
@@ -190,13 +186,15 @@ class Assets extends BaseController {
 			$block_slug = str_replace( '/', '-', $block_name );
 
 			// Enqueue asset.
-			wp_enqueue_block_style( $block_name, array(
-				'handle' => "$theme_slug-block-$block_slug",
-				'src'    => get_theme_file_uri( "$base_assets_path/$block_name.css" ),
-				'path'   => wp_normalize_path( $block_path ),
-				'ver'	 => $this->get_theme_version()
-			) );
+			wp_enqueue_block_style(
+				$block_name,
+				array(
+					'handle' => "$theme_slug-block-$block_slug",
+					'src'    => get_theme_file_uri( "$base_assets_path/$block_name.css" ),
+					'path'   => wp_normalize_path( $block_path ),
+					'ver'    => $this->get_theme_version(),
+				)
+			);
 		}
 	}
 }
-

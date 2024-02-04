@@ -12,10 +12,9 @@
 
 namespace WritePoetry\Plugins;
 
-
 /**
-*
-*/
+ *
+ */
 class Gtm4wp {
 	/**
 	 * Invoke hooks.
@@ -35,8 +34,7 @@ class Gtm4wp {
 	 * @return void
 	 */
 	public function GTM_noscript_container_code() {
-		if ( function_exists( 'gtm4wp_the_gtm_tag' ) ) { gtm4wp_the_gtm_tag(); }
+		if ( function_exists( 'gtm4wp_the_gtm_tag' ) ) {
+			gtm4wp_the_gtm_tag(); }
 	}
-
 }
-

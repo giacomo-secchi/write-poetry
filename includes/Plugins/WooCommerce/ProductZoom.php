@@ -12,11 +12,11 @@
 
 namespace WritePoetry\Plugins\WooCommerce;
 
-use \WritePoetry\Base\BaseController;
+use WritePoetry\Base\BaseController;
 
 /**
-*
-*/
+ *
+ */
 class ProductZoom extends WooCommerceController {
 	/**
 	 * Invoke hooks.
@@ -33,15 +33,21 @@ class ProductZoom extends WooCommerceController {
 
 	// Disable product zoom
 	public function disable_product_zoom() {
-		add_action( 'wp', function () {
-			remove_theme_support( 'wc-product-gallery-zoom' );
-			// remove_theme_support( 'wc-product-gallery-lightbox' );
-			// remove_theme_support( 'wc-product-gallery-slider' );
-		} , 100 );
+		add_action(
+			'wp',
+			function () {
+				remove_theme_support( 'wc-product-gallery-zoom' );
+				// remove_theme_support( 'wc-product-gallery-lightbox' );
+				// remove_theme_support( 'wc-product-gallery-slider' );
+			},
+			100
+		);
 
-		add_filter( 'woocommerce_single_product_image_thumbnail_html', function ( $html ) {
-			return strip_tags( $html, '<div><img>' );
-		} );
+		add_filter(
+			'woocommerce_single_product_image_thumbnail_html',
+			function ( $html ) {
+				return strip_tags( $html, '<div><img>' );
+			}
+		);
 	}
 }
-

@@ -12,11 +12,11 @@
 
 namespace WritePoetry\Base\Development;
 
-use \WritePoetry\Base\BaseController;
+use WritePoetry\Base\BaseController;
 
 /**
-*
-*/
+ *
+ */
 class Example extends BaseController {
 	/**
 	 * Invoke hooks.
@@ -32,8 +32,4 @@ class Example extends BaseController {
 		wp_enqueue_style( 'mypluginstyle', $this->plugin_url . 'assets/mystyle.css' );
 		wp_enqueue_script( 'mypluginscript', $this->plugin_url . 'assets/myscript.js' );
 	}
-
-
-
 }
-

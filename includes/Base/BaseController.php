@@ -11,12 +11,13 @@
  */
 
 namespace WritePoetry\Base;
-use \WritePoetry\Api\PluginConfig;
+
+use WritePoetry\Api\PluginConfig;
 
 
 /**
-*
-*/
+ *
+ */
 class BaseController {
 
 
@@ -28,29 +29,30 @@ class BaseController {
 		$this->config = new PluginConfig();
 	}
 
-    /**
-     * Magic method that allows accessing configuration properties as if they were class properties.
-     *
-     * @param string $property The name of the property to retrieve from the $config object.
-     *
-     * @return mixed The value of the requested property if it exists in $config.
-     * @throws \Exception If the requested property does not exist in the $config object.
-     */
+	/**
+	 * Magic method that allows accessing configuration properties as if they were class properties.
+	 *
+	 * @param string $property The name of the property to retrieve from the $config object.
+	 *
+	 * @return mixed The value of the requested property if it exists in $config.
+	 * @throws \Exception If the requested property does not exist in the $config object.
+	 */
 	public function __get( $property ) {
 
 		if ( property_exists( $this->config, $property ) ) {
-            return $this->config->$property;
-        } else {
-            throw new \Exception("Property '$property' does not exist.");
-        }
-    }
+			return $this->config->$property;
+		} else {
+			throw new \Exception( "Property '$property' does not exist." );
+		}
+	}
 
 	public function is_woocommerce_activated() {
-		add_filter( 'plugins_loaded', function () {
+		add_filter(
+			'plugins_loaded',
+			function () {
 
-			return class_exists( 'WooCommerce' ) ? true : false;
-		} );
-
+				return class_exists( 'WooCommerce' ) ? true : false;
+			}
+		);
 	}
 }
-

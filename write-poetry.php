@@ -29,28 +29,35 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
-    require __DIR__ . '/vendor/autoload.php';
+	require __DIR__ . '/vendor/autoload.php';
 }
 
 
 /**
  * The code that runs during plugin activation
  */
-register_activation_hook( __FILE__, function() {
-	WritePoetry\Base\Activate::activate();
-} );
+register_activation_hook(
+	__FILE__,
+	function () {
+		WritePoetry\Base\Activate::activate();
+	}
+);
 
 
 /**
  * The code that runs during plugin deactivation
  */
-register_deactivation_hook( __FILE__, function() {
-	WritePoetry\Base\Deactivate::deactivate();
-} );
+register_deactivation_hook(
+	__FILE__,
+	function () {
+		WritePoetry\Base\Deactivate::deactivate();
+	}
+);
 
 
 /**
  * Initialize all the core classes of the plugin
+ *
  * @since 0.2.2
  */
 if ( class_exists( 'WritePoetry\\Init' ) ) {

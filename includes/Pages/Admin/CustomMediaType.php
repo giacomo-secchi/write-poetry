@@ -12,13 +12,13 @@
 
 namespace WritePoetry\Pages\Admin;
 
-use \WritePoetry\Base\AddMimeTypes;
-use \WritePoetry\Pages\AdminController;
+use WritePoetry\Base\AddMimeTypes;
+use WritePoetry\Pages\AdminController;
 
 
 /**
-*
-*/
+ *
+ */
 class CustomMediaType extends AdminController {
 
 	public $settings;
@@ -29,13 +29,13 @@ class CustomMediaType extends AdminController {
 	 *
 	 * @return void
 	 */
-	public function register () {
+	public function register() {
 
 		/**
 		 * register wp_setting_init to the admin_init action hook
 		 */
-		add_action( 'admin_init', array( $this,'wp_setting_init' ) );
- 	}
+		add_action( 'admin_init', array( $this, 'wp_setting_init' ) );
+	}
 
 	public function __construct() {
 		parent::__construct();
@@ -50,25 +50,20 @@ class CustomMediaType extends AdminController {
 	 */
 
 	// section content cb
-	function supported_media_types_section_cb () {
+	function supported_media_types_section_cb() {
 		esc_html(
-			printf( implode( ', ', array_keys(  wp_get_mime_types() ) ) )
+			printf( implode( ', ', array_keys( wp_get_mime_types() ) ) )
 		);
 	}
 
 
 	public function wp_setting_init() {
-	    // register a new section in the "reading" page
+		// register a new section in the "reading" page
 		add_settings_section(
-	        "{$this->prefix}_supported_media_types_section",
-	        __( 'Supported media types', 'write-poetry' ),
-	        array( $this, 'supported_media_types_section_cb' ),
-	        'media'
-	    );
-
-
+			"{$this->prefix}_supported_media_types_section",
+			__( 'Supported media types', 'write-poetry' ),
+			array( $this, 'supported_media_types_section_cb' ),
+			'media'
+		);
 	}
-
-
 }
-

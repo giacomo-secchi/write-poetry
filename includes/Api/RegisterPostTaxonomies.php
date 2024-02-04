@@ -10,35 +10,33 @@
  * @since             0.2.5
  */
 
- namespace WritePoetry\Api;
+namespace WritePoetry\Api;
 
 use WritePoetry\Base\BaseController;
 
 class RegisterPostTaxonomies extends BaseController {
 
-    /**
-     * Initialize the class
-     */
-    public function register() {
-        add_action( 'init', array( $this, 'register_custom_taxonomies' ) );
-    }
+	/**
+	 * Initialize the class
+	 */
+	public function register() {
+		add_action( 'init', array( $this, 'register_custom_taxonomies' ) );
+	}
 
 	/**
-     * Register Custom Taxonomies
-     *
-     * @since  0.2.5
-     * @access public
-     * @return void
-     */
-    public function register_custom_taxonomies() {
-
+	 * Register Custom Taxonomies
+	 *
+	 * @since  0.2.5
+	 * @access public
+	 * @return void
+	 */
+	public function register_custom_taxonomies() {
 
 		$default_args = array(
-			'hierarchical'               => true,
-			'public'                     => true,
-			'show_in_nav_menus'          => true
-        );
-
+			'hierarchical'      => true,
+			'public'            => true,
+			'show_in_nav_menus' => true,
+		);
 
 		foreach ( apply_filters( "{$this->prefix}_add_custom_taxonomies", array() ) as $taxonomy => $args ) {
 			if ( taxonomy_exists( $taxonomy ) ) {
@@ -47,12 +45,9 @@ class RegisterPostTaxonomies extends BaseController {
 
 			$args = array_merge( $default_args, $args );
 
-
-			$object_type = $args["post_type"];
+			$object_type = $args['post_type'];
 
 			register_taxonomy( $taxonomy, $object_type, $args ); // Register Custom Post Type
 		}
-    }
+	}
 }
-
-

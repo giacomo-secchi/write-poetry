@@ -12,12 +12,12 @@
 
 namespace WritePoetry\Base\Development;
 
-use \WritePoetry\Base\BaseController;
-use \WritePoetry\Base\Utils;
+use WritePoetry\Base\BaseController;
+use WritePoetry\Base\Utils;
 
 /**
-*
-*/
+ *
+ */
 class MaintenanceMode extends BaseController {
 	/**
 	 * Invoke hooks.
@@ -35,7 +35,7 @@ class MaintenanceMode extends BaseController {
 			return;
 		}
 
-		add_action('wp', array( $this, 'excluded_pages' ) );
+		add_action( 'wp', array( $this, 'excluded_pages' ) );
 	}
 
 
@@ -58,7 +58,6 @@ class MaintenanceMode extends BaseController {
 		if ( '1' == get_option( "{$this->prefix}_maintenance_mode" ) ) {
 			$this->wp_maintenance();
 		}
-
 	}
 
 	public function wp_maintenance() {
@@ -78,6 +77,4 @@ class MaintenanceMode extends BaseController {
 			503
 		);
 	}
-
 }
-
