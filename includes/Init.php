@@ -11,14 +11,16 @@
  */
 
 namespace WritePoetry;
-use \WritePoetry\Api\PluginConfig;
+
+use WritePoetry\Api\PluginConfig;
 
 
 
-final class Init
-{
+final class Init {
+
 	/**
 	 * Store all the classes inside an array
+	 *
 	 * @return array Full list of classes
 	 */
 	public static function get_services() {
@@ -37,9 +39,9 @@ final class Init
 			// Plugins\Gtm4wp::class
 		);
 
-
 		if ( is_admin() ) {
-			array_push( $services,
+			array_push(
+				$services,
 				Pages\Admin\SettingsPage::class,
 				Pages\Admin\CustomMediaType::class,
 				Pages\Admin\SettingsLink::class,
@@ -48,23 +50,21 @@ final class Init
 			);
 		}
 
-
-
 		// TODO: Restore filter to be sure that all plugins are loaded before check if WooCommerce is enabled
 		// add_filter( 'plugins_loaded', function ( ) use ( $services ) {
 
-			if ( class_exists( 'WooCommerce' ) ) {
-				array_push( $services,
-					Plugins\WooCommerce\CartRedirect::class,
-					Plugins\WooCommerce\ProductZoom::class,
-					Plugins\WooCommerce\ProductAdditionalInfos::class,
-					Plugins\WooCommerce\WooCommerceController::class,
-					Plugins\WooCommerce\QuantityLayout::class
-				);
-			}
+		if ( class_exists( 'WooCommerce' ) ) {
+			array_push(
+				$services,
+				Plugins\WooCommerce\CartRedirect::class,
+				Plugins\WooCommerce\ProductZoom::class,
+				Plugins\WooCommerce\ProductAdditionalInfos::class,
+				Plugins\WooCommerce\WooCommerceController::class,
+				Plugins\WooCommerce\QuantityLayout::class
+			);
+		}
 
 		// } );
-
 
 		return $services;
 	}
@@ -72,6 +72,7 @@ final class Init
 	/**
 	 * Loop through the classes, initialize them,
 	 * and call the register() method if it exists
+	 *
 	 * @return
 	 */
 	public static function register_services() {
@@ -85,6 +86,7 @@ final class Init
 
 	/**
 	 * Initialize the class
+	 *
 	 * @param  class $class    class from the services array
 	 * @return class instance  new instance of the class
 	 */

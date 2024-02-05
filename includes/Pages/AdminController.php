@@ -12,12 +12,12 @@
 
 namespace WritePoetry\Pages;
 
-use \WritePoetry\Base\BaseController;
+use WritePoetry\Base\BaseController;
 
 
 /**
-*
-*/
+ *
+ */
 class AdminController extends BaseController {
 
 
@@ -58,6 +58,4 @@ class AdminController extends BaseController {
 
 		return false;
 	}
-
 }
-

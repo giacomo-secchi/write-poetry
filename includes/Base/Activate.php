@@ -12,7 +12,7 @@
 
 namespace WritePoetry\Base;
 
-use \WritePoetry\Api\PluginConfig;
+use WritePoetry\Api\PluginConfig;
 
 class Activate {
 

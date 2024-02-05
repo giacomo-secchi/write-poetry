@@ -12,11 +12,11 @@
 
 namespace WritePoetry\FSE;
 
-use \WritePoetry\Base\BaseController;
+use WritePoetry\Base\BaseController;
 
 /**
-*
-*/
+ *
+ */
 class Blocks extends BaseController {
 	private $block_name = array();
 
@@ -58,7 +58,7 @@ class Blocks extends BaseController {
 		foreach ( $this->block_name as $block_name ) {
 			$template_path = $this->build_path . '/blocks/' . $block_name . '/template.php';
 
-			if ( ! empty( $block->block_type->view_script_handles )) {
+			if ( ! empty( $block->block_type->view_script_handles ) ) {
 				// viewScript is defined
 				wp_enqueue_script( $block->block_type->view_script_handles );
 			}
@@ -96,4 +96,3 @@ class Blocks extends BaseController {
 		}
 	}
 }
-

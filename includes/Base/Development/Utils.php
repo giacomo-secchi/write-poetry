@@ -33,7 +33,6 @@ class Utils extends BaseController {
 			add_filter( 'style_loader_src', array( $this, 'remove_query_string_from_static_files' ), 10, 2 );
 			add_filter( 'script_loader_src', array( $this, 'remove_query_string_from_static_files' ), 10, 2 );
 		}
-
 	}
 
 
@@ -49,12 +48,10 @@ class Utils extends BaseController {
 
 	// Remove version query string from static CSS files
 	public static function remove_query_string_from_static_files( $src ) {
-  		if ( strpos( $src, 'ver=' ) ) {
+		if ( strpos( $src, 'ver=' ) ) {
 			$src = remove_query_arg( 'ver', $src );
 		}
 
 		return $src;
 	}
-
 }
-

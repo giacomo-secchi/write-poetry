@@ -46,7 +46,7 @@ import './editor.scss';
  * Internal dependencies
  */
 import { settings } from './index';
-import { animationIcon } from './icons';
+import { animationIcon } from '../../packages/icons';
 
 function AnimationPlaceholder( { setAttributes } ) {
 	return (

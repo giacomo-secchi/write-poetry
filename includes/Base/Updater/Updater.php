@@ -2,7 +2,6 @@
 
 /**
  * Wrap the Smashing_Updater class
- *
  */
 
 namespace WritePoetry\Base\Updater;

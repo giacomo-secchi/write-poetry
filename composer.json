@@ -14,5 +14,24 @@
             "name": "Giacomo Secchi",
             "email": "giacomo.secchi@gmail.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "scripts": {
+      "check-cs": [
+        "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs -ps"
+      ],
+      "fix-cs": [
+        "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf --report=summary,source"
+      ],
+      "check-all": [
+        "@check-cs"
+      ]
+	  }
 }

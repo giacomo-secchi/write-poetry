@@ -74,6 +74,8 @@ export default function Edit( props ) {
 
 	// this is an array of ReactNodes
 	const reactNodeArray = [
+		'',
+		'',
 		'Test',
 		42,
 		<span>I'm a span</span>,
@@ -95,7 +97,7 @@ export default function Edit( props ) {
 					<Spinner />
 				) : (
 					/* print Carousel custom component with properties */
-					<Carousel delay={ 1000 } children={ reactNodeArray } />
+					<Carousel delay={ 1000 } elements={ reactNodeArray } />
 				)
 			}
 		</div>

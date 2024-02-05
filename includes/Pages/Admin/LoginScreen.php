@@ -12,11 +12,11 @@
 
 namespace WritePoetry\Pages\Admin;
 
-use \WritePoetry\Pages\AdminController;
+use WritePoetry\Pages\AdminController;
 
 /**
-*
-*/
+ *
+ */
 class LoginScreen extends AdminController {
 	/**
 	 * Invoke hooks.
@@ -25,22 +25,21 @@ class LoginScreen extends AdminController {
 	 */
 	public function register() {
 
-
 		add_action( 'login_head', array( $this, 'custom_loginlogo' ) );
-		add_filter( 'login_headerurl', array( $this, 'custom_loginlogo_url') );
+		add_filter( 'login_headerurl', array( $this, 'custom_loginlogo_url' ) );
 		add_filter( 'login_headertext', array( $this, 'custom_login_title' ) );
 		add_filter( 'login_title', array( $this, 'custom_login_title' ) );
 	}
 
 	function custom_loginlogo() {
-		$site_icon = get_site_icon_url();
+		$site_icon        = get_site_icon_url();
 		$background_image = '';
 
 		if ( ! empty( $site_icon ) ) {
 			$background_image = $site_icon;
-		} else if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
-			$custom_logo_id = get_theme_mod( 'custom_logo' );
-			$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+		} elseif ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+			$custom_logo_id   = get_theme_mod( 'custom_logo' );
+			$image            = wp_get_attachment_image_src( $custom_logo_id, 'full' );
 			$background_image = $image[0];
 		}
 
@@ -55,7 +54,6 @@ class LoginScreen extends AdminController {
 			}
 			</style>';
 		}
-
 	}
 
 	function custom_loginlogo_url( $url ) {
@@ -67,4 +65,3 @@ class LoginScreen extends AdminController {
 		return get_bloginfo( 'name' );
 	}
 }
-

@@ -2,26 +2,26 @@
 
 namespace WritePoetry\Pages\Admin\Views;
 
-use \WritePoetry\Api\PluginConfig;
-use \WritePoetry\Pages\Admin\SettingsPage;
+use WritePoetry\Api\PluginConfig;
+use WritePoetry\Pages\Admin\SettingsPage;
 
 
 class HtmlContent {
-    public static function getForm() {
+	public static function getForm() {
 
 		$settingsPage = new SettingsPage();
-		$page = $settingsPage->getPageSlug();
+		$page         = $settingsPage->getPageSlug();
 		$option_group = $settingsPage->getOptionGroup();
 
 		?>
 		<div class="wrap">
-			<h1><?php echo esc_html( sprintf( __( '%s Settings' ),  get_admin_page_title() ) ); ?></h1>
+			<h1><?php echo esc_html( sprintf( __( '%s Settings' ), get_admin_page_title() ) ); ?></h1>
 
 			<?php settings_errors(); ?>
 
 			<form action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" method="post">
 				<?php
-        			// output security fields for the registered setting "{$config->prefix}-settings-group"
+					// output security fields for the registered setting "{$config->prefix}-settings-group"
 					settings_fields( $option_group );
 					// output setting sections and their fields
 					// (sections are registered for "{$config->prefix}-settings", each field is registered to a specific section)
@@ -31,6 +31,6 @@ class HtmlContent {
 				?>
 			</form>
 		</div>
-        <?php
-    }
+		<?php
+	}
 }

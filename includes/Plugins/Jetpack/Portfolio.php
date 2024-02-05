@@ -12,11 +12,11 @@
 
 namespace WritePoetry\Plugins\Jetpack;
 
-use \WritePoetry\Base\BaseController;
+use WritePoetry\Base\BaseController;
 
 /**
-*
-*/
+ *
+ */
 class Portfolio extends BaseController {
 	/**
 	 * Invoke hooks.
@@ -40,7 +40,7 @@ class Portfolio extends BaseController {
 		$file_name = 'plugin-jetpack';
 
 		// Automatically load imported dependencies and assets version.
-		$asset_file = include( sprintf( '%s%s%s.asset.php', $this->build_path, DIRECTORY_SEPARATOR, $file_name ) );
+		$asset_file = include sprintf( '%s%s%s.asset.php', $this->build_path, DIRECTORY_SEPARATOR, $file_name );
 
 		wp_enqueue_script(
 			'writepoetry-gutenberg-sidebar',
@@ -57,51 +57,51 @@ class Portfolio extends BaseController {
 			'jetpack-portfolio',
 			'_writepoetry_project_year',
 			array(
-				'show_in_rest' => true,
-				'type' => 'number',
-				'single' => true,
+				'show_in_rest'  => true,
+				'type'          => 'number',
+				'single'        => true,
 				'auth_callback' => function () {
 					return current_user_can( 'edit_posts' );
-				}
+				},
 			)
 		);
 
 		register_post_meta(
 			'jetpack-portfolio',
 			'_writepoetry_project_client',
-				array(
-					'show_in_rest' => true,
-					'type' => 'string',
-					'single' => true,
-					'auth_callback' => function () {
-						return current_user_can( 'edit_posts' );
-					}
+			array(
+				'show_in_rest'  => true,
+				'type'          => 'string',
+				'single'        => true,
+				'auth_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				},
 			)
 		);
 
 		register_post_meta(
 			'jetpack-portfolio',
 			'_writepoetry_project_expertise',
-				array(
-					'show_in_rest' => true,
-					'type' => 'string',
-					'single' => true,
-					'auth_callback' => function () {
-						return current_user_can( 'edit_posts' );
-					}
+			array(
+				'show_in_rest'  => true,
+				'type'          => 'string',
+				'single'        => true,
+				'auth_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				},
 			)
 		);
 
 		register_post_meta(
 			'jetpack-portfolio',
 			'_writepoetry_project_industry',
-				array(
-					'show_in_rest' => true,
-					'type' => 'string',
-					'single' => true,
-					'auth_callback' => function () {
-						return current_user_can( 'edit_posts' );
-					}
+			array(
+				'show_in_rest'  => true,
+				'type'          => 'string',
+				'single'        => true,
+				'auth_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				},
 			)
 		);
 	}
@@ -117,9 +117,4 @@ class Portfolio extends BaseController {
 			array( '__back_compat_meta_box' => true )
 		);
 	}
-
 }
-
-
-
-

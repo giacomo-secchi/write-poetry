@@ -23,7 +23,7 @@ import save from './save';
 import metadata from './block.json';
 import options from './options';
 import variations from './variations';
-import { animationIcon } from './icons';
+import { animationIcon } from '../../packages/icons';
 
 export const settings = {
 	options,

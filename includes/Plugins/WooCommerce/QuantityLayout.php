@@ -12,11 +12,11 @@
 
 namespace WritePoetry\Plugins\WooCommerce;
 
-use \WritePoetry\Base\BaseController;
+use WritePoetry\Base\BaseController;
 
 /**
-*
-*/
+ *
+ */
 class QuantityLayout extends WooCommerceController {
 	/**
 	 * Invoke hooks.
@@ -37,15 +37,16 @@ class QuantityLayout extends WooCommerceController {
 			$min_quantity = get_option( "{$this->prefix}_product_min_quantity" );
 		}
 
-
 		// product quantity selector configurations
 
 		// this filter prevent to override the `quantity-input.php` template
-		add_filter( "{$this->prefix}_exclude_woocommerce_template", function( $templates ) {
- 			$templates[] = 'global/quantity-input.php';
-			return $templates;
-		} );
-
+		add_filter(
+			"{$this->prefix}_exclude_woocommerce_template",
+			function ( $templates ) {
+				$templates[] = 'global/quantity-input.php';
+				return $templates;
+			}
+		);
 
 		if ( 'input' == get_option( "{$this->prefix}_product_quantity_layout" ) ) {
 			return false;
@@ -56,7 +57,7 @@ class QuantityLayout extends WooCommerceController {
 			$this->change_quantity_input( $min_quantity );
 		}
 
-		if ( 'buttons' === get_option("{$this->prefix}_product_quantity_layout" ) ) {
+		if ( 'buttons' === get_option( "{$this->prefix}_product_quantity_layout" ) ) {
 			add_action( 'woocommerce_before_quantity_input_field', array( $this, 'display_quantity_minus' ) );
 			add_action( 'woocommerce_after_quantity_input_field', array( $this, 'display_quantity_plus' ) );
 			add_action( 'wp_footer', array( $this, 'add_cart_quantity_plus_minus' ) );
@@ -65,25 +66,30 @@ class QuantityLayout extends WooCommerceController {
 
 		}
 
-		if ( 'select' === get_option("{$this->prefix}_product_quantity_layout" ) ) {
+		if ( 'select' === get_option( "{$this->prefix}_product_quantity_layout" ) ) {
 			$this->change_quantity_input( $max_quantity, $min_quantity );
 
-
 			// this readd quantity input to the filter
-			add_filter( "{$this->prefix}_exclude_woocommerce_template", function( $templates ) {
-			 return array_filter( $templates, fn($template) => strpos( $template, 'global/quantity-input.php' ) === false );
-		   } );
-
+			add_filter(
+				"{$this->prefix}_exclude_woocommerce_template",
+				function ( $templates ) {
+					return array_filter( $templates, fn( $template ) => strpos( $template, 'global/quantity-input.php' ) === false );
+				}
+			);
 
 		}
 
 		// product quantity input configurations
 		if ( get_option( "{$this->prefix}_quantity_input_step" ) ) {
-			add_filter( 'woocommerce_quantity_input_step', function ( $step, $product ) {
-				return get_option( "{$this->prefix}_quantity_input_step" );
-			}, 10, 2 );
+			add_filter(
+				'woocommerce_quantity_input_step',
+				function ( $step, $product ) {
+					return get_option( "{$this->prefix}_quantity_input_step" );
+				},
+				10,
+				2
+			);
 		}
-
 	}
 
 
@@ -118,7 +124,8 @@ class QuantityLayout extends WooCommerceController {
 			return false;
 		}
 
-		wc_enqueue_js( "
+		wc_enqueue_js(
+			"
 
 			$(document).on( 'click', 'button.quantity__plus, button.quantity__minus', function() {
 
@@ -149,11 +156,12 @@ class QuantityLayout extends WooCommerceController {
 
 			});
 
-		" );
+		"
+		);
 
-
-
-		wp_add_inline_style( 'woocommerce-blocktheme', '
+		wp_add_inline_style(
+			'woocommerce-blocktheme',
+			'
 		/* Works for Chrome, Safari, Edge, Opera */
 		input::-webkit-outer-spin-button,
 		input::-webkit-inner-spin-button {
@@ -165,8 +173,7 @@ class QuantityLayout extends WooCommerceController {
 		input[type="number"] {
 			-moz-appearance: textfield;
 		}
-		');
+		'
+		);
 	}
-
 }
-
