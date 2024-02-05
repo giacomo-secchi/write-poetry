@@ -25,6 +25,12 @@ Run the following command from the root directory to check the code for "sniffs"
 ```bash
 npm run composer run-script check-cs
 ```
+Run PHP Code Beautifier and Fixer script to automatically correct coding standard violations.
+
+```bash
+npm run composer run-script fix-cs
+```
+
 
 If you were unable to install the Docker program, as an alternative, you can [install composer the traditional way](https://getcomposer.org/download/) and run this command to check for "sniffs".
 
@@ -32,7 +38,11 @@ If you were unable to install the Docker program, as an alternative, you can [in
 vendor/bin/phpcs -ps
 ```
 
+and this command to fix them.
 
+```bash
+php vendor/bin/phpcbf
+```
 
 ## Creating a stable release
 
