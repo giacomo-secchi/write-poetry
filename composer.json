@@ -25,10 +25,10 @@
     },
     "scripts": {
       "check-cs": [
-        "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs -ps"
+        "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs -ps ./themes/twentytwenty-child/page-sample-page.php"
       ],
       "fix-cs": [
-        "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf --report=summary,source"
+        "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf --report=summary,source ./themes/twentytwenty-child/"
       ],
       "check-all": [
         "@check-cs"

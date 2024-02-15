@@ -108,8 +108,8 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="my-textdomain"/>
-				<element value="library-textdomain"/>
+				<element value="write-poetry"/>
+				<element value="twenties"/>
 			</property>
 		</properties>
 	</rule>
@@ -117,7 +117,8 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
-				<element value="my_prefix"/>
+				<element value="writepoetry"/>
+				<element value="twenties"/>
 			</property>
 		</properties>
 	</rule>
