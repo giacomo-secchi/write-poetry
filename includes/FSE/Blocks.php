@@ -66,7 +66,7 @@ class Blocks extends BaseController {
 	/**
 	 * Register multiple blocks callback.
 	 *
-	 * @param array $attributes The block attributes.
+	 * @param array  $attributes The block attributes.
 	 * @param string $content The block content.
 	 * @param object $block The block object.
 	 *

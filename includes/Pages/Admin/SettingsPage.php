@@ -14,7 +14,6 @@ namespace WritePoetry\Pages\Admin;
 
 use WritePoetry\Pages\AdminController;
 
-
 /**
  * Options Settings subpage.
  */
@@ -41,6 +40,9 @@ class SettingsPage extends AdminController {
 	 */
 	private $options;
 
+	/**
+	 * Initialize the class
+	 */
 	public function __construct() {
 
 		parent::__construct();
@@ -100,7 +102,7 @@ class SettingsPage extends AdminController {
 		}
 
 		// Set class property.
-		echo \WritePoetry\Pages\Admin\Views\HtmlContent::getForm();
+		echo \WritePoetry\Pages\Admin\Views\HtmlContent::get_form();
 	}
 
 
@@ -116,6 +118,7 @@ class SettingsPage extends AdminController {
 				'id'          => 'setting_section_custom_login',
 				'title'       => __( 'Customize login page', 'write-poetry' ),
 				'description' => sprintf(
+					/* translators: %s: URL to the customizer section for adding a site icon */
 					__( 'Replace the default WordPress logo, link and link text on the login screen page with your site logo or site icon if no logo is configured. <a href="%s">Add the site icon</a>.', 'write-poetry' ),
 					self_admin_url( '/customize.php?autofocus[section]=title_tagline' ),
 					__( 'Customizer' )

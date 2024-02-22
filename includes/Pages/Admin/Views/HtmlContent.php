@@ -1,4 +1,14 @@
 <?php
+/**
+ * Add HTML content for the settings page.
+ *
+ * @package           WritePoetry
+ * @subpackage        WritePoetry\Pages\Admin\Views
+ * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
+ * @copyright         2023 Giacomo Secchi
+ * @license           GPL-2.0-or-later
+ * @since             0.2.1
+ */
 
 namespace WritePoetry\Pages\Admin\Views;
 
@@ -7,18 +17,32 @@ use WritePoetry\Pages\Admin\SettingsPage;
 
 /**
  * Class HtmlContent
- * @package WritePoetry\Pages\Admin\Views
  */
 class HtmlContent {
-	public static function getForm() {
+	/**
+	 * Get the form.
+	 *
+	 * @return void
+	 */
+	public static function get_form() {
 
 		$settings_page = new SettingsPage();
-		$page         = $settings_page->getPageSlug();
-		$option_group = $settings_page->getOptionGroup();
+		$page          = $settings_page->getPageSlug();
+		$option_group  = $settings_page->getOptionGroup();
 
 		?>
 		<div class="wrap">
-			<h1><?php echo esc_html( sprintf( __( '%s Settings' ), get_admin_page_title() ) ); ?></h1>
+			<h1>
+			<?php
+			echo esc_html(
+				sprintf(
+				/* translators: %s: Name of the settings page */
+					__( '%s Settings' ),
+					get_admin_page_title()
+				)
+			);
+			?>
+				</h1>
 
 			<?php settings_errors(); ?>
 

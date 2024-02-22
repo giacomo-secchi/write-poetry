@@ -14,8 +14,9 @@ namespace WritePoetry;
 
 use WritePoetry\Api\PluginConfig;
 
-
-
+/**
+ * Main Init class
+ */
 final class Init {
 
 	/**
@@ -53,8 +54,8 @@ final class Init {
 			);
 		}
 
-		// @phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
-		// TODO: Restore filter to be sure that all plugins are loaded before check if WooCommerce is enabled
+		// @phpcs:disable Squiz.PHP.CommentedOutCode.Found
+		// TODO: Restore filter to be sure that all plugins are loaded before check if WooCommerce is enabled.
 		// add_filter( 'plugins_loaded', function ( ) use ( $services ) {
 		// @phpcs:enable
 
@@ -78,7 +79,7 @@ final class Init {
 	 * Loop through the classes, initialize them,
 	 * and call the register() method if it exists
 	 *
-	 * @return
+	 * @return void
 	 */
 	public static function register_services() {
 		foreach ( self::get_services() as $class ) {
@@ -92,7 +93,7 @@ final class Init {
 	/**
 	 * Initialize the class
 	 *
-	 * @param  class $class    class from the services array
+	 * @param  class $class    class from the services array.
 	 * @return class instance  new instance of the class
 	 */
 	private static function instantiate( $class ) {

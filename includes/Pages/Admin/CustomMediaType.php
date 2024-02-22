@@ -15,13 +15,23 @@ namespace WritePoetry\Pages\Admin;
 use WritePoetry\Base\AddMimeTypes;
 use WritePoetry\Pages\AdminController;
 
-
 /**
- *
+ * Class CustomMediaType
  */
 class CustomMediaType extends AdminController {
 
+	/**
+	 * The settings for the CustomMediaType class.
+	 *
+	 * @var string
+	 */
 	public $settings;
+
+	/**
+	 * The prefix for the CustomMediaType class.
+	 *
+	 * @var string
+	 */
 	public $mime_types;
 
 	/**
@@ -32,11 +42,14 @@ class CustomMediaType extends AdminController {
 	public function register() {
 
 		/**
-		 * register wp_setting_init to the admin_init action hook
+		 * Register wp_setting_init to the admin_init action hook
 		 */
 		add_action( 'admin_init', array( $this, 'wp_setting_init' ) );
 	}
 
+	/**
+	 * Initialize the class
+	 */
 	public function __construct() {
 		parent::__construct();
 
@@ -46,16 +59,16 @@ class CustomMediaType extends AdminController {
 
 
 	/**
-	 * callback functions section content
+	 * Callback functions section content
 	 */
 	public function supported_media_types_section_cb() {
-		esc_html(
-			printf( implode( ', ', array_keys( wp_get_mime_types() ) ) )
+		echo esc_html(
+			sprintf( implode( ', ', array_keys( wp_get_mime_types() ) ) )
 		);
 	}
 
 	/**
-	 * register wp_setting_init to the admin_init action hook
+	 * Register wp_setting_init to the admin_init action hook
 	 */
 	public function wp_setting_init() {
 		// register a new section in the "reading" page.

@@ -27,7 +27,7 @@ class Updater extends BaseController {
 		$updater = new Smashing_Updater( $this->plugin_main_file );
 		$updater->set_username( $this->github_username );
 		$updater->set_repository( $this->github_repo );
-		// @phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
+		// @phpcs:disable Squiz.PHP.CommentedOutCode.Found
 		// $updater->authorize( $this->github_auth ); // Your auth code goes here for private repos
 		// @phpcs:enable
 

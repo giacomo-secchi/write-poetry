@@ -43,7 +43,7 @@ class ProductZoom extends WooCommerceController {
 			'wp',
 			function () {
 				remove_theme_support( 'wc-product-gallery-zoom' );
-				// @phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
+				// @phpcs:disable Squiz.PHP.CommentedOutCode.Found
 				// remove_theme_support( 'wc-product-gallery-lightbox' );
 				// remove_theme_support( 'wc-product-gallery-slider' );
 				// @phpcs:enable

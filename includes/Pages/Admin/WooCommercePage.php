@@ -81,7 +81,6 @@ class WooCommercePage extends AdminController {
 		if ( '' === $current_section ) {
 
 			// Add redirect checkout checkbox option.
-
 			// Loop through the settings to find the one you want to modify.
 			foreach ( $settings as $index => $setting ) {
 				if ( isset( $setting['id'] ) && 'woocommerce_cart_redirect_after_add' === $setting['id'] ) {

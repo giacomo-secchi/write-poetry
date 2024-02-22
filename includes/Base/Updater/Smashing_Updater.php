@@ -1,6 +1,7 @@
 <?php
 /**
  * Check plugin version and update it
+ *
  * @package WritePoetry\Base\Updater
  *
  * @link https://www.smashingmagazine.com/2015/08/deploy-wordpress-plugins-with-github-using-transients/
@@ -143,7 +144,6 @@ class Smashing_Updater {
 	 * Initialize the plugin updater
 	 */
 	public function initialize() {
-
 
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'modify_transient' ), 10, 1 );
 		add_filter( 'plugins_api', array( $this, 'plugin_popup' ), 10, 3 );
