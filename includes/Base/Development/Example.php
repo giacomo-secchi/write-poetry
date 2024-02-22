@@ -15,7 +15,7 @@ namespace WritePoetry\Base\Development;
 use WritePoetry\Base\BaseController;
 
 /**
- *
+ * Class Example.
  */
 class Example extends BaseController {
 	/**
@@ -24,12 +24,15 @@ class Example extends BaseController {
 	 * @return void
 	 */
 	public function register() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+
+		add_action( 'admin_enqueue_scripts', array( $this, 'test' ) );
 	}
 
-	function enqueue() {
-		// enqueue all our scripts
-		wp_enqueue_style( 'mypluginstyle', $this->plugin_url . 'assets/mystyle.css' );
-		wp_enqueue_script( 'mypluginscript', $this->plugin_url . 'assets/myscript.js' );
+	/**
+	 * Enqueue scripts and styles.
+	 *
+	 * @return void
+	 */
+	public function test() {
 	}
 }

@@ -14,6 +14,9 @@ namespace WritePoetry\Api;
 
 use WritePoetry\Base\BaseController;
 
+/**
+ * Register Custom Taxonomies class.
+ */
 class RegisterPostTaxonomies extends BaseController {
 
 	/**
@@ -47,7 +50,7 @@ class RegisterPostTaxonomies extends BaseController {
 
 			$object_type = $args['post_type'];
 
-			register_taxonomy( $taxonomy, $object_type, $args ); // Register Custom Post Type
+			register_taxonomy( $taxonomy, $object_type, $args ); // Register Custom Post Type.
 		}
 	}
 }

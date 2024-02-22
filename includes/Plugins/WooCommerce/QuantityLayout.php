@@ -3,7 +3,7 @@
  * Quantity layout.
  *
  * @package           WritePoetry
- * @subpackage        WritePoetry/Plugins
+ * @subpackage        WritePoetry/Plugins/WooCommerce
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
@@ -15,20 +15,20 @@ namespace WritePoetry\Plugins\WooCommerce;
 use WritePoetry\Base\BaseController;
 
 /**
- *
+ * Class QuantityLayout
  */
 class QuantityLayout extends WooCommerceController {
 	/**
 	 * Invoke hooks.
 	 *
-	 * @return void
+	 * @return mixed
 	 */
 	public function register() {
 
 		$min_quantity = 10;
 		$max_quantity = 7;
 
-		// product max quantity configurations
+		// product max quantity configurations.
 		if ( get_option( "{$this->prefix}_product_max_quantity" ) ) {
 			$max_quantity = get_option( "{$this->prefix}_product_max_quantity" );
 		}
@@ -37,9 +37,9 @@ class QuantityLayout extends WooCommerceController {
 			$min_quantity = get_option( "{$this->prefix}_product_min_quantity" );
 		}
 
-		// product quantity selector configurations
+		// product quantity selector configurations.
 
-		// this filter prevent to override the `quantity-input.php` template
+		// this filter prevent to override the `quantity-input.php` template.
 		add_filter(
 			"{$this->prefix}_exclude_woocommerce_template",
 			function ( $templates ) {
@@ -48,12 +48,12 @@ class QuantityLayout extends WooCommerceController {
 			}
 		);
 
-		if ( 'input' == get_option( "{$this->prefix}_product_quantity_layout" ) ) {
+		if ( 'input' === get_option( "{$this->prefix}_product_quantity_layout" ) ) {
 			return false;
 		}
 
-		// Set product quantity to one item at a time if added to cart
-		if ( 'hidden' == get_option( "{$this->prefix}_product_quantity_layout" ) ) {
+		// Set product quantity to one item at a time if added to cart.
+		if ( 'hidden' === get_option( "{$this->prefix}_product_quantity_layout" ) ) {
 			$this->change_quantity_input( $min_quantity );
 		}
 
@@ -69,7 +69,7 @@ class QuantityLayout extends WooCommerceController {
 		if ( 'select' === get_option( "{$this->prefix}_product_quantity_layout" ) ) {
 			$this->change_quantity_input( $max_quantity, $min_quantity );
 
-			// this readd quantity input to the filter
+			// this readd quantity input to the filter.
 			add_filter(
 				"{$this->prefix}_exclude_woocommerce_template",
 				function ( $templates ) {
@@ -79,11 +79,11 @@ class QuantityLayout extends WooCommerceController {
 
 		}
 
-		// product quantity input configurations
+		// product quantity input configurations.
 		if ( get_option( "{$this->prefix}_quantity_input_step" ) ) {
 			add_filter(
 				'woocommerce_quantity_input_step',
-				function ( $step, $product ) {
+				function () {
 					return get_option( "{$this->prefix}_quantity_input_step" );
 				},
 				10,
@@ -93,7 +93,11 @@ class QuantityLayout extends WooCommerceController {
 	}
 
 
-
+	/**
+	 * Print custom styles for quantity input.
+	 *
+	 * @return void
+	 */
 	public function custom_styles() {
 		echo '<style>
 			/* Chrome, Safari, Edge, Opera */
@@ -110,15 +114,30 @@ class QuantityLayout extends WooCommerceController {
 		</style>';
 	}
 
+	/**
+	 * Output quantity minus button.
+	 *
+	 * @return void
+	 */
 	public function display_quantity_minus() {
 		echo '<button type="button" class="quantity__button quantity__minus wp-element-button">-</button>';
 	}
 
+	/**
+	 * Output quantity plus button.
+	 *
+	 * @return void
+	 */
 	public function display_quantity_plus() {
 		echo '<button type="button" class="quantity__button quantity__plus wp-element-button">+</button>';
 	}
 
-	function add_cart_quantity_plus_minus() {
+	/**
+	 * Add custom quantity input.
+	 *
+	 * @return mixed
+	 */
+	public function add_cart_quantity_plus_minus() {
 		if ( ! is_product() && ! is_cart() ) {
 
 			return false;

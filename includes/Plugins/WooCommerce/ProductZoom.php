@@ -15,7 +15,9 @@ namespace WritePoetry\Plugins\WooCommerce;
 use WritePoetry\Base\BaseController;
 
 /**
+ * Class ProductZoom
  *
+ * @package WritePoetry\Plugins\WooCommerce
  */
 class ProductZoom extends WooCommerceController {
 	/**
@@ -25,20 +27,26 @@ class ProductZoom extends WooCommerceController {
 	 */
 	public function register() {
 
-		// Check option for product zoom
+		// Check option for product zoom.
 		if ( 'no' === get_option( "{$this->prefix}_product_zoom" ) ) {
 			$this->disable_product_zoom();
 		}
 	}
 
-	// Disable product zoom
+	/**
+	 * Disable product zoom.
+	 *
+	 * @return void
+	 */
 	public function disable_product_zoom() {
 		add_action(
 			'wp',
 			function () {
 				remove_theme_support( 'wc-product-gallery-zoom' );
+				// @phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
 				// remove_theme_support( 'wc-product-gallery-lightbox' );
 				// remove_theme_support( 'wc-product-gallery-slider' );
+				// @phpcs:enable
 			},
 			100
 		);

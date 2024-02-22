@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Disable fatures that you don't want
  *
@@ -11,12 +10,13 @@
  * @since             0.2.5
  */
 
-
 namespace WritePoetry\Base;
 
 use WritePoetry\Base\BaseController;
 
-
+/**
+ * RemoveUnwantedFeatures
+ */
 class RemoveUnwantedFeatures extends BaseController {
 
 	/**
@@ -41,7 +41,7 @@ class RemoveUnwantedFeatures extends BaseController {
 		$hook_names = apply_filters(
 			"{$this->prefix}_disable_features",
 			array(
-				'big_image_size_threshold',  // https://make.wordpress.org/core/2019/10/09/introducing-handling-of-big-images-in-wordpress-5-3/
+				'big_image_size_threshold',  // https://make.wordpress.org/core/2019/10/09/introducing-handling-of-big-images-in-wordpress-5-3/.
 			)
 		);
 

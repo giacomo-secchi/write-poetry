@@ -12,8 +12,18 @@
 
 namespace WritePoetry\Base;
 
+/**
+ * Deactivate class.
+ */
 class Deactivate {
 
+	/**
+	 * Deactivate the plugin
+	 *
+	 * @since  0.2.5
+	 * @access public
+	 * @return void
+	 */
 	public static function deactivate() {
 		flush_rewrite_rules();
 	}

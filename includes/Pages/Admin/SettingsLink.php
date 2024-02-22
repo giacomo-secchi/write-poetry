@@ -15,7 +15,7 @@ namespace WritePoetry\Pages\Admin;
 use WritePoetry\Pages\AdminController;
 
 /**
- *
+ * Class SettingsLink
  */
 class SettingsLink extends AdminController {
 	/**
@@ -27,11 +27,18 @@ class SettingsLink extends AdminController {
 		add_action( "plugin_action_links_$this->plugin_name", array( $this, 'add_action_links' ) );
 	}
 
+	/**
+	 * Add action links to this specific plugin in the Plugins list table.
+	 *
+	 * @param array $actions An array of plugin action links.
+	 *
+	 * @return array
+	 */
 	public function add_action_links( $actions ) {
-		$settingsPage = new SettingsPage();
+		$settings_page = new SettingsPage();
 
 		// Build URL.
-		$url = add_query_arg( 'page', $settingsPage->getPageSlug(), get_admin_url() . 'options-general.php' );
+		$url = add_query_arg( 'page', $settings_page->getPageSlug(), get_admin_url() . 'options-general.php' );
 
 		$mylinks = array(
 			'<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'write-poetry' ) . '</a>',

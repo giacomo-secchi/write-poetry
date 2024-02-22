@@ -14,11 +14,20 @@ namespace WritePoetry\Base;
 
 use WritePoetry\Api\PluginConfig;
 
+/**
+ * Base configurations class.
+ */
 class Activate {
 
+	/**
+	 * Activate the plugin
+	 *
+	 * @since  0.2.5
+	 * @access public
+	 */
 	public static function activate() {
 
-		$config = PluginConfig::getInstance();
+		$config = PluginConfig::get_instance();
 
 		if ( class_exists( 'WooCommerce' ) ) {
 

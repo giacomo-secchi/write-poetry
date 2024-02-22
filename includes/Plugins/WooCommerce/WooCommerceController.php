@@ -15,23 +15,32 @@ namespace WritePoetry\Plugins\WooCommerce;
 use WritePoetry\Base\BaseController;
 
 /**
+ * Class WooCommerceController
  *
+ * @package WritePoetry\Plugins\WooCommerce
  */
 class WooCommerceController extends BaseController {
 
-
+	/**
+	 * Initialize the class.
+	 */
 	public function __construct() {
 		parent::__construct();
 
 		add_filter( 'woocommerce_locate_template', array( $this, 'addon_plugin_template' ), 1, 3 );
 	}
 
-	// Disable quantity selector for product and product variation
+	/**
+	 * Disable quantity selector for product and product variation.
+	 *
+	 * @param int      $max_qty The maximum quantity.
+	 * @param int|null $min_qty The minimum quantity.
+	 */
 	public function change_quantity_input( $max_qty, $min_qty = null ) {
 
 		add_filter(
 			'woocommerce_quantity_input_args',
-			function ( $args, $product ) use ( $max_qty, $min_qty ) {
+			function ( $args ) use ( $max_qty, $min_qty ) {
 				$args['max_value'] = $max_qty;
 
 				if ( $min_qty ) {
@@ -45,7 +54,7 @@ class WooCommerceController extends BaseController {
 
 		add_filter(
 			'woocommerce_available_variation',
-			function ( $data, $product, $variation ) use ( $max_qty, $min_qty ) {
+			function ( $data ) use ( $max_qty, $min_qty ) {
 				$data['max_qty'] = $max_qty;
 
 				if ( $min_qty ) {
@@ -59,7 +68,17 @@ class WooCommerceController extends BaseController {
 		);
 	}
 
-	// https://wisdmlabs.com/blog/override-woocommerce-templates-plugin/
+	/**
+	 * Add custom template path for WooCommerce.
+	 *
+	 * @param string $template The template path.
+	 * @param string $template_name The template name.
+	 * @param string $template_path The template path.
+	 *
+	 * @see https://wisdmlabs.com/blog/override-woocommerce-templates-plugin/.
+	 *
+	 * @return string The modified template path.
+	 */
 	public function addon_plugin_template( $template, $template_name, $template_path ) {
 		global $woocommerce;
 		$_template = $template;
@@ -70,7 +89,7 @@ class WooCommerceController extends BaseController {
 
 		$plugin_path = untrailingslashit( $this->plugin_path ) . '/woocommerce/';
 
-		// Apply filter to exclude specific template
+		// Apply filter to exclude specific template.
 		$excluded_templates = apply_filters( "{$this->prefix}_exclude_woocommerce_template", array() );
 
 		foreach ( $excluded_templates as $excluded_template ) {
@@ -79,7 +98,7 @@ class WooCommerceController extends BaseController {
 			}
 		}
 
-		// Look within passed path within the theme - this is priority
+		// Look within passed path within the theme - this is priority.
 		$template = locate_template(
 			array(
 				$template_path . $template_name,

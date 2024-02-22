@@ -16,16 +16,28 @@ use WritePoetry\Pages\AdminController;
 
 
 /**
- *
+ * Options Settings subpage.
  */
 class SettingsPage extends AdminController {
 
+	/**
+	 * The page slug.
+	 *
+	 * @var string
+	 */
 	private $page_slug;
 
+	/**
+	 * The option group.
+	 *
+	 * @var string
+	 */
 	private $option_group;
 
 	/**
 	 * Holds the values to be used in the fields callbacks
+	 *
+	 * @var array
 	 */
 	private $options;
 
@@ -36,10 +48,20 @@ class SettingsPage extends AdminController {
 		$this->option_group = "{$this->prefix}-settings-group";
 	}
 
+	/**
+	 * Get the page slug.
+	 *
+	 * @return string
+	 */
 	public function getPageSlug() {
 		return $this->page_slug;
 	}
 
+	/**
+	 * Get the option group.
+	 *
+	 * @return string
+	 */
 	public function getOptionGroup() {
 		return $this->option_group;
 	}
@@ -54,7 +76,9 @@ class SettingsPage extends AdminController {
 		add_action( 'admin_init', array( $this, 'pageInit' ) );
 	}
 
-
+	/**
+	 * Add options page
+	 */
 	public function adminMenu() {
 		$page_title = __( 'Write Poetry', 'write-poetry' );
 		$menu_title = __( 'Write Poetry', 'write-poetry' );
@@ -63,7 +87,7 @@ class SettingsPage extends AdminController {
 		$callback   = array( $this, 'createAdminPage' );
 		$position   = 24;
 
-		// This page will be under "Settings"
+		// This page will be under "Settings".
 		add_options_page( $page_title, $menu_title, $capability, $menu_slug, $callback, $position );
 	}
 
@@ -75,7 +99,7 @@ class SettingsPage extends AdminController {
 			wp_die( 'Unauthorized user' );
 		}
 
-		// Set class property
+		// Set class property.
 		echo \WritePoetry\Pages\Admin\Views\HtmlContent::getForm();
 	}
 
@@ -102,7 +126,7 @@ class SettingsPage extends AdminController {
 				'title'       => __( 'Enhanced maintenance mode', 'write-poetry' ),
 				'description' => __( 'Put your website under maintenance', 'write-poetry' ),
 			),
-			// Add more sections as needed
+			// Add more sections as needed.
 		);
 
 		foreach ( $sections as $section ) {
@@ -130,7 +154,7 @@ class SettingsPage extends AdminController {
 				'callback' => 'checkboxInputTemplate',
 				'section'  => 'setting_section_custom_login',
 			),
-			// Add more sections as needed
+			// Add more sections as needed.
 		);
 
 		foreach ( $fields as $field ) {
@@ -142,7 +166,7 @@ class SettingsPage extends AdminController {
 				call_user_func( array( $this, $field['callback'] ), $field );
 			};
 
-			// Create Setting
+			// Create Setting.
 			add_settings_field( $option_name, $title, $callback, $page, $section );
 
 			$args = array(
@@ -166,7 +190,7 @@ class SettingsPage extends AdminController {
 	 *
 	 * @param array $args  The settings array, defining title, id, callback.
 	 */
-	function section_callback( $args ) {
+	public function section_callback( $args ) {
 		?>
 		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php _e( $args['description'] ); ?></p>
 		<?php

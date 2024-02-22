@@ -15,7 +15,9 @@ namespace WritePoetry\Plugins\Jetpack;
 use WritePoetry\Base\BaseController;
 
 /**
+ * Class Portfolio
  *
+ * @package WritePoetry\Plugins\Jetpack
  */
 class Portfolio extends BaseController {
 	/**
@@ -33,7 +35,6 @@ class Portfolio extends BaseController {
 	/**
 	 * Require build file
 	 *
-	 * @param [type] $src
 	 * @return void
 	 */
 	public function enqueue_block_assets() {
@@ -42,15 +43,24 @@ class Portfolio extends BaseController {
 		// Automatically load imported dependencies and assets version.
 		$asset_file = include sprintf( '%s%s%s.asset.php', $this->build_path, DIRECTORY_SEPARATOR, $file_name );
 
+		$args = array(
+			'in_footer' => true,
+		);
+
 		wp_enqueue_script(
 			'writepoetry-gutenberg-sidebar',
 			sprintf( '%s/%s.js', $this->build_url, $file_name ),
 			$asset_file['dependencies'],
-			$asset_file['version']
+			$asset_file['version'],
+			$args
 		);
 	}
 
-
+	/**
+	 * Register portfolio meta.
+	 *
+	 * @return void
+	 */
 	public function register_portfolio_meta() {
 
 		register_post_meta(
@@ -106,6 +116,11 @@ class Portfolio extends BaseController {
 		);
 	}
 
+	/**
+	 * Add portfolio meta box.
+	 *
+	 * @return void
+	 */
 	public function add_portfolio_meta_box() {
 		add_meta_box(
 			'myprefix_post_options_metabox',

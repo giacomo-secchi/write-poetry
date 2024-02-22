@@ -15,7 +15,7 @@ namespace WritePoetry\Pages\Admin;
 use WritePoetry\Pages\AdminController;
 
 /**
- *
+ * Class LoginScreen
  */
 class LoginScreen extends AdminController {
 	/**
@@ -31,7 +31,12 @@ class LoginScreen extends AdminController {
 		add_filter( 'login_title', array( $this, 'custom_login_title' ) );
 	}
 
-	function custom_loginlogo() {
+	/**
+	 * Custom login logo.
+	 *
+	 * @return void
+	 */
+	public function custom_loginlogo() {
 		$site_icon        = get_site_icon_url();
 		$background_image = '';
 
@@ -56,12 +61,23 @@ class LoginScreen extends AdminController {
 		}
 	}
 
-	function custom_loginlogo_url( $url ) {
+	/**
+	 * Custom login logo url.
+	 *
+	 * @param string $url The URL.
+	 *
+	 * @return string
+	 */
+	public function custom_loginlogo_url( $url ) {
 		return esc_url( home_url( '/' ) );
 	}
 
-
-	function custom_login_title() {
+	/**
+	 * Custom login title.
+	 *
+	 * @return string
+	 */
+	public function custom_login_title() {
 		return get_bloginfo( 'name' );
 	}
 }

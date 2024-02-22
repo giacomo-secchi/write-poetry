@@ -16,7 +16,7 @@ use WritePoetry\Base\BaseController;
 use WritePoetry\Base\Utils;
 
 /**
- *
+ * Class MaintenanceMode
  */
 class MaintenanceMode extends BaseController {
 	/**
@@ -26,7 +26,7 @@ class MaintenanceMode extends BaseController {
 	 */
 	public function register() {
 
-		// Keep the default behaviour if standard method is enabled
+		// Keep the default behaviour if standard method is enabled.
 		if ( wp_is_maintenance_mode() ) {
 			return;
 		}
@@ -39,7 +39,11 @@ class MaintenanceMode extends BaseController {
 	}
 
 
-
+	/**
+	 * Exclude pages from maintenance mode.
+	 *
+	 * @return void
+	 */
 	public function excluded_pages() {
 		global $post;
 
@@ -50,16 +54,23 @@ class MaintenanceMode extends BaseController {
 		if (
 			is_user_logged_in() ||
 			is_login() ||
-			in_array( $current_page, apply_filters( "{$this->prefix}_maintenance_excluded_pages", array() ) )
+			in_array( $current_page, apply_filters( "{$this->prefix}_maintenance_excluded_pages", array() ), true )
 		) {
 			return;
 		}
 
-		if ( '1' == get_option( "{$this->prefix}_maintenance_mode" ) ) {
+		if ( '1' === get_option( "{$this->prefix}_maintenance_mode" ) ) {
 			$this->wp_maintenance();
 		}
 	}
 
+	/**
+	 * This function is a copy of the function wp_maintenance() defined in
+	 * /wp-includes/load.php. It has been replicated here becuase the core one does not have any hooks
+	 *
+	 * @see https://github.com/WordPress/WordPress/blob/93eaafe9c10c96f4bb6d1bd37229f77cd160967a/wp-includes/load.php#L372
+	 * @return void
+	 */
 	public function wp_maintenance() {
 		if ( file_exists( WP_CONTENT_DIR . '/maintenance.php' ) ) {
 			require_once WP_CONTENT_DIR . '/maintenance.php';

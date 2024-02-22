@@ -15,7 +15,7 @@ namespace WritePoetry\FSE\Theme;
 use WritePoetry\Base\BaseController;
 
 /**
- *
+ * Class Assets
  */
 class Assets extends BaseController {
 	/**
@@ -50,18 +50,18 @@ class Assets extends BaseController {
 	 *
 	 * @return void
 	 */
-	function scripts() {
+	public function scripts() {
 
-		// Get configuration data from write-poetry-theme.json
+		// Get configuration data from write-poetry-theme.json.
 		$wp_theme_json_file = get_theme_file_path( '/write-poetry-theme.json' );
 
-		// Check if the file exists
+		// Check if the file exists.
 		if ( ! file_exists( $wp_theme_json_file ) ) {
 			return;
 		}
 
-		// Get the JSON string from the file
-		// Decode the JSON string to a PHP array
+		// Get the JSON string from the file.
+		// Decode the JSON string to a PHP array.
 		$decoded_file = json_decode( file_get_contents( $wp_theme_json_file ), true );
 
 		// Check if the necessary keys exist in the theme data.
@@ -74,13 +74,12 @@ class Assets extends BaseController {
 		}
 	}
 
-
-
 	/**
+	 * Check conditional tags.
 	 *
+	 * @param array $params The parameters to check.
 	 *
-	 * @param [type] $rules
-	 * @return void
+	 * @return bool
 	 */
 	private function check_conditional_tags( $params ) {
 
@@ -103,21 +102,23 @@ class Assets extends BaseController {
 		return true; // All conditions are met.
 	}
 
-
 	/**
 	 * Enqueue theme scripts or styles.
 	 *
-	 * @param array  $files
-	 * @param string $type
+	 * @param array  $files The files to enqueue.
+	 * @param string $type The type of asset to enqueue.
+	 *
+	 * @return void
 	 */
 	private function enqueue_theme_files( $files, $type ) {
 
 		$version_string = empty( $file['ver'] ) ? $this->get_theme_version() : $file['ver'];
 
 		foreach ( $files as $file ) {
-			// Check required dependencies
-			// when loading assets from theme.json
-			// Load the asset only if conditionals tags return true
+			/**
+			 * Check required dependencies when loading assets from theme.json
+			 * Load the asset only if conditionals tags return true
+			 */
 			$this->check_conditional_tags( $file );
 
 			$params = array(
@@ -134,7 +135,7 @@ class Assets extends BaseController {
 				$params[] = array();
 			}
 
-			// avoid to print version if there is only handle param
+			// avoid to print version if there is only handle param.
 			if ( count( $params ) > 1 ) {
 				$params[] = $version_string;
 			}
@@ -160,7 +161,7 @@ class Assets extends BaseController {
 	 *
 	 * @return void
 	 */
-	function load_blocks_styles() {
+	public function load_blocks_styles() {
 
 		// Retrieve active theme name in order to prefix the handle for the stylesheet.
 		$theme_slug = $this->get_theme_slug();
@@ -169,7 +170,7 @@ class Assets extends BaseController {
 		// This allows customization of the path through the 'writepoetry_blocks_styles_asset_path' filter.
 		$base_assets_path = apply_filters( "{$this->prefix}_blocks_styles_asset_path", join( DIRECTORY_SEPARATOR, array( 'assets', 'css', 'blocks' ) ) );
 
-		// Use glob to get the list of stylesheets files in the assets folder
+		// Use glob to get the list of stylesheets files in the assets folder.
 		$blocks_path = glob( get_theme_file_path( $base_assets_path ) . '/*/*.css' );
 
 		/*
@@ -179,7 +180,7 @@ class Assets extends BaseController {
 
 			$block_info = pathinfo( $block_path );
 
-			// Reconstruct block name core/site-title
+			// Reconstruct block name core/site-title.
 			$block_name = basename( $block_info['dirname'] ) . '/' . $block_info['filename'];
 
 			// Replace slash with hyphen for filename.

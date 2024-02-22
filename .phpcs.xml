@@ -153,5 +153,18 @@
 	<rule ref="WordPress.Files.FileName">
 		<exclude-pattern>/path/to/Tests/*Test\.php</exclude-pattern>
 	</rule>
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude-pattern>/includes/*\.php$</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude-pattern>/includes/*\.php$</exclude-pattern>
+	</rule>
+	<!-- Apply PSR-1 naming conventions to the includes directory -->
+	<rule ref="PSR1.Classes.ClassDeclaration">
+		<include-pattern>/includes/*\.php$</include-pattern>
+	</rule>
+	<rule ref="PSR1.Files.SideEffects">
+		<include-pattern>/includes/*\.php$</include-pattern>
+	</rule>
 
 </ruleset>

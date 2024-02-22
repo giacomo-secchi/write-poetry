@@ -13,10 +13,15 @@
 namespace WritePoetry\Base;
 
 /**
- *
+ * Add new mime types class.
  */
 class AddMimeTypes {
 
+	/**
+	 * Mime types.
+	 *
+	 * @var array
+	 */
 	public $media_types = array();
 
 	/**
@@ -39,12 +44,17 @@ class AddMimeTypes {
 			'woff2' => 'font/woff2',
 		);
 
-		add_filter( 'upload_mimes', array( $this, 'addMimeType' ) );
-		add_filter( 'mime_types', array( $this, 'addMimeType' ) );
+		add_filter( 'upload_mimes', array( $this, 'add_mime_type' ) );
+		add_filter( 'mime_types', array( $this, 'add_mime_type' ) );
 	}
 
-
-	public function addMimeType( $mimes ) {
+	/**
+	 * Add mime types.
+	 *
+	 * @param array $mimes Mime types.
+	 * @return array
+	 */
+	public function add_mime_type( $mimes ) {
 
 		foreach ( $this->media_types as $t => $media_type ) {
 			$mimes[ $t ] = $media_type;

@@ -13,7 +13,9 @@
 namespace WritePoetry\Plugins;
 
 /**
+ * Class Gtm4wp
  *
+ * @package WritePoetry\Plugins
  */
 class Gtm4wp {
 	/**
@@ -22,18 +24,17 @@ class Gtm4wp {
 	 * @return void
 	 */
 	public function register() {
-		add_action( 'wp_body_open', array( $this, 'GTM_noscript_container_code' ) );
+		add_action( 'wp_body_open', array( $this, 'gtm_noscript_container_code' ) );
 	}
 
 
 	/**
 	 * Manually coded Container code compatibility mode
-	 * TODO: disabled functionality, it seems that the plugin already call gtm4wp_the_gtm_tag function
-	 * when 'Container code compatibility mode' is set to manual
+	 * TODO: this functionality has been disabled, it seems that the plugin GTM4WP already call gtm4wp_the_gtm_tag function when 'Container code compatibility mode' is set to manual
 	 *
 	 * @return void
 	 */
-	public function GTM_noscript_container_code() {
+	public function gtm_noscript_container_code() {
 		if ( function_exists( 'gtm4wp_the_gtm_tag' ) ) {
 			gtm4wp_the_gtm_tag(); }
 	}

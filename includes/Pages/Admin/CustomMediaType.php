@@ -46,19 +46,19 @@ class CustomMediaType extends AdminController {
 
 
 	/**
-	 * callback functions
+	 * callback functions section content
 	 */
-
-	// section content cb
-	function supported_media_types_section_cb() {
+	public function supported_media_types_section_cb() {
 		esc_html(
 			printf( implode( ', ', array_keys( wp_get_mime_types() ) ) )
 		);
 	}
 
-
+	/**
+	 * register wp_setting_init to the admin_init action hook
+	 */
 	public function wp_setting_init() {
-		// register a new section in the "reading" page
+		// register a new section in the "reading" page.
 		add_settings_section(
 			"{$this->prefix}_supported_media_types_section",
 			__( 'Supported media types', 'write-poetry' ),

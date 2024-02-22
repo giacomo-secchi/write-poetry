@@ -14,6 +14,9 @@ namespace WritePoetry\Api;
 
 use WritePoetry\Base\BaseController;
 
+/**
+ * Register Custom Post Types class.
+ */
 class RegisterPostTypes extends BaseController {
 
 	/**
@@ -35,8 +38,8 @@ class RegisterPostTypes extends BaseController {
 
 		$default_args = array(
 			'show_in_rest'       => true,
-			'can_export'         => true, // Allows export in Tools > Export
-			'hierarchical'       => false, // Allows your posts to behave like Hierarchy Pages
+			'can_export'         => true, // Allows export in Tools > Export.
+			'hierarchical'       => false, // Allows your posts to behave like Hierarchy Pages.
 			'public'             => true,
 			'publicly_queryable' => false,
 			'has_archive'        => true,
@@ -55,7 +58,7 @@ class RegisterPostTypes extends BaseController {
 
 			$args = array_merge( $default_args, $args );
 
-			register_post_type( $post_type, $args ); // Register Custom Post Type
+			register_post_type( $post_type, $args ); // Register Custom Post Type.
 		}
 	}
 }

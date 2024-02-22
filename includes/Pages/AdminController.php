@@ -16,18 +16,24 @@ use WritePoetry\Base\BaseController;
 
 
 /**
+ * Class AdminController
  *
+ * @package WritePoetry\Admin
  */
 class AdminController extends BaseController {
 
-
-
+	/**
+	 * AdminController constructor.
+	 */
 	public function __construct() {
-
 		parent::__construct();
 	}
 
-
+	/**
+	 * Register the admin page.
+	 *
+	 * @return false
+	 */
 	public function regeneration_was_aborted() {
 		return true;
 	}

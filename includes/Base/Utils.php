@@ -13,10 +13,11 @@
 namespace WritePoetry\Base;
 
 use WritePoetry\Base\BaseController;
-
-
 /**
+ * Utilities class.
  *
+ * @since  0.2.0
+ * @access public
  */
 class Utils extends BaseController {
 	/**
@@ -30,11 +31,13 @@ class Utils extends BaseController {
 
 
 	/**
-	 * Add query string parameters site-wide
+	 * Add query string parameters site-wide.
 	 *
+	 * @param array $qvars The current query string parameters.
 	 * @since  0.2.2
 	 * @access public
-	 * @return viod
+	 *
+	 * @return array The updated query string parameters.
 	 */
 	public function add_query_vars( $qvars ) {
 

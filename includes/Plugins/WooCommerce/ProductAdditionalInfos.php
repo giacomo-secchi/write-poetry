@@ -15,7 +15,9 @@ namespace WritePoetry\Plugins\WooCommerce;
 use WritePoetry\Base\BaseController;
 
 /**
+ * Class ProductAdditionalInfos
  *
+ * @package WritePoetry\Plugins\WooCommerce
  */
 class ProductAdditionalInfos extends WooCommerceController {
 	/**
@@ -25,7 +27,7 @@ class ProductAdditionalInfos extends WooCommerceController {
 	 */
 	public function register() {
 
-		// Additional informations
+		// Additional informations.
 		if ( 'tabs' === get_option( "{$this->prefix}_product_infos_layout" ) ) {
 			add_filter(
 				"{$this->prefix}_exclude_woocommerce_template",
@@ -54,17 +56,21 @@ class ProductAdditionalInfos extends WooCommerceController {
 	}
 
 
-
+	/**
+	 * Add additional information to product page.
+	 *
+	 * @return void
+	 */
 	public function woocommerce_custom_tabs() {
 		add_filter(
 			'woocommerce_product_tabs',
 			function ( $tabs ) {
 
-				// Remove additional information tab on Product Page
+				// Remove additional information tab on Product Page.
 				unset( $tabs['reviews'] );
 				unset( $tabs['additional_information'] );
 
-				// Insert additional information into description tab on Product Page
+				// Insert additional information into description tab on Product Page.
 				$tabs['description']['callback'] = function () {
 					global $product;
 					wc_get_template( 'single-product/tabs/description.php' );

@@ -14,9 +14,10 @@ namespace WritePoetry\Pages\Admin;
 
 use WritePoetry\Pages\AdminController;
 
-
 /**
+ * Class WooCommercePage
  *
+ * @package WritePoetry\Pages
  */
 class WooCommercePage extends AdminController {
 
@@ -28,6 +29,13 @@ class WooCommercePage extends AdminController {
 		add_filter( 'woocommerce_get_settings_products', array( $this, 'all_settings' ), 10, 2 );
 	}
 
+	/**
+	 * Set custom attribute for the option.
+	 *
+	 * @param $option The option to check.
+	 *
+	 * @return bool
+	 */
 	private function setCustomAttribute( $option ) {
 
 		if ( $this->hasFiltersForOption( $option ) ) {
@@ -38,18 +46,27 @@ class WooCommercePage extends AdminController {
 	}
 
 	/**
-	 * Create the section beneath the products tab
+	 * Create the section beneath the products tab.
+	 *
+	 * @param $sections The sections to add.
+	 *
+	 * @return mixed
 	 **/
-	function add_section( $sections ) {
+	public function add_section( $sections ) {
 
 		$sections['appearance'] = __( 'Appearance', 'write-poetry' );
 		return $sections;
 	}
 
 	/**
-	 * Add settings to the specific section we created before
+	 * Add settings to the specific section we created before.
+	 *
+	 * @param $settings The settings to add.
+	 * @param $current_section The current section.
+	 *
+	 * @return mixed
 	 */
-	function all_settings( $settings, $current_section ) {
+	public function all_settings( $settings, $current_section ) {
 		$regeneration_aborted_warning =
 			$this->regeneration_was_aborted() ?
 			sprintf(
@@ -59,17 +76,17 @@ class WooCommercePage extends AdminController {
 			) : null;
 
 		/**
-		 * Check the current section is general
+		 * Check the current section is general.
 		 */
-		if ( $current_section == '' ) {
+		if ( '' === $current_section ) {
 
-			// Add redirect checkout checkbox option
+			// Add redirect checkout checkbox option.
 
-			// Loop through the settings to find the one you want to modify
+			// Loop through the settings to find the one you want to modify.
 			foreach ( $settings as $index => $setting ) {
-				if ( isset( $setting['id'] ) && $setting['id'] == 'woocommerce_cart_redirect_after_add' ) {
+				if ( isset( $setting['id'] ) && 'woocommerce_cart_redirect_after_add' === $setting['id'] ) {
 					$settings[ $index ] = array(
-						'name'              => __( 'Add to cart behaviour', 'woocommerce' ),
+						'name'              => __( 'Add to cart behaviour', 'write-poetry' ),
 						// 'desc_tip' => $regeneration_aborted_warning,
 						'id'                => "{$this->prefix}_redirect_after_add",
 						'type'              => 'select',
@@ -82,11 +99,11 @@ class WooCommercePage extends AdminController {
 							'checkout' => __( 'Redirect to the checkout page', 'write-poetry' ),
 							// 'product-cart'           => __( 'Redirect to cart page (only from single product page)', 'write-poetry' ),
 							// 'product-checkout'       => __( 'Redirect to checkout page (only from single product page)', 'write-poetry' ),
-						), // array of options for select/multiselects only
+						), // array of options for select/multiselects only.
 						'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_redirect_after_add" ),
 					);
 				}
-				if ( isset( $setting['id'] ) && $setting['id'] == 'woocommerce_enable_ajax_add_to_cart' ) {
+				if ( isset( $setting['id'] ) && 'woocommerce_enable_ajax_add_to_cart' === $setting['id'] ) {
 					$settings[ $index ]['checkboxgroup'] = 'start';
 
 				}
@@ -98,10 +115,10 @@ class WooCommercePage extends AdminController {
 		/**
 		 * Check the current section is what we want
 		 */
-		if ( $current_section == 'appearance' ) {
+		if ( 'appearance' === $current_section ) {
 			$settings_appearance = array();
 
-			// Add Title to the Settings
+			// Add Title to the Settings.
 			$settings_appearance[] = array(
 				'name' => __( 'Appearence', 'write-poetry' ),
 				'type' => 'title',
@@ -109,7 +126,7 @@ class WooCommercePage extends AdminController {
 				'id'   => 'appeareance',
 			);
 
-			// Add quantity layout field option
+			// Add quantity layout field option.
 			$settings_appearance[] = array(
 				'name'              => __( 'Product quantity selector', 'write-poetry' ),
 				'id'                => "{$this->prefix}_product_quantity_layout",
@@ -122,12 +139,12 @@ class WooCommercePage extends AdminController {
 					'input'   => __( 'Input', 'write-poetry' ),
 					'select'  => __( 'Select', 'write-poetry' ),
 					'buttons' => __( 'Buttons', 'write-poetry' ),
-				), // array of options for select/multiselects only
+				), // array of options for select/multiselects only.
 				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_product_quantity_layout" ),
 
 			);
 
-			// Add single product checkbox option
+			// Add single product checkbox option.
 			$settings_appearance[] = array(
 				'id'                => "{$this->prefix}_product_max_quantity",
 				'type'              => 'number',
@@ -136,7 +153,7 @@ class WooCommercePage extends AdminController {
 				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_product_max_quantity" ),
 			);
 
-			// Add single product minal quantity option
+			// Add single product minal quantity option.
 			$settings_appearance[] = array(
 				'id'                => "{$this->prefix}_product_min_quantity",
 				'type'              => 'number',
@@ -145,7 +162,7 @@ class WooCommercePage extends AdminController {
 				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_product_min_quantity" ),
 			);
 
-			// Add single product checkbox option quantity input steps values
+			// Add single product checkbox option quantity input steps values.
 			$settings_appearance[] = array(
 				'desc_tip'          => __( 'Adjust the quantity input steps values', 'write-poetry' ),
 				'id'                => "{$this->prefix}_quantity_input_step",
@@ -155,7 +172,7 @@ class WooCommercePage extends AdminController {
 				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_quantity_input_step" ),
 			);
 
-			// Add product zoom checkbox option
+			// Add product zoom checkbox option.
 			$settings_appearance[] = array(
 				'name'              => __( 'Zoom behaviour', 'write-poetry' ),
 				'desc_tip'          => __( 'This will enable or disable product image zoom on single product page', 'write-poetry' ),
@@ -168,7 +185,7 @@ class WooCommercePage extends AdminController {
 				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_product_zoom" ),
 			);
 
-			// Add additional info layout field option
+			// Add additional info layout field option.
 			$settings_appearance[] = array(
 				'name'              => __( 'Additional infos layout', 'write-poetry' ),
 				'id'                => "{$this->prefix}_product_infos_layout",
@@ -179,7 +196,7 @@ class WooCommercePage extends AdminController {
 					'tabs'      => 'Tabs',
 					'list'      => 'List',
 					'accordion' => 'Accordion',
-				), // array of options for select/multiselects only
+				), // array of options for select/multiselects only.
 				'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_product_infos_layout" ),
 			);
 
@@ -190,7 +207,7 @@ class WooCommercePage extends AdminController {
 			return $settings_appearance;
 
 			/**
-			 * If not, return the standard settings
+			 * If not, return the standard settings.
 			 */
 		} else {
 			return $settings;

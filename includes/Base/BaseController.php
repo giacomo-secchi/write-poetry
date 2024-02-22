@@ -14,17 +14,21 @@ namespace WritePoetry\Base;
 
 use WritePoetry\Api\PluginConfig;
 
-
 /**
- *
+ * Base class.
  */
 class BaseController {
 
-
+	/**
+	 * Configuration object.
+	 *
+	 * @var object
+	 */
 	public $config;
 
-
-
+	/**
+	 * Initialize the class
+	 */
 	public function __construct() {
 		$this->config = new PluginConfig();
 	}
@@ -46,6 +50,9 @@ class BaseController {
 		}
 	}
 
+	/**
+	 * Check if WooCommerce is activated.
+	 */
 	public function is_woocommerce_activated() {
 		add_filter(
 			'plugins_loaded',

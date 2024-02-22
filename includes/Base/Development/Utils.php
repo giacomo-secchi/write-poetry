@@ -21,7 +21,7 @@ class Utils extends BaseController {
 	/**
 	 * Invoke hooks.
 	 *
-	 * @return void
+	 * @return mixed
 	 */
 	public function register() {
 
@@ -46,7 +46,13 @@ class Utils extends BaseController {
 	}
 
 
-	// Remove version query string from static CSS files
+	/**
+	 * Remove version query string from static CSS files
+	 *
+	 * @param string $src The source URL.
+	 *
+	 * @return string
+	 */
 	public static function remove_query_string_from_static_files( $src ) {
 		if ( strpos( $src, 'ver=' ) ) {
 			$src = remove_query_arg( 'ver', $src );

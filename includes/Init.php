@@ -24,7 +24,7 @@ final class Init {
 	 * @return array Full list of classes
 	 */
 	public static function get_services() {
-		$config = PluginConfig::getInstance();
+		$config = PluginConfig::get_instance();
 
 		$services = array(
 			Api\RegisterPostTypes::class,
@@ -35,8 +35,11 @@ final class Init {
 			FSE\Blocks::class,
 			FSE\Theme\Assets::class,
 			Pages\Admin\LoginScreen::class,
+			// @phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
+			// Base\Development\Example::class,
 			// Plugins\Jetpack\Portfolio::class,
 			// Plugins\Gtm4wp::class
+			// @phpcs:enable
 		);
 
 		if ( is_admin() ) {
@@ -50,8 +53,10 @@ final class Init {
 			);
 		}
 
+		// @phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
 		// TODO: Restore filter to be sure that all plugins are loaded before check if WooCommerce is enabled
 		// add_filter( 'plugins_loaded', function ( ) use ( $services ) {
+		// @phpcs:enable
 
 		if ( class_exists( 'WooCommerce' ) ) {
 			array_push(
