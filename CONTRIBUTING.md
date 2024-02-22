@@ -16,6 +16,18 @@ Commit all your changes in your own branch. Before making any code change, start
 ### Suggestions for commit messages
 Read here for some guidelines on [writing better commit messages](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/).
 
+### WritePoetry Branching Flow
+WritePoetry Plugin follows the [GitHub flow](https://www.alexhyett.com/git-flow-github-flow/#what-is-github-flow).
+
+The steps to follow in order to contribute to this project are:
+1. Go to [WritePoetry Plugin issues page](https://github.com/giacomo-secchi/write-poetry/issues).
+2. Start a new branch from `trunk` branch using GitHub's [Create a branch from an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-a-branch-for-an-issue) feature. Alternatively, if you don't find an issue to work on, create a branch with a short descriptive name of what you will work on.
+3. Once the feature is ready, ask for a pull request with `trunk` as the target branch.
+4. After a code review your branch will be megred to `trunk` branch.
+
+*Trunk*: is the name of the branch for all development and should always be the target of pull requests.
+
+More info about GitHub flow [here](https://docs.github.com/en/get-started/using-github/github-flow).
 
 ## Coding Standard
 
