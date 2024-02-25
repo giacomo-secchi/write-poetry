@@ -121,7 +121,7 @@ class SettingsPage extends AdminController {
 					/* translators: %s: URL to the customizer section for adding a site icon */
 					__( 'Replace the default WordPress logo, link and link text on the login screen page with your site logo or site icon if no logo is configured. <a href="%s">Add the site icon</a>.', 'write-poetry' ),
 					self_admin_url( '/customize.php?autofocus[section]=title_tagline' ),
-					__( 'Customizer' )
+					__( 'Customizer', 'write-poetry' )
 				),
 			),
 			array(
@@ -195,7 +195,7 @@ class SettingsPage extends AdminController {
 	 */
 	public function section_callback( $args ) {
 		?>
-		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php _e( $args['description'] ); ?></p>
+		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Replace with single text string literal' ); ?></p>
 		<?php
 	}
 

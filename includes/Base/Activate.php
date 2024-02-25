@@ -29,7 +29,7 @@ class Activate {
 
 		$config = PluginConfig::get_instance();
 
-		if ( class_exists( 'WooCommerce' ) ) {
+		if ( BaseController::is_woocommerce_activated() ) {
 
 			if ( get_option( "{$config->prefix}_redirect_after_add" ) ) {
 				return false;

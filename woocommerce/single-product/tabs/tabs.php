@@ -29,13 +29,13 @@ use WritePoetry\Api\PluginConfig;
  * @see woocommerce_default_product_tabs()
  */
 $product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
-$config       = PluginConfig::getInstance();
+$config       = PluginConfig::get_instance();
 $layout       = get_option( "{$config->prefix}_product_infos_layout" );
 
 if ( ! empty( $product_tabs ) ) : ?>
 
 	<div class="woocommerce-tabs wc-tabs-wrapper">
-		<?php if ( 'accordion' == $layout ) : ?>
+		<?php if ( 'accordion' === $layout ) : ?>
 
 			<div id="accordion">
 

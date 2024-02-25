@@ -6,7 +6,7 @@
  */
 
 /*
-// Use this filter to change the default path for additional blocks styles.
+Use this filter to change the default path for additional blocks styles.
 add_filter( 'writepoetry_blocks_styles_asset_path', function () {
 	return 'assets/block';
 } );

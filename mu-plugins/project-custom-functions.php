@@ -15,7 +15,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 
-// custom code for the current project
+// custom code for the current project.
 
 
 /**
@@ -26,19 +26,19 @@ define( 'GTM4WP_HARDCODED_GTM_ENV_AUTH', '' );
 define( 'GTM4WP_HARDCODED_GTM_ENV_PREVIEW', '' );
 
 
-// Remove version query string from static CSS files
+// Remove version query string from static CSS files.
 add_filter( 'writepoetry_remove_query_strings', '__return_true' );
 
-// Enable maintenance mode
+// Enable maintenance mode.
 add_filter(
 	'pre_option_writepoetry_maintenance_mode',
-	function ( $default ) {
+	function () {
 		return 0;
 	}
 );
 
 
-// Exclude specific pages from being in maintenance mode
+// Exclude specific pages from being in maintenance mode.
 add_filter(
 	'writepoetry_maintenance_excluded_pages',
 	function ( $condition ) {
@@ -47,10 +47,10 @@ add_filter(
 	}
 );
 
-// Choose to enable or disable product image zoom on product page (to disable change 'yes' to 'no')
+// Choose to enable or disable product image zoom on product page (to disable change 'yes' to 'no').
 add_filter(
 	'pre_option_writepoetry_product_zoom',
-	function ( $default ) {
+	function () {
 		return 'yes';
 	}
 );
@@ -58,7 +58,7 @@ add_filter(
 
 add_filter(
 	'pre_option_writepoetry_product_quantity_layout',
-	function ( $default ) {
+	function () {
 		// 'hidden';
 		// 'input';
 		// 'buttons';
@@ -68,14 +68,11 @@ add_filter(
 );
 
 
-// Choose to what page redirect after add to cart
+// Choose to what page redirect after add to cart.
 add_filter(
 	'pre_option_writepoetry_redirect_after_add',
-	function ( $default ) {
-		// 'product-checkout';
-		// 'product-cart';
-		// 'checkout';
-		// 'cart';
+	function () {
+		// possible values are 'product-checkout', 'product-cart', 'checkout', 'cart'.
 		return 'checkout';
 	}
 );
@@ -83,7 +80,7 @@ add_filter(
 
 add_filter(
 	'pre_option_writepoetry_product_min_quantity',
-	function ( $default ) {
+	function () {
 		return 2;
 	}
 );
@@ -91,19 +88,17 @@ add_filter(
 
 add_filter(
 	'pre_option_writepoetry_product_max_quantity',
-	function ( $default ) {
+	function () {
 		return 20;
 	}
 );
 
 
-// What kind of design do you want for single product page additional info (possible vaules are accordion, tabs or list)
+// What kind of design do you want for single product page additional info (possible vaules are accordion, tabs or list).
 add_filter(
 	'pre_option_writepoetry_product_infos_layout',
-	function ( $default ) {
-		// 'tabs'
-		// 'list'
-		// 'accordion'
+	function () {
+		// possible values are 'tabs', 'accordion' or 'list'.
 		return 'list';
 	}
 );
@@ -112,12 +107,12 @@ add_filter(
 
 add_filter(
 	'pre_option_writepoetry_quantity_input_step',
-	function ( $default ) {
+	function () {
 		return 5;
 	}
 );
 
-// Disable elements
+// Disable elements.
 add_filter(
 	'writepoetry_disable_features',
 	function ( $args ) {
@@ -131,11 +126,11 @@ add_filter(
 );
 
 
-// Add parameters to url
+// Add parameters to url.
 add_filter(
 	'writepoetry_query_vars',
 	function () {
-		// Test here http://localhost:8888/sample-page/?test-param=ciao&test-param2=caro
+		// Test here http://localhost:8888/sample-page/?test-param=ciao&test-param2=caro.
 		return array( 'test-param', 'test-param2' );
 	}
 );

@@ -32,9 +32,9 @@ class WooCommercePage extends AdminController {
 	/**
 	 * Set custom attribute for the option.
 	 *
-	 * @param $option The option to check.
+	 * @param string $option The option to check.
 	 *
-	 * @return bool
+	 * @return array
 	 */
 	private function setCustomAttribute( $option ) {
 
@@ -48,9 +48,9 @@ class WooCommercePage extends AdminController {
 	/**
 	 * Create the section beneath the products tab.
 	 *
-	 * @param $sections The sections to add.
+	 * @param array $sections Other admin settings sections.
 	 *
-	 * @return mixed
+	 * @return array
 	 **/
 	public function add_section( $sections ) {
 
@@ -61,8 +61,8 @@ class WooCommercePage extends AdminController {
 	/**
 	 * Add settings to the specific section we created before.
 	 *
-	 * @param $settings The settings to add.
-	 * @param $current_section The current section.
+	 * @param array  $settings Original settings configuration array.
+	 * @param string $current_section The current section.
 	 *
 	 * @return mixed
 	 */
@@ -86,18 +86,22 @@ class WooCommercePage extends AdminController {
 				if ( isset( $setting['id'] ) && 'woocommerce_cart_redirect_after_add' === $setting['id'] ) {
 					$settings[ $index ] = array(
 						'name'              => __( 'Add to cart behaviour', 'write-poetry' ),
+						// @phpcs:disable Squiz.PHP.CommentedOutCode.Found
 						// 'desc_tip' => $regeneration_aborted_warning,
+						// @phpcs:enable
 						'id'                => "{$this->prefix}_redirect_after_add",
 						'type'              => 'select',
 						'default'           => '',
-						// 'css'      => 'min-width:300px;',
+						'css'               => 'min-width:300px;',
 						'desc'              => __( 'Choose which page to redirect after a successful addition', 'write-poetry' ),
 						'options'           => array(
 							''         => __( 'Default (No redirect)', 'write-poetry' ),
 							'cart'     => __( 'Redirect to the cart page', 'write-poetry' ),
 							'checkout' => __( 'Redirect to the checkout page', 'write-poetry' ),
+							// @phpcs:disable Squiz.PHP.CommentedOutCode.Found
 							// 'product-cart'           => __( 'Redirect to cart page (only from single product page)', 'write-poetry' ),
 							// 'product-checkout'       => __( 'Redirect to checkout page (only from single product page)', 'write-poetry' ),
+							// @phpcs:enable
 						), // array of options for select/multiselects only.
 						'custom_attributes' => $this->setCustomAttribute( "{$this->prefix}_redirect_after_add" ),
 					);

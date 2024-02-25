@@ -13,6 +13,8 @@
 namespace WritePoetry;
 
 use WritePoetry\Api\PluginConfig;
+use WritePoetry\Base\BaseController;
+
 
 /**
  * Main Init class
@@ -54,23 +56,17 @@ final class Init {
 			);
 		}
 
-		// @phpcs:disable Squiz.PHP.CommentedOutCode.Found
-		// TODO: Restore filter to be sure that all plugins are loaded before check if WooCommerce is enabled.
-		// add_filter( 'plugins_loaded', function ( ) use ( $services ) {
-		// @phpcs:enable
-
-		if ( class_exists( 'WooCommerce' ) ) {
+		if ( BaseController::is_woocommerce_activated() ) {
 			array_push(
 				$services,
 				Plugins\WooCommerce\CartRedirect::class,
 				Plugins\WooCommerce\ProductZoom::class,
 				Plugins\WooCommerce\ProductAdditionalInfos::class,
-				Plugins\WooCommerce\WooCommerceController::class,
-				Plugins\WooCommerce\QuantityLayout::class
+				Plugins\WooCommerce\QuantityLayout::class,
+				Plugins\WooCommerce\WooCommerceController::class
 			);
 		}
 
-		// } );
 
 		return $services;
 	}

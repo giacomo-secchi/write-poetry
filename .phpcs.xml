@@ -32,6 +32,9 @@
 	<!-- Exclude Stylesheets files. -->
 	<exclude-pattern>*.css</exclude-pattern>
 
+	<!-- Exclude build directory. -->
+	<exclude-pattern>/build/*</exclude-pattern>
+
 	<!-- Strip the filepaths down to the relevant bit. -->
 	<arg name="basepath" value="."/>
 
@@ -121,6 +124,12 @@
 				<element value="twenties"/>
 			</property>
 		</properties>
+
+		<exclude-pattern>/woocommerce/*\.php$</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound">
+		<exclude-pattern>/includes/*\.php$</exclude-pattern>
 	</rule>
 
 
@@ -148,10 +157,10 @@
 	https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Annotated-Ruleset
 	-->
 	<rule ref="WordPress.WP.GlobalVariablesOverride">
-		<exclude-pattern>/path/to/Tests/*Test\.php</exclude-pattern>
+		<exclude-pattern>/tests/*Test\.php</exclude-pattern>
 	</rule>
 	<rule ref="WordPress.Files.FileName">
-		<exclude-pattern>/path/to/Tests/*Test\.php</exclude-pattern>
+		<exclude-pattern>/tests/*Test\.php</exclude-pattern>
 	</rule>
 	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
 		<exclude-pattern>/includes/*\.php$</exclude-pattern>
@@ -159,6 +168,7 @@
 	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
 		<exclude-pattern>/includes/*\.php$</exclude-pattern>
 	</rule>
+
 	<!-- Apply PSR-1 naming conventions to the includes directory -->
 	<rule ref="PSR1.Classes.ClassDeclaration">
 		<include-pattern>/includes/*\.php$</include-pattern>

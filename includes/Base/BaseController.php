@@ -46,20 +46,16 @@ class BaseController {
 		if ( property_exists( $this->config, $property ) ) {
 			return $this->config->$property;
 		} else {
-			throw new \Exception( "Property '$property' does not exist." );
+			throw new \Exception( esc_html( "Property '$property' does not exist." ) );
 		}
 	}
 
 	/**
 	 * Check if WooCommerce is activated.
+	 *
+	 * @return bool
 	 */
-	public function is_woocommerce_activated() {
-		add_filter(
-			'plugins_loaded',
-			function () {
-
-				return class_exists( 'WooCommerce' ) ? true : false;
-			}
-		);
+	public static function is_woocommerce_activated() {
+		return class_exists( 'WooCommerce' ) ? true : false;
 	}
 }

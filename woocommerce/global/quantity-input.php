@@ -37,17 +37,17 @@ $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 
 
 
 	<?php
-		$options = ''; // Initializing
+		$options = ''; // Initializing.
 
 	for ( $i = $min_value; $i <= $max_value; $i += $step ) :
-		$selected = ( '' !== $input_value && $input_value >= 1 && $i == $input_value ) ? 'selected' : '';
+		$selected = ( '' !== $input_value && $input_value >= 1 && $i === $input_value ) ? 'selected' : '';
 		$options .= '<option value="' . $i . '"' . $selected . '>' . $i . '</option>';
 		endfor;
 
-		// Change input name on select field
+		// Change input name on select field.
 		$attr_name = is_cart() ? 'data-name' : 'name';
 	?>
-	<select <?php echo $attr_name; ?>="<?php echo $input_name; ?>"><?php echo $options; ?></select>
+	<select <?php echo esc_attr( $attr_name ); ?>="<?php echo esc_attr( $input_name ); ?>"><?php echo esc_html( $options ); ?></select>
 
 	<?php
 	/**
