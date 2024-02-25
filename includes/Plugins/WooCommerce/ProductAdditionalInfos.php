@@ -3,7 +3,7 @@
  * Example class.
  *
  * @package           WritePoetry
- * @subpackage        WritePoetry/Base
+ * @subpackage        WritePoetry/Plugins/WooCommerce
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
@@ -16,8 +16,6 @@ use WritePoetry\Base\BaseController;
 
 /**
  * Class ProductAdditionalInfos
- *
- * @package WritePoetry\Plugins\WooCommerce
  */
 class ProductAdditionalInfos extends WooCommerceController {
 	/**

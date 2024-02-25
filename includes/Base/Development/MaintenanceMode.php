@@ -35,7 +35,7 @@ class MaintenanceMode extends BaseController {
 			return;
 		}
 
-		add_action( 'wp', array( $this, 'excluded_pages' ) );
+		add_action( 'wp', array( $this, 'check_excluded_pages' ) );
 	}
 
 
@@ -44,7 +44,7 @@ class MaintenanceMode extends BaseController {
 	 *
 	 * @return void
 	 */
-	public function excluded_pages() {
+	public function check_excluded_pages() {
 		global $post;
 
 		if ( ! empty( $post->post_name ) ) {
@@ -72,6 +72,11 @@ class MaintenanceMode extends BaseController {
 	 * @return void
 	 */
 	public function wp_maintenance() {
+		// Return if maintenance mode is disabled.
+		if ( ! wp_is_maintenance_mode() ) {
+			return;
+		}
+
 		if ( file_exists( WP_CONTENT_DIR . '/maintenance.php' ) ) {
 			require_once WP_CONTENT_DIR . '/maintenance.php';
 			die();
@@ -83,8 +88,8 @@ class MaintenanceMode extends BaseController {
 		header( 'Retry-After: 600' );
 
 		wp_die(
-			__( 'Briefly unavailable for scheduled maintenance. Check back in a minute.' ),
-			__( 'Maintenance' ),
+			esc_html__( 'Briefly unavailable for scheduled maintenance. Check back in a minute.', 'write-poetry' ),
+			esc_html__( 'Maintenance', 'write-poetry' ),
 			503
 		);
 	}

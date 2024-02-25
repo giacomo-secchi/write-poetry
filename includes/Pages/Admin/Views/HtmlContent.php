@@ -37,7 +37,7 @@ class HtmlContent {
 			echo esc_html(
 				sprintf(
 				/* translators: %s: Name of the settings page */
-					__( '%s Settings' ),
+					__( '%s Settings', 'write-poetry' ),
 					get_admin_page_title()
 				)
 			);

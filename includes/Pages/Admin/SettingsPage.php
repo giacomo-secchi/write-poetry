@@ -195,24 +195,22 @@ class SettingsPage extends AdminController {
 	 */
 	public function section_callback( $args ) {
 		?>
-		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Replace with single text string literal' ); ?></p>
+		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( $args['description'] ); ?></p>
 		<?php
 	}
-
 
 
 	/**
 	 * Sanitize each setting field as needed
 	 *
-	 * @param array $input Contains all settings fields as array keys
+	 * @param array $input Contains all settings fields as array keys.
 	 */
 	public function sanitize( $input ) {
 
 		$new_input = array();
 		if ( isset( $input['id_number'] ) ) {
-
-		}
 			$new_input['id_number'] = absint( $input['id_number'] );
+		}
 
 		if ( isset( $input['title'] ) ) {
 			$new_input['title'] = sanitize_text_field( $input['title'] );
@@ -221,11 +219,9 @@ class SettingsPage extends AdminController {
 		return $new_input;
 	}
 
-
-
-
 	/**
 	 * Get the settings option array and print one of its values
+	 * @param array $args  The settings array, defining title, id, callback.
 	 */
 	public function checkboxInputTemplate( $args ) {
 		$disable_checkbox_field = $this->hasFiltersForOption( $args['id'] );

@@ -67,7 +67,6 @@ final class Init {
 			);
 		}
 
-
 		return $services;
 	}
 
@@ -89,11 +88,11 @@ final class Init {
 	/**
 	 * Initialize the class
 	 *
-	 * @param  class $class    class from the services array.
-	 * @return class instance  new instance of the class
+	 * @param string $class_name The name of the class to instantiate.
+	 * @return object The instantiated object.
 	 */
-	private static function instantiate( $class ) {
-		$service = new $class();
+	private static function instantiate( $class_name ) {
+		$service = new $class_name();
 
 		return $service;
 	}

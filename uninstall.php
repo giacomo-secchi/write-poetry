@@ -6,7 +6,6 @@
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
- *
  */
 
 // if uninstall.php is not called by WordPress, die.
