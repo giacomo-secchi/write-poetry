@@ -221,6 +221,7 @@ class SettingsPage extends AdminController {
 
 	/**
 	 * Get the settings option array and print one of its values
+	 *
 	 * @param array $args  The settings array, defining title, id, callback.
 	 */
 	public function checkboxInputTemplate( $args ) {

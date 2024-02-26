@@ -1,11 +1,11 @@
 <?php
 /**
- * Example class.
+ * The Maintenance Mode class.
  *
  * @package           WritePoetry
  * @subpackage        WritePoetry/Base/Development
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
- * @copyright         2023 Giacomo Secchi
+ * @copyright         2023 rGiacomo Secchi
  * @license           GPL-2.0-or-later
  * @since             0.2.4
  */

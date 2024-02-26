@@ -4,6 +4,9 @@
  * Author: Giacomo Secchi
  * Author URI: https://giacomosecchi.com
  * Version: 1.0.0
+ *
+ * @package WritePoetry
+ * @subpackage project-engine-room
  */
 
 /* Place custom code below this line. */
@@ -19,6 +22,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 /**
+ * Hard code Google Tag Manager parameters in wp-config.php.
+ *
  * @link https://gtm4wp.com/gtm4wp-for-developers/hard-code-google-tag-manager-parameters-in-wp-config-php
  */
 define( 'GTM4WP_HARDCODED_GTM_ID', 'GTM-XXXXXX' );
@@ -59,10 +64,7 @@ add_filter(
 add_filter(
 	'pre_option_writepoetry_product_quantity_layout',
 	function () {
-		// 'hidden';
-		// 'input';
-		// 'buttons';
-		// 'select';
+		// possible values are: 'hidden', 'input', 'buttons', 'select'.
 		return 'buttons';
 	}
 );
@@ -72,7 +74,7 @@ add_filter(
 add_filter(
 	'pre_option_writepoetry_redirect_after_add',
 	function () {
-		// possible values are 'product-checkout', 'product-cart', 'checkout', 'cart'.
+		// possible values are: 'product-checkout', 'product-cart', 'checkout', 'cart'.
 		return 'checkout';
 	}
 );
@@ -147,7 +149,7 @@ add_filter(
 					'name' => esc_html( 'Product Type' ),
 				),
 				'show_ui'           => true,
-				// 'show_admin_column'          => true,
+				'show_admin_column'	=> true,
 				'show_in_nav_menus' => true,
 				'show_tagcloud'     => true,
 			),
