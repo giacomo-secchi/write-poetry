@@ -45,6 +45,7 @@
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --webpack-copy-php",
 		"start:hot": "wp-scripts start --hot",
+    "test:unit": "wp-env run tests-cli --env-cwd=wp-content/plugins/write-poetry ./vendor/bin/phpunit",
 		"wp-env": "wp-env",
 		"env:start": "wp-env start && (npm run start)",
 		"env:start:debug": "wp-env start --xdebug",
