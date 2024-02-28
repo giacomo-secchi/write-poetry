@@ -3,6 +3,17 @@
 	"description": "Example block scaffolded with Create Block tool.",
 	"author": "Giacomo Secchi",
 	"license": "GPL-2.0-or-later",
+  "files": [
+		"assets",
+		"build",
+		"includes",
+		"vendor",
+		"woocommerce",
+		"index.php",
+		"readme.txt",
+		"write-poetry.php",
+		"uninstall.php"
+	],
 	"dependencies": {
 		"@wordpress/api-fetch": "^6.44.0",
 		"@wordpress/components": "^25.13.0",
@@ -49,16 +60,5 @@
 			"require-repository": "off",
 			"require-version": "off"
 		}
-	},
-	"files": [
-		"assets",
-		"build",
-		"includes",
-		"vendor",
-		"woocommerce",
-		"index.php",
-		"readme.txt",
-		"write-poetry.php",
-		"uninstall.php"
-	]
+	}
 }
