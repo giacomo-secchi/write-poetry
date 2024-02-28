@@ -66,6 +66,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+### 0.3.1 - 2024-02-28
+#### Fixed
+- PHP errors detected by PHP_CodeSniffer
+
 ### 0.2.8 - 2023-12-28
 #### Added
 - `write-poetry-theme.json` dedicated file to load styles and scripts.
