@@ -38,14 +38,6 @@ class AdminController extends BaseController {
 		return true;
 	}
 
-
-	/**
-	 * Invoke hooks.
-	 *
-	 * @return void
-	 */
-	public function register() {}
-
 	/**
 	 * Check if there are any filters applied to an option.
 	 *
