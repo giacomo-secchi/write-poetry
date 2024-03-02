@@ -1,6 +1,7 @@
 .DS_Store
 phpcs.xml
 phpunit.xml
+.phpunit.result.cache
 Thumbs.db
 wp-cli.local.yml
 build/
@@ -9,5 +10,4 @@ node_modules/
 *.tar.gz
 *.zip
 .vscode/
-
 /vendor/

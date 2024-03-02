@@ -66,6 +66,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+### 0.3.2 - 2024-03-02
+#### Fixed
+- `./vendor` folder not included in the release when plugin is updated
+- Update PluginConfig::getInstance() to PluginConfig::get_instance() in `uninstall.php`
+
 ### 0.3.1 - 2024-02-28
 #### Fixed
 - PHP errors detected by PHP_CodeSniffer
