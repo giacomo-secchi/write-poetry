@@ -6,13 +6,15 @@
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 
 // Import the helper to find and generate the entry points in the src directory
-const { getWebpackEntryPoints, getWordPressSrcDirectory } = require( '@wordpress/scripts/utils' );
-
+const {
+	getWebpackEntryPoints,
+	getWordPressSrcDirectory,
+} = require( '@wordpress/scripts/utils' );
 
 module.exports = {
 	...defaultConfig,
 	entry: {
 		...getWebpackEntryPoints(),
-		'plugin-jetpack':  `./${ getWordPressSrcDirectory() }/plugins/jetpack`
-	}
+		'plugin-jetpack': `./${ getWordPressSrcDirectory() }/plugins/jetpack`,
+	},
 };

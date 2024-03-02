@@ -1,10 +1,10 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/theme.json",
-  "version": 2,
-  "settings": {},
-  "styles": {
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
+	"settings": {},
+	"styles": {
 		"blocks": {
-      "core/button": {
+			"core/button": {
 				"variations": {
 					"outline": {
 						"border": {

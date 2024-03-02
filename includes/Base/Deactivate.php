@@ -1,6 +1,6 @@
 <?php
 /**
- * Example class.
+ * Deactivate class.
  *
  * @package           WritePoetry
  * @subpackage        WritePoetry/Base
