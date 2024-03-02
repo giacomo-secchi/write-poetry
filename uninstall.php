@@ -19,7 +19,7 @@ if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
 
 use WritePoetry\Api\PluginConfig;
 
-$config      = PluginConfig::getInstance();
+$config      = PluginConfig::get_instance();
 $all_options = wp_load_alloptions();
 
 // Delete all plugin options in wp_otions table.
