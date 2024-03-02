@@ -169,26 +169,27 @@ class Smashing_Updater {
 
 		if ( property_exists( $transient, 'checked' ) ) { // Check if transient has a checked property.
 
-			$checked = $transient->checked;
+			if( $checked = $transient->checked ) { // Did Wordpress check for updates?
 
-			$this->get_repository_info(); // Get the repo info.
+				$this->get_repository_info(); // Get the repo info.
 
-			$out_of_date = version_compare( $this->github_response['tag_name'], $checked[ $this->basename ], 'gt' ); // Check if we're out of date.
+				$out_of_date = version_compare( $this->github_response['tag_name'], $checked[ $this->basename ], 'gt' ); // Check if we're out of date.
 
-			if ( $out_of_date ) {
+				if ( $out_of_date ) {
 
-				$new_files = $this->github_response['zipball_url']; // Get the ZIP.
+					$new_files = $this->github_response['assets'][0]['browser_download_url']; // Get the ZIP.
 
-				$slug = current( explode( '/', $this->basename ) ); // Create valid slug.
+					$slug = current( explode( '/', $this->basename ) ); // Create valid slug.
 
-				$plugin = array( // setup our plugin info.
-					'url'         => $this->plugin['PluginURI'],
-					'slug'        => $slug,
-					'package'     => $new_files,
-					'new_version' => $this->github_response['tag_name'],
-				);
+					$plugin = array( // setup our plugin info.
+						'url'         => $this->plugin['PluginURI'],
+						'slug'        => $slug,
+						'package'     => $new_files,
+						'new_version' => $this->github_response['tag_name'],
+					);
 
-				$transient->response[ $this->basename ] = (object) $plugin; // Return it in response.
+					$transient->response[ $this->basename ] = (object) $plugin; // Return it in response.
+				}
 			}
 		}
 
