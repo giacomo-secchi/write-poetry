@@ -10,61 +10,41 @@
 	"attributes": {
 		"animationName": {
 			"type": "string",
-      "enum": [
-        "bounce",
-        "flash",
-        "pulse",
-        "rubberBand"
-      ],
-      "default": "bounce"
+			"enum": [ "bounce", "flash", "pulse", "rubberBand" ],
+			"default": "bounce"
 		},
 		"animationSpeed": {
 			"type": "string",
-			"enum": [
-				"slow",
-				"slower",
-				"fast",
-				"faster"
-			],
+			"enum": [ "slow", "slower", "fast", "faster" ],
 			"default": "fast"
 		},
 		"animationDelay": {
 			"type": "string",
-			"enum": [
-				"2",
-				"3",
-				"4",
-				"5"
-			],
+			"enum": [ "2", "3", "4", "5" ],
 			"default": "2"
 		},
 		"animationRepeat": {
 			"type": "string",
-			"enum": [
-				"repeat-1",
-				"repeat-2",
-				"repeat-3",
-				"infinite"
-			],
+			"enum": [ "repeat-1", "repeat-2", "repeat-3", "infinite" ],
 			"default": "repeat-2"
 		}
 	},
 	"example": {
-    "attributes": {
-        "animationName": "bounce",
-        "animationSpeed": "fast",
-        "animationDelay": "2",
-        "animationRepeat": "infinite"
-    },
-    "innerBlocks": [
-      {
-        "name": "core/paragraph",
-        "attributes": {
-            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."
-        }
-      }
-    ]
-  },
+		"attributes": {
+			"animationName": "bounce",
+			"animationSpeed": "fast",
+			"animationDelay": "2",
+			"animationRepeat": "infinite"
+		},
+		"innerBlocks": [
+			{
+				"name": "core/paragraph",
+				"attributes": {
+					"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."
+				}
+			}
+		]
+	},
 
 	"supports": {
 		"html": false
@@ -72,6 +52,6 @@
 	"textdomain": "write-poetry",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style":  [ "file:./style-index.css", "file:./view.css" ],
+	"style": [ "file:./style-index.css", "file:./view.css" ],
 	"viewScript": "file:./view.js"
 }

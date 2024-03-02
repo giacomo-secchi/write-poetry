@@ -6,15 +6,14 @@
 		"https://downloads.wordpress.org/plugin/jetpack.13.0.zip",
 		"https://downloads.wordpress.org/plugin/query-monitor.3.15.0.zip",
 		"https://downloads.wordpress.org/plugin/sg-security.1.4.10.zip",
-    "https://downloads.wordpress.org/plugin/transients-manager.2.0.5.zip",
+		"https://downloads.wordpress.org/plugin/transients-manager.2.0.5.zip",
 		"https://downloads.wordpress.org/plugin/woocommerce.8.5.2.zip"
 	],
-  "themes": [ "./themes/twentytwenty-child" ],
+	"themes": [ "./themes/twentytwenty-child" ],
 	"mappings": {
 		"wp-content/mu-plugins": "./mu-plugins"
+	},
+	"lifecycleScripts": {
+		"afterStart": "wp-env run cli wp theme activate twentytwenty-child"
 	}
-  ,
-  "lifecycleScripts": {
-    "afterStart": "wp-env run cli wp theme activate twentytwenty-child"
-  }
 }

@@ -5,12 +5,12 @@
 	"version": "0.1.0",
 	"title": "Slider",
 	"category": "widgets",
-  "attributes": {
-    "numberOfPosts": {
-      "type": "number",
-      "default": 3
-    }
-  },
+	"attributes": {
+		"numberOfPosts": {
+			"type": "number",
+			"default": 3
+		}
+	},
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
 	"supports": {

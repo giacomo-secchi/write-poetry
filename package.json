@@ -3,7 +3,7 @@
 	"description": "Example block scaffolded with Create Block tool.",
 	"author": "Giacomo Secchi",
 	"license": "GPL-2.0-or-later",
-  "files": [
+	"files": [
 		"assets",
 		"build",
 		"includes",
@@ -36,7 +36,12 @@
 		"build": "wp-scripts build --webpack-copy-php",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
+		"composer": "wp-env run cli --env-cwd=wp-content/plugins/write-poetry composer",
+		"env:start": "wp-env start && (npm run start)",
+		"env:start:debug": "wp-env start --xdebug",
+		"env:stop": "wp-env stop",
 		"format": "wp-scripts format",
+		"format:src": "wp-scripts format ./src",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"lint:md:docs": "wp-scripts lint-md-docs",
@@ -45,12 +50,8 @@
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --webpack-copy-php",
 		"start:hot": "wp-scripts start --hot",
-    "test:unit": "wp-env run tests-cli --env-cwd=wp-content/plugins/write-poetry ./vendor/bin/phpunit",
-		"wp-env": "wp-env",
-		"env:start": "wp-env start && (npm run start)",
-		"env:start:debug": "wp-env start --xdebug",
-		"env:stop": "wp-env stop",
-		"composer": "wp-env run cli --env-cwd=wp-content/plugins/write-poetry composer"
+		"test:unit": "wp-env run tests-cli --env-cwd=wp-content/plugins/write-poetry ./vendor/bin/phpunit",
+		"wp-env": "wp-env"
 	},
 	"npmpackagejsonlint": {
 		"extends": "@wordpress/npm-package-json-lint-config",
