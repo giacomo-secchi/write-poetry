@@ -177,7 +177,14 @@ class Smashing_Updater {
 
 				if ( $out_of_date ) {
 
-					$new_files = $this->github_response['assets'][0]['browser_download_url']; // Get the ZIP.
+					$new_files = null;
+
+					array_walk_recursive( $this->github_response, function( $value, $key ) use ( &$new_files ) {
+						if ( $key === 'browser_download_url') {
+							$new_files = $value;
+							return false; // Stop the walk.
+						}
+					} );
 
 					$slug = current( explode( '/', $this->basename ) ); // Create valid slug.
 
