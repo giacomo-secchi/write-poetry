@@ -2,7 +2,7 @@
 /**
  * Class SampleTest
  *
- * @package Write_Poetry
+ * @package WritePoetry
  */
 
 /**
