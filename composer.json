@@ -1,5 +1,6 @@
 {
 	"name": "giacomosecchi/write-poetry",
+	"version": "1.0.0",
 	"type": "wordpress-plugin",
 	"description": "The Swiss knife plugin designed for developers and advanced users. Unlock the full potential of WordPress with this versatile tool. Empower your workflow without getting your hands dirty.",
 	"require": {
@@ -7,8 +8,13 @@
 	},
 	"license": "GPL-2.0-or-later",
 	"autoload": {
+		"classmap": [
+			"includes/"
+		]
+	},
+	"autoload-dev": {
 		"psr-4": {
-			"WritePoetry\\": "./includes"
+			"WritePoetry\\Tests\\": "./tests"
 		}
 	},
 	"authors": [
@@ -18,7 +24,8 @@
 		}
 	],
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^3.0"
+		"wp-coding-standards/wpcs": "^3.0",
+		"php-mock/php-mock-phpunit": "^2.10"
 	},
 	"config": {
 		"allow-plugins": {
