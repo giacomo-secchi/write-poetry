@@ -169,7 +169,7 @@ class Smashing_Updater {
 
 		if ( property_exists( $transient, 'checked' ) ) { // Check if transient has a checked property.
 
-			if( $checked = $transient->checked ) { // Did Wordpress check for updates?
+			if ( $checked = $transient->checked ) { // Did WordPress check for updates?
 
 				$this->get_repository_info(); // Get the repo info.
 
@@ -179,12 +179,15 @@ class Smashing_Updater {
 
 					$new_files = null;
 
-					array_walk_recursive( $this->github_response, function( $value, $key ) use ( &$new_files ) {
-						if ( $key === 'browser_download_url') {
-							$new_files = $value;
-							return false; // Stop the walk.
+					array_walk_recursive(
+						$this->github_response,
+						function ( $value, $key ) use ( &$new_files ) {
+							if ( 'browser_download_url' === $key ) {
+								$new_files = $value;
+								return false; // Stop the walk.
+							}
 						}
-					} );
+					);
 
 					$slug = current( explode( '/', $this->basename ) ); // Create valid slug.
 
