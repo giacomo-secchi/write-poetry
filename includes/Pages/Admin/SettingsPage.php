@@ -102,9 +102,8 @@ class SettingsPage extends AdminController {
 		}
 
 		// Set class property.
-		echo \WritePoetry\Pages\Admin\Views\HtmlContent::get_form();
+		echo esc_html( \WritePoetry\Pages\Admin\Views\HtmlContent::get_form() );
 	}
-
 
 	/**
 	 * Register and add settings
@@ -132,6 +131,7 @@ class SettingsPage extends AdminController {
 			// Add more sections as needed.
 		);
 
+		// Add sections.
 		foreach ( $sections as $section ) {
 
 			$id       = $section['id'];
@@ -150,6 +150,13 @@ class SettingsPage extends AdminController {
 				'title'    => __( 'Enable Maintenance', 'write-poetry' ),
 				'callback' => 'checkboxInputTemplate',
 				'section'  => 'setting_section_maintenance_mode',
+			),
+			array(
+				'id'       => "{$this->prefix}_maintenance_mode_excluded_ip",
+				'title'    => __( 'Exclude following IP addresses from Maintenance Mode', 'write-poetry' ),
+				'callback' => 'textInputTemplate',
+				'section'  => 'setting_section_maintenance_mode',
+				'sanitize' => 'number',
 			),
 			array(
 				'id'       => "{$this->prefix}_custom_login",
@@ -173,17 +180,17 @@ class SettingsPage extends AdminController {
 			add_settings_field( $option_name, $title, $callback, $page, $section );
 
 			$args = array(
-				'type'              => 'string',
-				'sanitize_callback' => array( $this, 'sanitize' ),
+				'sanitize_callback' => function () use ( $field ) {
+					call_user_func( array( $this, 'sanitize' ), $field );
+				},
 				'default'           => 1,
 			);
 
+			// Register a new setting for "{$this->prefix}-settings-group" page.
 			register_setting(
 				$option_group,
 				$option_name,
-				function () use ( $args ) {
-					call_user_func( array( $this, 'sanitize' ), $args );
-				}
+				// $args
 			);
 		}
 	}
@@ -195,7 +202,7 @@ class SettingsPage extends AdminController {
 	 */
 	public function section_callback( $args ) {
 		?>
-		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( $args['description'] ); ?></p>
+		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php echo wp_kses_post( $args['description'] ); ?></p>
 		<?php
 	}
 
@@ -203,13 +210,14 @@ class SettingsPage extends AdminController {
 	/**
 	 * Sanitize each setting field as needed
 	 *
-	 * @param array $input Contains all settings fields as array keys.
+	 * @param array $input Contains The address input.
+	 * @return array $new_input    The sanitized input.
 	 */
 	public function sanitize( $input ) {
 
 		$new_input = array();
-		if ( isset( $input['id_number'] ) ) {
-			$new_input['id_number'] = absint( $input['id_number'] );
+		if ( isset( $input['sanitize'] ) && 'number' === $input['sanitize'] ) {
+			$new_input['id'] = absint( $input['id_number'] );
 		}
 
 		if ( isset( $input['title'] ) ) {
@@ -231,6 +239,18 @@ class SettingsPage extends AdminController {
 		$disable_current        = true;
 		?>
 		<input type="checkbox" id="<?php echo esc_attr( $args['id'] ); ?>" name="<?php echo esc_attr( $args['id'] ); ?>" value="1"<?php checked( $checked, $current ); ?>  <?php disabled( $disable_checkbox_field, $disable_current ); ?>/>
+		<?php
+	}
+
+	/**
+	 * Get the settings option array and print one of its values
+	 *
+	 * @param array $args The settings array, defining title, id, callback.
+	 */
+	public function textInputTemplate( $args ) {
+		$input_value = get_option( $args['id'] );
+		?>
+		<input type="text" id="<?php echo esc_attr( $args['id'] ); ?>" name="<?php echo esc_attr( $args['id'] ); ?>" value="<?php echo isset( $input_value ) ? esc_attr( $input_value ) : 'wwwwddd'; ?>" />
 		<?php
 	}
 }
