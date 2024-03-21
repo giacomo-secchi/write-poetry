@@ -177,27 +177,27 @@ add_filter(
 	'writepoetry_add_custom_post_types',
 	function () {
 		$string = array(
-			'come-raggiungerci'  =>
+			'books'              =>
 				array(
 					'labels'             => array(
-						'name'          => esc_html( 'Come Raggiungerci' ),
-						'singular_name' => esc_html( 'Come Raggiungerci' ),
+						'name'          => esc_html( 'Books' ),
+						'singular_name' => esc_html( 'Books' ),
 					),
 					'publicly_queryable' => true,
 				),
-			'punti_di_interesse' =>
+			'points_of_interest' =>
 				array(
 					'labels' => array(
-						'name'          => esc_html( 'Napoli e Dintorni' ),
-						'singular_name' => esc_html( 'Napoli e Dintorni' ),
+						'name'          => esc_html( 'Points of interest' ),
+						'singular_name' => esc_html( 'Point of interest' ),
 					),
 				),
 
-			'escursioni'         =>
+			'excursions'         =>
 				array(
 					'labels'             => array(
-						'name'          => 'Transfer ed Escursioni',
-						'singular_name' => 'Escursione',
+						'name'          => 'Transfer & Excursions',
+						'singular_name' => 'Excursion',
 					),
 					'publicly_queryable' => true,
 				),

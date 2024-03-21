@@ -126,6 +126,7 @@
 		</properties>
 	</rule>
 
+
 	<!--
 	#############################################################################
 	SELECTIVE EXCLUSIONS
@@ -152,46 +153,24 @@
 	<rule ref="WordPress.WP.GlobalVariablesOverride">
 		<exclude-pattern>/tests/*Test\.php</exclude-pattern>
 	</rule>
-
 	<rule ref="WordPress.Files.FileName">
 		<exclude-pattern>/tests/*Test\.php</exclude-pattern>
 	</rule>
-
-	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
-		<exclude-pattern>/includes/*\.php$</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
-		<exclude-pattern>/includes/*\.php$</exclude-pattern>
-	</rule>
-
 	<rule ref="Modernize.FunctionCalls.Dirname.FileConstant">
 		<exclude-pattern>/tests/bootstrap.php</exclude-pattern>
 	</rule>
-
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<exclude-pattern>/mu-plugins/*\.php$</exclude-pattern>
 		<exclude-pattern>/woocommerce/*\.php$</exclude-pattern>
 		<exclude-pattern>/tests/bootstrap.php</exclude-pattern>
 	</rule>
-
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound">
 		<exclude-pattern>/includes/*\.php$</exclude-pattern>
 	</rule>
 	<rule ref="Squiz.PHP.CommentedOutCode.Found">
 		<exclude-pattern>/mu-plugins/*\.php$</exclude-pattern>
 	</rule>
-
 	<rule ref="WordPress.WP.I18n">
 		<exclude-pattern>/woocommerce/*\.php$</exclude-pattern>
 	</rule>
-
-	<!-- Apply PSR-1 naming conventions to the includes directory -->
-	<rule ref="PSR1.Classes.ClassDeclaration">
-		<include-pattern>/includes/*\.php$</include-pattern>
-	</rule>
-	<rule ref="PSR1.Files.SideEffects">
-		<include-pattern>/includes/*\.php$</include-pattern>
-	</rule>
-
 </ruleset>

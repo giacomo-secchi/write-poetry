@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use WritePoetry\Api\PluginConfig;
+use WritePoetry\Api\Plugin_Config;
 
 /**
  * Filter tabs and allow third parties to add their own.
