@@ -30,7 +30,9 @@ class Gtm4wp {
 
 	/**
 	 * Manually coded Container code compatibility mode
-	 * TODO: this functionality has been disabled, it seems that the plugin GTM4WP already call gtm4wp_the_gtm_tag function when 'Container code compatibility mode' is set to manual
+	 * this functionality has been disabled,
+	 * it seems that the plugin GTM4WP already call gtm4wp_the_gtm_tag function
+	 * when 'Container code compatibility mode' is set to manual
 	 *
 	 * @return void
 	 */
