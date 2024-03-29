@@ -72,7 +72,7 @@ function AnimationPlaceholder( { setAttributes } ) {
  *
  * @param {Object} props The properties passed to the function.
  *
- * @return {WPElement} Element to render.
+ * @return {Element} Element to render.
  */
 export default function Edit( props ) {
 	const { attributes, setAttributes, isSelected } = props;

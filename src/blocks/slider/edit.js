@@ -13,11 +13,8 @@ import './editor.scss';
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
 import { Spinner } from '@wordpress/components';
-import apiFetch from '@wordpress/api-fetch';
 import { useSelect } from '@wordpress/data';
-import { useState, Component } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 
 /**
@@ -26,7 +23,7 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  *
- * @return {WPElement} Element to render.
+ * @return {Element} Element to render.
  */
 
 export default function Edit( props ) {

@@ -13,10 +13,10 @@ import classnames from 'classnames';
  * be combined into the final markup, which is then serialized by the block
  * editor into `post_content`.
  *
- * @param  props
+ * @param  props Props to be passed to the save function.
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
  *
- * @return {WPElement} Element to render.
+ * @return {Element} Element to render.
  */
 export default function save( props ) {
 	const {
