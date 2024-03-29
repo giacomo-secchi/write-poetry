@@ -13,11 +13,13 @@
 namespace WritePoetry\Pages\Admin;
 
 use WritePoetry\Pages\Admin_Controller;
+use WritePoetry\Interfaces\Settings_Interface;
+
 
 /**
  * Options Settings subpage.
  */
-class Settings_Page extends Admin_Controller {
+class Settings_Page extends Admin_Controller implements Settings_Interface {
 
 	/**
 	 * The page slug.
@@ -75,7 +77,7 @@ class Settings_Page extends Admin_Controller {
 	 */
 	public function register() {
 		add_action( 'admin_menu', array( $this, 'adminMenu' ) );
-		add_action( 'admin_init', array( $this, 'pageInit' ) );
+		add_action( 'admin_init', array( $this, 'register_settings' ) );
 	}
 
 	/**
@@ -86,7 +88,7 @@ class Settings_Page extends Admin_Controller {
 		$menu_title = __( 'Write Poetry', 'write-poetry' );
 		$capability = 'manage_options';
 		$menu_slug  = $this->page_slug;
-		$callback   = array( $this, 'createAdminPage' );
+		$callback   = array( $this, 'display' );
 		$position   = 24;
 
 		// This page will be under "Settings".
@@ -96,7 +98,7 @@ class Settings_Page extends Admin_Controller {
 	/**
 	 * Options page callback
 	 */
-	public function createAdminPage() {
+	public function display() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( 'Unauthorized user' );
 		}
@@ -108,7 +110,7 @@ class Settings_Page extends Admin_Controller {
 	/**
 	 * Register and add settings
 	 */
-	public function pageInit() {
+	public function register_settings() {
 		$page         = $this->page_slug;
 		$option_group = $this->option_group;
 
