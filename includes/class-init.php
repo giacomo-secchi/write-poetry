@@ -38,9 +38,9 @@ final class Init {
 			FSE\Blocks::class,
 			FSE\Theme\Assets::class,
 			Pages\Admin\Login_Screen::class,
+			Plugins\Jetpack\Portfolio::class,
 			// @phpcs:disable Squiz.PHP.CommentedOutCode.Found, Squiz.Commenting.InlineComment.InvalidEndChar
 			// Base\Development\Example::class,
-			// Plugins\Jetpack\Portfolio::class,
 			// Plugins\Gtm4wp::class,
 			// @phpcs:enable
 		);
