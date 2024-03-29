@@ -35,7 +35,7 @@ class Settings_Link extends Admin_Controller {
 	 * @return array
 	 */
 	public function add_action_links( $actions ) {
-		$settings_page = new SettingsPage();
+		$settings_page = new Settings_Page();
 
 		// Build URL.
 		$url = add_query_arg( 'page', $settings_page->getPageSlug(), get_admin_url() . 'options-general.php' );
