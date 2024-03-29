@@ -20,15 +20,23 @@ use WritePoetry\Base\Base_Controller;
  * @package WritePoetry\Plugins\Jetpack
  */
 class Portfolio extends Base_Controller {
+
+	const CUSTOM_POST_TYPE = 'jetpack-portfolio';
+
 	/**
 	 * Invoke hooks.
 	 *
 	 * @return void
 	 */
 	public function register() {
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
-		add_action( 'add_meta_boxes', array( $this, 'add_portfolio_meta_box' ) );
-		add_action( 'init', array( $this, 'register_portfolio_meta' ) );
+		add_filter(
+			'wp_loaded',
+			function () {
+				add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
+				add_action( 'add_meta_boxes', array( $this, 'add_portfolio_meta_box' ) );
+				add_action( 'init', array( $this, 'register_portfolio_meta' ) );
+			}
+		);
 	}
 
 
@@ -63,51 +71,34 @@ class Portfolio extends Base_Controller {
 	 */
 	public function register_portfolio_meta() {
 
-		register_post_meta(
-			'jetpack-portfolio',
-			'_writepoetry_project_year',
-			array(
-				'show_in_rest'  => true,
-				'type'          => 'number',
-				'single'        => true,
-				'auth_callback' => function () {
-					return current_user_can( 'edit_posts' );
-				},
-			)
-		);
+		if ( ! post_type_exists( self::CUSTOM_POST_TYPE ) ) {
+			return;
+		}
 
-		register_post_meta(
-			'jetpack-portfolio',
-			'_writepoetry_project_client',
-			array(
-				'show_in_rest'  => true,
-				'type'          => 'string',
-				'single'        => true,
-				'auth_callback' => function () {
-					return current_user_can( 'edit_posts' );
-				},
-			)
-		);
+		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_url', array( 'type' => 'string' ) );
+		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_date_from', array( 'type' => 'string' ) );
+		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_date_to', array( 'type' => 'string' ) );
+		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_client', array( 'type' => 'string' ) );
+		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_expertise', array( 'type' => 'string' ) );
+		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_industry', array( 'type' => 'string' ) );
+	}
 
+	/**
+	 * Register post meta.
+	 *
+	 * @param string $post_type Post type.
+	 * @param string $meta_key Meta key.
+	 * @param array  $args Meta args.
+	 *
+	 * @return void
+	 */
+	private function register_post_meta( $post_type, $meta_key, $args ) {
 		register_post_meta(
-			'jetpack-portfolio',
-			'_writepoetry_project_expertise',
+			$post_type,
+			$meta_key,
 			array(
 				'show_in_rest'  => true,
-				'type'          => 'string',
-				'single'        => true,
-				'auth_callback' => function () {
-					return current_user_can( 'edit_posts' );
-				},
-			)
-		);
-
-		register_post_meta(
-			'jetpack-portfolio',
-			'_writepoetry_project_industry',
-			array(
-				'show_in_rest'  => true,
-				'type'          => 'string',
+				'type'          => $args['type'],
 				'single'        => true,
 				'auth_callback' => function () {
 					return current_user_can( 'edit_posts' );
@@ -123,10 +114,10 @@ class Portfolio extends Base_Controller {
 	 */
 	public function add_portfolio_meta_box() {
 		add_meta_box(
-			'myprefix_post_options_metabox',
+			"{$this->prefix}_post_options_metabox",
 			'Post Options',
-			'myprefix_post_options_metabox_html',
-			'jetpack-portfolio',
+			"{$this->prefix}_post_options_metabox_html",
+			self::CUSTOM_POST_TYPE,
 			'normal',
 			'default',
 			array( '__back_compat_meta_box' => true )
