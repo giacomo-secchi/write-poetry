@@ -32,11 +32,18 @@ class Portfolio extends Base_Controller {
 		add_filter(
 			'wp_loaded',
 			function () {
-				add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
+				if ( ! post_type_exists( self::CUSTOM_POST_TYPE ) ) {
+					return;
+				}
+
+ 				add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
+				// Add meta box to ensure backward compatibility with the Classic Editor.
 				add_action( 'add_meta_boxes', array( $this, 'add_portfolio_meta_box' ) );
-				add_action( 'init', array( $this, 'register_portfolio_meta' ) );
+				$this->register_portfolio_meta();
 			}
 		);
+
+
 	}
 
 
@@ -56,7 +63,7 @@ class Portfolio extends Base_Controller {
 		);
 
 		wp_enqueue_script(
-			'writepoetry-gutenberg-sidebar',
+			"{$this->prefix}-gutenberg-sidebar",
 			sprintf( '%s/%s.js', $this->build_url, $file_name ),
 			$asset_file['dependencies'],
 			$asset_file['version'],
@@ -70,31 +77,30 @@ class Portfolio extends Base_Controller {
 	 * @return void
 	 */
 	public function register_portfolio_meta() {
-
-		if ( ! post_type_exists( self::CUSTOM_POST_TYPE ) ) {
-			return;
+		$meta_fields = array(
+			'_writepoetry_project_url',
+			'_writepoetry_project_date_from',
+			'_writepoetry_project_date_to',
+			'_writepoetry_project_client',
+			'_writepoetry_project_expertise',
+			'_writepoetry_project_industry',
+		);
+		foreach( $meta_fields as $meta_field ){
+			$this->register_post_meta( $meta_field, array( 'type' => 'string' ) );
 		}
-
-		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_url', array( 'type' => 'string' ) );
-		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_date_from', array( 'type' => 'string' ) );
-		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_date_to', array( 'type' => 'string' ) );
-		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_client', array( 'type' => 'string' ) );
-		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_expertise', array( 'type' => 'string' ) );
-		$this->register_post_meta( self::CUSTOM_POST_TYPE, '_writepoetry_project_industry', array( 'type' => 'string' ) );
 	}
 
 	/**
 	 * Register post meta.
 	 *
-	 * @param string $post_type Post type.
 	 * @param string $meta_key Meta key.
 	 * @param array  $args Meta args.
 	 *
 	 * @return void
 	 */
-	private function register_post_meta( $post_type, $meta_key, $args ) {
+	private function register_post_meta( $meta_key, $args ) {
 		register_post_meta(
-			$post_type,
+			self::CUSTOM_POST_TYPE,
 			$meta_key,
 			array(
 				'show_in_rest'  => true,

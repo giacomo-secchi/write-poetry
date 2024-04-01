@@ -1,26 +1,22 @@
-import { registerPlugin } from '@wordpress/plugins';
-import {
-	PluginSidebar,
-	PluginSidebarMoreMenuItem,
-	PluginDocumentSettingPanel,
-} from '@wordpress/edit-post';
-import {
-	Button,
-	DateTimePicker,
-	Dropdown,
-	PanelBody,
-	TextControl,
-	__experimentalNumberControl as NumberControl,
-} from '@wordpress/components';
-import { select, useSelect, withSelect, withDispatch } from '@wordpress/data';
-import { useEntityProp } from '@wordpress/core-data';
-import includes from 'lodash/includes';
-import { useState } from '@wordpress/element';
+/**
+ * Internal dependencies
+ */
+import * as config from '../../packages/config';
 
-import { date } from '@wordpress/date';
+/**
+ * WordPress dependencies
+ */
+import { registerPlugin } from '@wordpress/plugins';
+import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
+import { TimePicker, TextControl } from '@wordpress/components';
+import { useSelect, withSelect } from '@wordpress/data';
+import { useEntityProp } from '@wordpress/core-data';
+import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-let PluginMetaFields = ( props ) => {
+// import includes from 'lodash/includes';
+
+const PluginMetaFields = ( props ) => {
 	const postType = useSelect(
 		( select ) => select( 'core/editor' ).getCurrentPostType(),
 		[]
@@ -28,8 +24,11 @@ let PluginMetaFields = ( props ) => {
 
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
-	const yearValue = meta[ '_writepoetry_project_year' ];
-	const clientValue = meta[ '_writepoetry_project_client' ];
+	const fromDateValue = meta._writepoetry_project_from_date;
+	const newToValue = meta._writepoetry_project_to_date;
+	const clientValue = meta._writepoetry_project_client;
+
+	const [ date, setDate ] = useState( new Date() );
 
 	const updateMetaValue = ( key, newValue ) => {
 		setMeta( { ...meta, [ key ]: newValue } );
@@ -37,23 +36,36 @@ let PluginMetaFields = ( props ) => {
 
 	return (
 		<>
-			<NumberControl
-				label={ __( 'Year', 'textdomain' ) }
-				onChange={ ( value ) =>
-					updateMetaValue( '_writepoetry_project_year', value )
-				}
-				shiftStep={ 10 }
-				value={ yearValue }
-			/>
+			<label htmlFor="datePicker">
+				{ __( 'From date', 'write-poetry' ) }
+				<TimePicker
+					currentTime={ meta._writepoetry_project_date_from }
+					onChange={ ( newFromDate ) =>
+						updateMetaValue(
+							'_writepoetry_project_date_from',
+							newFromDate
+						)
+					}
+				/>
+			</label>
+
+			<div>
+				<label htmlFor="datePicker">
+					{ __( 'To date', 'write-poetry' ) }
+					<TimePicker
+						currentTime={ newToValue }
+						onChange={ ( newToDate ) =>
+							updateMetaValue(
+								'_writepoetry_project_to_date',
+								newToDate
+							)
+						}
+					/>
+				</label>
+			</div>
+
 			<TextControl
-				label={ __( 'Client', 'textdomain' ) }
-				value={ clientValue }
-				onChange={ ( value ) =>
-					updateMetaValue( '_writepoetry_project_client', value )
-				}
-			/>
-			<TextControl
-				label={ __( 'Client', 'textdomain' ) }
+				label={ __( 'Client', 'write-poetry' ) }
 				value={ clientValue }
 				onChange={ ( value ) =>
 					updateMetaValue( '_writepoetry_project_client', value )
@@ -102,6 +114,8 @@ const MyDocumentSettingwithSelect = withSelect( ( select ) => {
 	};
 } )( MyDocumentSetting );
 
-registerPlugin( 'document-setting-test', {
+const PluginSettings = {
 	render: MyDocumentSettingwithSelect,
-} );
+};
+
+registerPlugin( config.PLUGIN_NAME, PluginSettings );
