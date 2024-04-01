@@ -42,8 +42,6 @@ class Portfolio extends Base_Controller {
 				$this->register_portfolio_meta();
 			}
 		);
-
-
 	}
 
 
@@ -78,15 +76,16 @@ class Portfolio extends Base_Controller {
 	 */
 	public function register_portfolio_meta() {
 		$meta_fields = array(
-			'_writepoetry_project_url',
-			'_writepoetry_project_date_from',
-			'_writepoetry_project_date_to',
-			'_writepoetry_project_client',
-			'_writepoetry_project_expertise',
-			'_writepoetry_project_industry',
+			'project_url',
+			'project_date_from',
+			'project_date_to',
+			'project_client',
+			'project_expertise',
+			'project_industry',
 		);
+
 		foreach( $meta_fields as $meta_field ){
-			$this->register_post_meta( $meta_field, array( 'type' => 'string' ) );
+			$this->register_post_meta( "_{$this->prefix}_$meta_field", array( 'type' => 'string' ) );
 		}
 	}
 
