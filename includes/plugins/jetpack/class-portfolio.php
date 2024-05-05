@@ -75,17 +75,22 @@ class Portfolio extends Base_Controller {
 	 * @return void
 	 */
 	public function register_portfolio_meta() {
+		$default_args = array();
+
 		$meta_fields = array(
-			'project_url',
-			'project_date_from',
-			'project_date_to',
-			'project_client',
-			'project_expertise',
-			'project_industry',
+			'project_url' =>  $default_args,
+			'project_year' => array(
+				'type' => 'number',
+				'default' => date( 'Y' ),
+				'description' =>  'Year of the project',
+			),
+			'project_client' =>  $default_args,
+			'project_expertise' =>  $default_args,
+			'project_industry' =>  $default_args
 		);
 
-		foreach( $meta_fields as $meta_field ){
-			$this->register_post_meta( "_{$this->prefix}_$meta_field", array( 'type' => 'string' ) );
+		foreach( $meta_fields as $meta_field  => $args ) {
+			$this->register_post_meta( "{$this->prefix}_$meta_field", $args );
 		}
 	}
 
@@ -98,17 +103,26 @@ class Portfolio extends Base_Controller {
 	 * @return void
 	 */
 	private function register_post_meta( $meta_key, $args ) {
+
+		$meta_args = array(
+			'show_in_rest'  => true,
+			'single'        => true,
+			'sanitize_callback' => 'sanitize_text_field',
+		);
+
+		$possible_keys = [ 'type', 'default', 'description' ];
+
+		foreach ( $possible_keys as $key ) {
+
+			if ( isset( $args[$key] ) ) {
+				$meta_args[$key] = $args[$key];
+			}
+		}
+
 		register_post_meta(
 			self::CUSTOM_POST_TYPE,
 			$meta_key,
-			array(
-				'show_in_rest'  => true,
-				'type'          => $args['type'],
-				'single'        => true,
-				'auth_callback' => function () {
-					return current_user_can( 'edit_posts' );
-				},
-			)
+			$meta_args
 		);
 	}
 

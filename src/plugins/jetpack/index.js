@@ -8,10 +8,13 @@ import * as config from '../../packages/config';
  */
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
-import { TimePicker, TextControl } from '@wordpress/components';
+import {
+	DateTimePicker,
+	__experimentalNumberControl as NumberControl,
+	TextControl,
+} from '@wordpress/components';
 import { useSelect, withSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
-import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 // import includes from 'lodash/includes';
@@ -24,53 +27,46 @@ const PluginMetaFields = ( props ) => {
 
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
-	const fromDateValue = meta._writepoetry_project_from_date;
-	const newToValue = meta._writepoetry_project_to_date;
-	const clientValue = meta._writepoetry_project_client;
-
-	const [ date, setDate ] = useState( new Date() );
-
 	const updateMetaValue = ( key, newValue ) => {
 		setMeta( { ...meta, [ key ]: newValue } );
 	};
+	const data = useSelect( ( select ) => {
+		return select( 'core' ).getEntityRecords( 'postType', postType );
+	} );
 
 	return (
 		<>
-			<label htmlFor="datePicker">
-				{ __( 'From date', 'write-poetry' ) }
-				<TimePicker
-					currentTime={ meta._writepoetry_project_date_from }
-					onChange={ ( newFromDate ) =>
-						updateMetaValue(
-							'_writepoetry_project_date_from',
-							newFromDate
-						)
-					}
-				/>
-			</label>
+			{ Object.entries( meta ).map( ( [ key, value ] ) => {
+				if ( ! key.startsWith( `${ config.PLUGIN_NAME }_project` ) ) {
+					return null;
+				}
 
-			<div>
-				<label htmlFor="datePicker">
-					{ __( 'To date', 'write-poetry' ) }
-					<TimePicker
-						currentTime={ newToValue }
-						onChange={ ( newToDate ) =>
-							updateMetaValue(
-								'_writepoetry_project_to_date',
-								newToDate
-							)
+				if ( key === `${ config.PLUGIN_NAME }_project_year` ) {
+					return (
+						<NumberControl
+							label={ __( key, 'write-poetry' ) }
+							onChange={ ( newValue ) =>
+								updateMetaValue( key, newValue )
+							}
+							value={ value }
+							required={ true }
+							min={ 1900 }
+							max={ new Date().getFullYear() }
+						/>
+					);
+				}
+
+				return (
+					<TextControl
+						key={ key }
+						label={ __( key, 'write-poetry' ) }
+						value={ value }
+						onChange={ ( newValue ) =>
+							updateMetaValue( key, newValue )
 						}
 					/>
-				</label>
-			</div>
-
-			<TextControl
-				label={ __( 'Client', 'write-poetry' ) }
-				value={ clientValue }
-				onChange={ ( value ) =>
-					updateMetaValue( '_writepoetry_project_client', value )
-				}
-			/>
+				);
+			} ) }
 		</>
 	);
 };
@@ -78,7 +74,7 @@ const PluginMetaFields = ( props ) => {
 // PluginMetaFields = withSelect(
 //     (select) => {
 //         return {
-//             project_year_metafield: select( 'core/editor' ).getEditedPostAttribute( 'meta' )['_writepoetry_project_year'],
+//             project_year_metafield: select( 'core/editor' ).getEditedPostAttribute( 'meta' )['writepoetry_project_year'],
 //         }
 //     }
 // )(PluginMetaFields);
@@ -87,7 +83,7 @@ const PluginMetaFields = ( props ) => {
 //     (dispatch) => {
 //         return {
 //             onMetaFieldChange: ( value ) => {
-//                 dispatch( 'core/editor' ).editPost( { meta: { _writepoetry_project_year: value } })
+//                 dispatch( 'core/editor' ).editPost( { meta: { writepoetry_project_year: value } })
 //             }
 //         }
 //     }
