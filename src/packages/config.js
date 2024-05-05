@@ -1,1 +1,1 @@
-export const PLUGIN_NAME = 'write-poetry';
+export const PLUGIN_NAME = 'writepoetry';
