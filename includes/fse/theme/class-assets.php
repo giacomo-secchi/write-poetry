@@ -168,7 +168,7 @@ class Assets extends Base_Controller {
 
 		// Get the base assets path using a filter hook.
 		// This allows customization of the path through the 'writepoetry_blocks_styles_asset_path' filter.
-		$base_assets_path = apply_filters( "{$this->prefix}_blocks_styles_asset_path", join( DIRECTORY_SEPARATOR, array( 'assets', 'css', 'blocks' ) ) );
+		$base_assets_path = apply_filters( "{$this->prefix}_blocks_styles_asset_path", 'assets/css/blocks' );
 
 		// Use glob to get the list of stylesheets files in the assets folder.
 		$blocks_path = glob( get_theme_file_path( $base_assets_path ) . '/*/*.css' );
