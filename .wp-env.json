@@ -9,11 +9,11 @@
 		"https://downloads.wordpress.org/plugin/transients-manager.2.0.5.zip",
 		"https://downloads.wordpress.org/plugin/woocommerce.8.5.2.zip"
 	],
-	"themes": [ "./themes/twentytwenty-child" ],
+	"themes": [ "./themes/write-white" ],
 	"mappings": {
 		"wp-content/mu-plugins": "./mu-plugins"
 	},
 	"lifecycleScripts": {
-		"afterStart": "wp-env run cli wp theme activate twentytwenty-child"
+		"afterStart": "wp-env run cli wp theme activate write-white"
 	}
 }
