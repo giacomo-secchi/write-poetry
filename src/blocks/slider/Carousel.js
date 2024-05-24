@@ -12,6 +12,7 @@ import {
 	A11y,
 } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -20,7 +21,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 const Carousel = ( { delay, elements } ) => {
-	// debugger;
 	// filter out not valid values like null, undefined, false, 0, empty string
 	const slides = elements.filter( ( child ) => !! child );
 

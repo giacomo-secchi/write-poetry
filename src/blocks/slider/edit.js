@@ -15,7 +15,7 @@ import './editor.scss';
  */
 import { Spinner } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
-import { useBlockProps } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -45,44 +45,27 @@ export default function Edit( props ) {
 		] );
 	} );
 
-	// const rootURL = 'https://wptavern.com/wp-json/';
-	// const nonce = '15a72f5e0c';
-
-	// apiFetch.use( apiFetch.createRootURLMiddleware( rootURL ) );
-	// apiFetch.use( apiFetch.createNonceMiddleware( nonce ) );
-	// GET
-	// 	apiFetch( { url: 'https://eternedile.it/wp-json/wp/v2/posts',
-	// 	mode: 'cors', // no-cors, *cors, same-origin
-	// 	cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-	// 	credentials: 'omit', // include, *same-origin, omit
-	// 	headers: {
-	// 	  'Content-Type': 'application/json'
-	// 	  // 'Content-Type': 'application/x-www-form-urlencoded',
-	// 	},
-	// 	redirect: 'follow', // manual, *follow, error
-	// 	referrerPolicy: 'no-referrer',
-	// } ).then( ( posts ) => {
-	// 		console.log( posts );
-	// 		this.setState({
-	// 			list: posts,
-	// 			isResolving: false
-	// 		})
-	// 	} );
+	const MY_TEMPLATE = [
+		[ 'core/image', {} ],
+		[ 'core/heading', { placeholder: 'Book Title' } ],
+		[ 'core/paragraph', { placeholder: 'Summary' } ],
+	];
 
 	// this is an array of ReactNodes
 	const reactNodeArray = [
-		'',
-		'',
-		'Test',
-		42,
-		<span>I'm a span</span>,
-		null,
-		undefined,
-		false,
-		[
-			<p key="2">This is a paragraph in an array.</p>,
-			'Another string in an array',
-		],
+		// '',
+		// '',
+		// 'Test',
+		// 42,
+		// <span>I'm a span</span>,
+		// null,
+		// undefined,
+		// false,
+		// [
+		// 	<p key="2">This is a paragraph in an array.</p>,
+		// 	'Another string in an array',
+		// ],
+		<InnerBlocks template={ MY_TEMPLATE } />,
 	];
 
 	return (
