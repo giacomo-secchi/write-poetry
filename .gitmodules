@@ -1,3 +1,6 @@
 [submodule "write-white"]
 	path = themes/write-white
 	url = https://github.com/giacomo-secchi/write-white
+[submodule "themes/write-white"]
+	path = themes/write-white
+	url = https://github.com/giacomo-secchi/write-white
