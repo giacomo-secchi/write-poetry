@@ -29,6 +29,8 @@ To get up and running within the WritePoetry Repo, you will need to make sure th
 Once you've installed all of the prerequisites, you can run the following commands to get everything working.
 
 ```bash
+# Clone the project repository including nested submodules
+git clone --recurse-submodules https://github.com/giacomo-secchi/write-poetry
 # Ensure that you're using the correct version of Node
 nvm use
 # Install the Node.js packages and dependencies
@@ -58,7 +60,7 @@ Remember that the `pathMappings` inside `.vscode/launch.json` file should be as 
 {
 	"pathMappings": {
 		"/var/www/html/wp-content/plugins/write-poetry": "${workspaceFolder}/",
-		"/var/www/html/wp-content/themes/twentytwenty-child": "${workspaceFolder}/themes/twentytwenty-child/",
+		"/var/www/html/wp-content/themes/write-white": "${workspaceFolder}/themes/write-white/",
 		"/var/www/html/wp-content/mu-plugins": "${workspaceFolder}/mu-plugins/"
 	}
 }

@@ -22,7 +22,7 @@ Major features in Write Poetry include:
 *   Load styles and scripts assets from your theme without using code (only configurations in the dedicated file `write-poetry-theme.json`).
 *   Add multipe Query Vars via `writepoetry_query_vars`.
 *   Including CSS for block styles without write a line of code: you just need to add the css files following the
-naming convention rule: `my-theme/assets/css/blocks/prefix/blockname.css` (i.e., `twentytwenty-child/assets/css/blocks/core/site-title.css`).
+naming convention rule: `my-theme/assets/css/blocks/prefix/blockname.css` (i.e., `write-white/assets/css/blocks/core/site-title.css`).
 the file will load automatically only when the block with the same name will be rendered.
 In addition, if you want to change the default base folder for blocks styles (`assets/css/blocks`) you can use this filter `writepoetry_blocks_styles_asset_path`
 *   Add new Block Styles just using the `writepoetry_register_block_style` hook. An example here: [Add new Blocks Styles via filter](https://github.com/giacomo-secchi/write-poetry/blob/f39ad41e6ac3a9b5c8ec6f2467ea44b7055ef8df/themes/twentytwenty-child/functions.php#L41).
