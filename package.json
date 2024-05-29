@@ -15,22 +15,22 @@
 		"uninstall.php"
 	],
 	"dependencies": {
-		"@wordpress/api-fetch": "^6.44.0",
-		"@wordpress/components": "^25.13.0",
-		"@wordpress/core-data": "^6.25.0",
-		"@wordpress/data": "^9.17.0",
-		"@wordpress/date": "^4.47.0",
-		"@wordpress/edit-post": "^7.24.0",
-		"@wordpress/i18n": "^4.47.0",
-		"@wordpress/icons": "^9.38.0",
-		"@wordpress/plugins": "^6.15.0",
+		"@wordpress/api-fetch": "^6.55.0",
+		"@wordpress/components": "^27.6.0",
+		"@wordpress/core-data": "^6.35.0",
+		"@wordpress/data": "^9.28.0",
+		"@wordpress/date": "^4.58.0",
+		"@wordpress/edit-post": "^7.35.0",
+		"@wordpress/i18n": "^4.58.0",
+		"@wordpress/icons": "^9.49.0",
+		"@wordpress/plugins": "^6.26.0",
 		"animate.css": "^4.1.1",
 		"classnames": "^2.5.1",
-		"swiper": "^11.0.5"
+		"swiper": "^11.1.3"
 	},
 	"devDependencies": {
-		"@wordpress/env": "^9.0.0",
-		"@wordpress/scripts": "^26.18.0"
+		"@wordpress/env": "^9.10.0",
+		"@wordpress/scripts": "^27.9.0"
 	},
 	"prettier": "@wordpress/prettier-config",
 	"scripts": {
