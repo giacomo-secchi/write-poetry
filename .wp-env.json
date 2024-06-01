@@ -2,16 +2,17 @@
 	"core": null,
 	"plugins": [
 		".",
-		"https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.19.1.zip",
-		"https://downloads.wordpress.org/plugin/jetpack.13.0.zip",
-		"https://downloads.wordpress.org/plugin/query-monitor.3.15.0.zip",
-		"https://downloads.wordpress.org/plugin/sg-security.1.4.10.zip",
+		"https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.20.2.zip",
+		"https://downloads.wordpress.org/plugin/jetpack.13.4.3.zip",
+		"https://downloads.wordpress.org/plugin/query-monitor.3.16.3.zip",
+		"https://downloads.wordpress.org/plugin/sg-security.1.5.0.zip",
 		"https://downloads.wordpress.org/plugin/transients-manager.2.0.5.zip",
-		"https://downloads.wordpress.org/plugin/woocommerce.8.5.2.zip"
+		"https://downloads.wordpress.org/plugin/woocommerce.8.9.1.zip"
 	],
 	"themes": [ "./themes/snow-white" ],
 	"mappings": {
-		"wp-content/mu-plugins": "./mu-plugins"
+		"wp-content/mu-plugins": "./mu-plugins",
+		"wp-content/themes": "./themes"
 	},
 	"lifecycleScripts": {
 		"afterStart": "wp-env run cli wp theme activate snow-white"
