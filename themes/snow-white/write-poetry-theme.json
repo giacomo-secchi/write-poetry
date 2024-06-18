@@ -1,0 +1,53 @@
+{
+	"files": {
+		"scripts": [
+			{
+				"handle": "test-script",
+				"src": "/assets/js/test.js",
+				"deps": [],
+				"ver": "2.0.1",
+				"in_footer": "",
+				"is_page": [ "sample-page" ]
+			},
+			{
+				"handle": "test2-script",
+				"src": "/assets/js/test2.js",
+				"deps": null,
+				"ver": null,
+				"in_footer": "",
+				"is_page": [ "sample-page" ],
+				"is_plugin_active": [
+					"woocommerce/woocommerce.php",
+					"duracelltomi-google-tag-manager/duracelltomi-google-tag-manager-for-wordpress.php"
+				]
+			}
+		],
+		"styles": [
+			{
+				"handle": "twentytwenty-child-style",
+				"src": "/style.css",
+				"deps": [],
+				"ver": "",
+				"media": ""
+			},
+			{
+				"handle": "twentytwenty-child-style-editor",
+				"src": "/assets/css/style-editor.css",
+				"deps": [],
+				"ver": "1.1.1",
+				"media": "print"
+			},
+			{
+				"handle": "twentytwenty-child-woocommerce-style",
+				"src": "/assets/css/woocommerce.css",
+				"deps": [],
+				"ver": "",
+				"media": "",
+				"is_plugin_active": [ "woocommerce/woocommerce" ]
+			},
+			{
+				"handle": "dashicons"
+			}
+		]
+	}
+}
