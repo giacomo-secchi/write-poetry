@@ -21,7 +21,6 @@ Major features in Write Poetry include:
 
 *   Load styles and scripts assets from your theme without using code (only configurations in the dedicated file `write-poetry-theme.json`).
 *   Add multipe Query Vars via `writepoetry_query_vars`.
-*   Add new Block Styles just using the `writepoetry_register_block_style` hook. An example here: [Add new Blocks Styles via filter](https://github.com/giacomo-secchi/write-poetry/blob/f39ad41e6ac3a9b5c8ec6f2467ea44b7055ef8df/themes/twentytwenty-child/functions.php#L41).
 *	When you enable this plugin is adds by default: SVG, ttf, woff and woff2 mime types; In this way you can quickly add vectors and fonts to WordPress Media Library.
 	If you want to disable this behaviour you can just remove the unwanted mime types using the `upload_mimes` and `mime_types` filters. [Here an example](https://github.com/giacomo-secchi/write-poetry/blob/de14197dfd774608425b648c0075adf285ba1396/themes/twentytwenty-child/functions.php#L22).
 *	Enhanced maintenance mode that keeps the admin alive. To enable it go to 'Write Poetry Settings Page' (insert link) and check the box 'enable maintenace option'
