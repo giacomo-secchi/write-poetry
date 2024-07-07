@@ -128,7 +128,7 @@ class Settings_Page extends Admin_Controller implements Settings_Interface {
 			array(
 				'id'          => 'setting_section_maintenance_mode',
 				'title'       => __( 'Enhanced maintenance mode', 'write-poetry' ),
-				'description' => __( 'Put your website under maintenance', 'write-poetry' ),
+				'description' => __( 'Put your website in maintenance mode for users, but allow administrators to still access it.', 'write-poetry' ),
 			),
 			// Add more sections as needed.
 		);
@@ -149,7 +149,7 @@ class Settings_Page extends Admin_Controller implements Settings_Interface {
 		$fields = array(
 			array(
 				'id'       => "{$this->prefix}_maintenance_mode",
-				'title'    => __( 'Enable Maintenance', 'write-poetry' ),
+				'title'    => __( 'Enable maintenance for visitors only', 'write-poetry' ),
 				'callback' => 'checkboxInputTemplate',
 				'section'  => 'setting_section_maintenance_mode',
 			),

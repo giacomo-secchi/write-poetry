@@ -72,16 +72,6 @@ class Maintenance_Mode extends Base_Controller {
 	 * @return void
 	 */
 	public function wp_maintenance() {
-		// Return if maintenance mode is disabled.
-		if ( ! wp_is_maintenance_mode() ) {
-			return;
-		}
-
-		if ( file_exists( WP_CONTENT_DIR . '/maintenance.php' ) ) {
-			require_once WP_CONTENT_DIR . '/maintenance.php';
-			die();
-		}
-
 		require_once ABSPATH . WPINC . '/functions.php';
 		wp_load_translations_early();
 
