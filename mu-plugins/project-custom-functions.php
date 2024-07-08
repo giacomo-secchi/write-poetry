@@ -38,7 +38,7 @@ add_filter( 'writepoetry_remove_query_strings', '__return_true' );
 add_filter(
 	'pre_option_writepoetry_maintenance_mode',
 	function () {
-		return 0;
+		return '1';
 	}
 );
 
