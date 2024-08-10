@@ -35,7 +35,7 @@ class Maintenance_Mode extends Base_Controller {
 			return;
 		}
 
-		add_action( 'init', array( $this, 'check_excluded_pages' ) );
+		add_action( 'wp', array( $this, 'check_excluded_pages' ) );
 	}
 
 

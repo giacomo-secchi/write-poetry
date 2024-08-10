@@ -47,10 +47,12 @@ add_filter(
 add_filter(
 	'writepoetry_maintenance_excluded_pages',
 	function ( $condition ) {
-		$condition[''] = 'cart';
+		$condition[] = 'cart';
+		$condition[] = 'sample-page';
 		return $condition;
 	}
 );
+
 
 // Choose to enable or disable product image zoom on product page (to disable change 'yes' to 'no').
 add_filter(
