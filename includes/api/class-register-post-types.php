@@ -55,7 +55,7 @@ class Register_Post_Types extends Base_Controller {
 
 		foreach ( apply_filters( "{$this->prefix}_add_custom_post_types", array() ) as $post_type => $args ) {
 			if ( post_type_exists( $post_type ) ) {
-				return;
+				continue;
 			}
 
 			$args = array_merge( $default_args, $args );

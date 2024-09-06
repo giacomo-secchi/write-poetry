@@ -43,7 +43,7 @@ class Register_Post_Taxonomies extends Base_Controller {
 
 		foreach ( apply_filters( "{$this->prefix}_add_custom_taxonomies", array() ) as $taxonomy => $args ) {
 			if ( taxonomy_exists( $taxonomy ) ) {
-				return;
+				continue;
 			}
 
 			$args = array_merge( $default_args, $args );
