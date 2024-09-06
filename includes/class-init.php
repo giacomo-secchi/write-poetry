@@ -32,6 +32,7 @@ final class Init {
 		$services = array(
 			Api\Register_Post_Types::class,
 			Api\Register_Post_Taxonomies::class,
+			Api\Register_Custom_Fields::class,
 			Base\Development\Maintenance_Mode::class,
 			Base\Development\Utils::class,
 			Base\Utils::class,

@@ -43,7 +43,7 @@ class Base_Controller {
 	 */
 	public function __get( $property ) {
 
-		if ( property_exists( $this->config, $property ) ) {
+		if ( $this->config && property_exists( $this->config, $property ) ) {
 			return $this->config->$property;
 		} else {
 			throw new \Exception( esc_html( "Property '$property' does not exist." ) );

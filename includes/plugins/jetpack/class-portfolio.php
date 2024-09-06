@@ -13,6 +13,7 @@
 namespace WritePoetry\Plugins\Jetpack;
 
 use WritePoetry\Base\Base_Controller;
+use WritePoetry\Api\Register_Custom_Fields;
 
 /**
  * Class Portfolio
@@ -23,22 +24,28 @@ class Portfolio extends Base_Controller {
 
 	const CUSTOM_POST_TYPE = 'jetpack-portfolio';
 
+	private $register_custom_fields;
+
+
 	/**
 	 * Invoke hooks.
 	 *
 	 * @return void
 	 */
 	public function register() {
+
+		$this->register_custom_fields = new Register_Custom_Fields();
+
 		add_filter(
 			'wp_loaded',
 			function () {
 				if ( ! post_type_exists( self::CUSTOM_POST_TYPE ) ) {
 					return;
 				}
-
  				add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
 				// Add meta box to ensure backward compatibility with the Classic Editor.
 				add_action( 'add_meta_boxes', array( $this, 'add_portfolio_meta_box' ) );
+
 				$this->register_portfolio_meta();
 			}
 		);
@@ -70,61 +77,33 @@ class Portfolio extends Base_Controller {
 	}
 
 	/**
-	 * Register portfolio meta.
+	 * Register portfolio custom meta fields.
 	 *
 	 * @return void
 	 */
 	public function register_portfolio_meta() {
-		$default_args = array();
+		$default_args = array(
+        	'type'			=> 'string',
+			'default'       => 'project_',
+		);
 
 		$meta_fields = array(
-			'project_url' =>  $default_args,
-			'project_year' => array(
+			"{$this->prefix}_project_url" =>  $default_args,
+			"{$this->prefix}_project_year" => array(
 				'type' => 'number',
 				'default' => date( 'Y' ),
 				'description' =>  'Year of the project',
 			),
-			'project_client' =>  $default_args,
-			'project_expertise' =>  $default_args,
-			'project_industry' =>  $default_args
+			"{$this->prefix}_project_client" =>  $default_args,
+			"{$this->prefix}_project_expertise" =>  $default_args,
+			"{$this->prefix}_project_industry" =>  $default_args
 		);
 
-		foreach( $meta_fields as $meta_field  => $args ) {
-			$this->register_post_meta( "{$this->prefix}_$meta_field", $args );
-		}
+		// Register custom fields for the portfolio post type.
+		$this->register_custom_fields->register_custom_field( $meta_fields, self::CUSTOM_POST_TYPE );
 	}
 
-	/**
-	 * Register post meta.
-	 *
-	 * @param string $meta_key Meta key.
-	 * @param array  $args Meta args.
-	 *
-	 * @return void
-	 */
-	private function register_post_meta( $meta_key, $args ) {
 
-		$meta_args = array(
-			'show_in_rest'  => true,
-			'single'        => true,
-			'sanitize_callback' => 'sanitize_text_field',
-		);
-
-		$possible_keys = [ 'type', 'default', 'description' ];
-
-		foreach ( $possible_keys as $key ) {
-
-			if ( isset( $args[$key] ) ) {
-				$meta_args[$key] = $args[$key];
-			}
-		}
-
-		register_post_meta(
-			self::CUSTOM_POST_TYPE,
-			$meta_key,
-			$meta_args
-		);
-	}
 
 	/**
 	 * Add portfolio meta box.
