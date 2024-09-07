@@ -7,7 +7,7 @@
  * @author            Giacomo Secchi <giacomo.secchi@gmail.com>
  * @copyright         2023 Giacomo Secchi
  * @license           GPL-2.0-or-later
- * @since             0.3.5
+ * @since             0.3.6
  */
 
 namespace WritePoetry\Api;
@@ -32,7 +32,7 @@ class Register_Custom_Fields extends Base_Controller {
 	/**
 	 * Register All Post Type
 	 *
-	 * @since  0.3.5
+	 * @since  0.3.6
 	 * @access public
 	 * @return void
 	 */
