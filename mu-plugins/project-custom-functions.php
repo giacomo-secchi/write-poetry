@@ -217,16 +217,14 @@ add_filter(
 	function () {
 		$meta_keys = array(
 			'test_meta_key' => array(
-				'show_in_rest' => true,
-				'single'       => true,
 				'type'         => 'boolean',
 				'default'      => false,
 			),
 			'test_meta_key2' => array(
-				'show_in_rest' => true,
-				'single'       => true,
-				'type'         => 'string'
+				'show_in_rest' => false,
 			),
+			'test_meta_key3' => array(),
+			'test_meta_key4',
 		);
 
 		return $meta_keys;
@@ -234,29 +232,3 @@ add_filter(
 	10,
 	3
 );
-
-add_filter(
-	'writepoetry_add_custom_fields_to_page',
-	function () {
-		$meta_keys = array(
-			'test_page' => array(
-				'show_in_rest' => true,
-				'single'       => true,
-				'type'         => 'test',
-				'default'      => false,
-			),
-			'test_page_key2' => array(
-				'show_in_rest' => true,
-				'single'       => true,
-				'type'         => 'string',
-				'default'      => 'test2',
-			),
-		);
-
-		return $meta_keys;
-	},
-	10,
-	3
-);
-
-

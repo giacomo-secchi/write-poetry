@@ -62,12 +62,19 @@ class Register_Custom_Fields extends Base_Controller {
 			'show_in_rest'	=> true,
         	'single'		=> true,
         	'type'			=> 'string',
-			'default'       => 'ciaone',
+			'default'		=> '',
 		);
 
+		// Loop through each custom field and register it.
 		foreach ( $custom_fields as $custom_field => $args ) {
 			if ( ! post_type_exists( $post_type ) ) {
 				continue; // Use continue instead of return to avoid breaking the entire function
+			}
+
+			// Handle simple array case
+			if ( is_int( $custom_field ) ) {
+				$custom_field = $args;
+				$args = array();
 			}
 
 			// Merge default arguments with specific arguments.
@@ -76,6 +83,5 @@ class Register_Custom_Fields extends Base_Controller {
 			// Register the meta field for the post type.
 			register_post_meta( $post_type, $custom_field, $args );
 		}
-
 	}
 }
