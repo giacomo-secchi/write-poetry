@@ -35,6 +35,9 @@
 	<!-- Exclude build directory. -->
 	<exclude-pattern>/build/*</exclude-pattern>
 
+	<!-- Exclude the WriteWhite Theme directory. -->
+	<exclude-pattern>/themes/write-white/*</exclude-pattern>
+	
 	<!-- Strip the filepaths down to the relevant bit. -->
 	<arg name="basepath" value="."/>
 
@@ -112,7 +115,6 @@
 		<properties>
 			<property name="text_domain" type="array">
 				<element value="write-poetry"/>
-				<element value="twenties"/>
 			</property>
 		</properties>
 	</rule>
@@ -121,7 +123,6 @@
 		<properties>
 			<property name="prefixes" type="array">
 				<element value="writepoetry"/>
-				<element value="twenties"/>
 			</property>
 		</properties>
 	</rule>
@@ -147,7 +148,7 @@
 	so excluding test files from the `WordPress.Files.Filename` sniff can be a
 	legitimate exclusion.
 
-	For more information on ruleset configuration optiones, check out the PHPCS wiki:
+	For more information on ruleset configuration options, check out the PHPCS wiki:
 	https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Annotated-Ruleset
 	-->
 	<rule ref="WordPress.WP.GlobalVariablesOverride">
