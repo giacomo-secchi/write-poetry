@@ -1,5 +1,5 @@
 {
-	"name": "giacomosecchi/write-poetry",
+	"name": "write-poetry/wordpress-plugin",
 	"version": "1.0.0",
 	"type": "wordpress-plugin",
 	"description": "The Swiss knife plugin designed for developers and advanced users. Unlock the full potential of WordPress with this versatile tool. Empower your workflow without getting your hands dirty.",
