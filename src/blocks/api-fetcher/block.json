@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "write-poetry/api-fetcher",
+	"version": "0.1.0",
+	"title": "API Fetcher",
+	"category": "widgets",
+	"description": "Display your site's copyright date.",
+	"example": {},
+	"attributes": {
+		"fallbackCurrentYear": {
+			"type": "string"
+		},
+		"showStartingYear": {
+			"type": "boolean"
+		},
+		"startingYear": {
+			"type": "string"
+		},
+		"apiUrl": {
+			"type": "string"
+		}
+	},
+	"supports": {
+		"color": {
+			"background": false,
+			"text": true
+		},
+		"html": false,
+		"interactivity": true,
+		"typography": {
+			"fontSize": true
+		}
+	},
+	"textdomain": "write-poetry",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.js"
+}

@@ -13,5 +13,6 @@ module.exports = {
 	entry: {
 		...defaultConfig.entry(),
 		'plugin-jetpack': `./${ getWordPressSrcDirectory() }/plugins/jetpack`,
+		popup: `./${ getWordPressSrcDirectory() }/extensions/buttons/index.js`,
 	},
 };
